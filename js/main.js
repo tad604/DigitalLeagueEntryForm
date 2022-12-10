@@ -50,38 +50,79 @@ function getSelectedFaction(player){
 
 function getPlayerName(player){
   let tr = document.getElementById(player);
-  return tr.getElementsByTagName('input')[0].value;
+  return  tr.getElementsByTagName('input')[0].value;
 }
 
-function calculateScores(){
+function getPlayerDisplayName(player){
+  let name =  getPlayerName(player)
+  let tr = document.getElementById(player);
+  name = name !== "" ? name : tr.getElementsByTagName('td')[0].innerText;
+  return name;
+}
+
+function validateAndSubmit(){
   emptyAllErrors();
+  validatePlayerNames();
+  validatePlayerFactions();
+  validateScores();
+  if(isEmptyErrors()){
+    document.getElementById('gameForm').submit();
+  } else{
+    return false;
+  }
+}
+
+function validatePlayerNames(){
+  validatePlayerName('player1');
+  validatePlayerName('player2')
+  validatePlayerName('player3')
+  validatePlayerName('player4')
+
+}
+
+function validatePlayerName(id){
+  if("" === getPlayerName(id)){
+    addError(getPlayerDisplayName(id) + " needs a name!");
+  }
+}
+
+function validatePlayerFactions(){
+  validatePlayerFaction('player1');
+  validatePlayerFaction('player2');
+  validatePlayerFaction('player3');
+  validatePlayerFaction('player4');
+}
+
+function validatePlayerFaction(id){
+  let faction = getSelectedFaction(id);
+  if (faction === ""){
+    addError(getPlayerDisplayName(id) + " needs a faction selection!");
+  }
+}
+
+function validateScores(){
   let score1 = document.getElementById("Player 1 Game Score");
   let score2 = document.getElementById("Player 2 Game Score");
   let score3 = document.getElementById("Player 3 Game Score");
   let score4 = document.getElementById("Player 4 Game Score");
   score1.value = calculatePlayerScore('player1')
   if(score1.value === ""){
-    addError(getPlayerName('player1') + " needs a score!")
+    addError(getPlayerDisplayName('player1') + " needs a score!")
   }
   score2.value = calculatePlayerScore('player2');
   if(score2.value === ""){
-    addError(getPlayerName('player2') + " needs a score!")
+    addError(getPlayerDisplayName('player2') + " needs a score!")
   }
   score3.value = calculatePlayerScore('player3');
   if(score3.value === ""){
-    addError(getPlayerName('player3') + " needs a score!")
+    addError(getPlayerDisplayName('player3') + " needs a score!")
   }
   score4.value = calculatePlayerScore('player4')
   if(score4.value === ""){
-    addError(getPlayerName('player4') + " needs a score!")
+    addError(getPlayerDisplayName('player4') + " needs a score!")
   }
   if(!isTourneyScoreValid()){
     addError("Make sure Tournament score adds up to 1.0 exactly.")
-  }
-  if(isEmptyErrors()){
-    document.getElementById('gameForm').submit();
-  } else{
-    return false;
   }
 }
 
@@ -110,7 +151,7 @@ function findTourneyScore(player){
 
 function calculatePlayerScore(player){
   let tr = document.getElementById(player);
-  let val ="";
+  let val;
   if(isDomSelected(player) && !isCoalition(player)){
    val = tr.getElementsByTagName('select')[1].value + " Dom";
   }else if(isDomSelected(player)){
