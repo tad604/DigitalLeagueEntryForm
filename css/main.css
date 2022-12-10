@@ -40,7 +40,7 @@ thead > tr:last-child{
 }
 
 form{
-  background-image: url("/img/Medium_Box.png");
+  background-image: url("img/Medium_Box.png");
   background-repeat: no-repeat;
   background-size: 90% 100%;
   background-position: left top;
