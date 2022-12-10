@@ -15,10 +15,8 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
-
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
-
   <meta name="theme-color" content="#fafafa">
 </head>
 
@@ -34,12 +32,24 @@
   <input type="hidden" name="Player 4 Game Score" id="Player 4 Game Score" value="0"/>
 <h1 class="topBanner">Digital League Game submission form</h1>
   <h2>Players Info</h2>
+  <ul id="errors" class="errors">
+  </ul>
+  <div class="players">
   <table id="players">
+    <thead>
+    <tr>
+      <td class="header">Player Order</td>
+      <td class="header">Player Name</td>
+      <td class="header">Faction</td>
+      <td class="header">Game Score</td>
+      <td class="header">Tournament Score</td>
+    </tr>
+    </thead>
+    <tbody>
   <tr id="player1">
-    <td><label class="name" for="Player 1">First Player Handle:</label></td>
+    <td><label class="name" for="Player 1">First Player</label></td>
     <td><input id="Player 1" name="Player 1" type="text" required /></td>
-    <td><label for="Player 1 Faction">Faction:</label></td>
-    <td><select required class="factionSelect" id="Player 1 Faction" name="Player 1 Faction" onchange="updateFaction('player1', this)">
+    <td><select required class="factionSelect" id="Player 1 Faction" name="Player 1 Faction" onchange="onFactionSelect('player1')">
       <option value="">--Select Faction--</option>
       <option value="Eyrie Dynasties">Eyrie Dynasties</option>
       <option value="Lizard Cult">Lizard Cult</option>
@@ -58,8 +68,7 @@
     </select>
     </td>
     <td>
-    <label class="domSelect" for="playerDom1Select">Dominance</label><input id="playerDom1Select" type="checkbox" onchange="selectDom('player1', this)"></td>
-    <td>
+    <label class="domSelect" for="playerDom1Select">Dominance</label><input id="playerDom1Select" type="checkbox" onchange="onDomSelect('player1')">
     <span class="points" id="player1Points"><label for="playerScore1">Score:</label><input id="playerScore1" type="text" size="2"/></span>
     <span class="dom" id="player1Dom" style="display: none"><label for="playerDomSuit1">Suit:</label>
       <select id="playerDomSuit1">
@@ -87,10 +96,9 @@
     </td>
   </tr>
   <tr id="player2">
-    <td><label class="name" for="Player 2">Second Player Handle:</label></td>
+    <td><label class="name" for="Player 2">Second Player</label></td>
     <td><input id="Player 2" name="Player 2" type="text" required/></td>
-    <td><label for="Player 2 Faction">Faction:</label></td>
-    <td><select required class="factionSelect" id="Player 2 Faction" name="Player 2 Faction" onchange="updateFaction('player2', this)">
+    <td><select required class="factionSelect" id="Player 2 Faction" name="Player 2 Faction" onchange="onFactionSelect('player2')">
       <option value="">--Select Faction--</option>
       <option value="Eyrie Dynasties">Eyrie Dynasties</option>
       <option value="Lizard Cult">Lizard Cult</option>
@@ -107,8 +115,7 @@
       <option value="Vagabond (Tinker)">Vagabond (Tinker)</option>
       <option value="Vagabond (Vagrant)">Vagabond (Vagrant)</option>
     </select></td>
-    <td><label class="domSelect" for="playerDom2Select">Dominance</label><input id="playerDom2Select" type="checkbox" onchange="selectDom('player2', this)"></td>
-    <td>
+    <td><label class="domSelect" for="playerDom2Select">Dominance</label><input id="playerDom2Select" type="checkbox" onchange="onDomSelect('player2')">
     <span class="points" id="player2Points"><label for="playerScore2">Score:</label><input id="playerScore2" type="text" size="2"/></span>
     <span class="dom" id="player2Dom" style="display: none"><label for="playerDomSuit2">Suit:</label>
       <select id="playerDomSuit2">
@@ -134,10 +141,9 @@
     </td>
   </tr>
   <tr id="player3">
-    <td><label class="name" for="Player 3">Third Player Handle:</label></td>
+    <td><label class="name" for="Player 3">Third Player</label></td>
     <td><input id="Player 3" name="Player 3" type="text" required/></td>
-    <td><label for="Player 3 Faction">Faction:</label></td>
-    <td><select required class="factionSelect" id="Player 3 Faction" name="Player 3 Faction" onchange="updateFaction('player3', this)">
+    <td><select required class="factionSelect" id="Player 3 Faction" name="Player 3 Faction" onchange="onFactionSelect('player3')">
       <option value="">--Select Faction--</option>
       <option value="Eyrie Dynasties">Eyrie Dynasties</option>
       <option value="Lizard Cult">Lizard Cult</option>
@@ -155,8 +161,7 @@
       <option value="Vagabond (Vagrant)">Vagabond (Vagrant)</option>
     </select></td>
     <td>
-    <label class="domSelect" for="playerDom3Select">Dominance</label><input id="playerDom3Select" type="checkbox" onchange="selectDom('player3', this)"></td>
-    <td>
+    <label class="domSelect" for="playerDom3Select">Dominance</label><input id="playerDom3Select" type="checkbox" onchange="onDomSelect('player3')">
     <span class="points" id="player3Points"><label for="playerScore3">Score:</label><input id="playerScore3" type="text" size="2"/></span>
     <span class="dom" id="player3Dom" style="display: none"><label for="playerDomSuit3">Suit:</label>
       <select id="playerDomSuit3">
@@ -178,10 +183,9 @@
   </tr>
   <tr id="player4">
     <td>
-    <label class="name" for="Player 4">Fourth Player Handle:</label></td>
+    <label class="name" for="Player 4">Fourth Player</label></td>
     <td><input id="Player 4" name="Player 4" type="text" required/></td>
-    <td><label for="Player 4 Faction">Faction:</label></td>
-    <td><select required class="factionSelect" id="Player 4 Faction" name="Player 4 Faction" onchange="updateFaction('player4', this)">
+    <td><select required class="factionSelect" id="Player 4 Faction" name="Player 4 Faction" onchange="onFactionSelect('player4')">
       <option value="">--Select Faction--</option>
       <option value="Eyrie Dynasties">Eyrie Dynasties</option>
       <option value="Lizard Cult">Lizard Cult</option>
@@ -198,8 +202,7 @@
       <option value="Vagabond (Tinker)">Vagabond (Tinker)</option>
       <option value="Vagabond (Vagrant)">Vagabond (Vagrant)</option>
     </select></td>
-   <td> <label class="domSelect" for="playerDom4Select">Dominance</label><input id="playerDom4Select" type="checkbox" onchange="selectDom('player4', this)"></td>
-    <td>
+   <td> <label class="domSelect" for="playerDom4Select">Dominance</label><input id="playerDom4Select" type="checkbox" onchange="onDomSelect('player4')">
     <span class="points" id="player4Points"><label for="playerScore4">Score:</label><input id="playerScore4" type="text" size="2"/></span>
     <span class="dom" id="player4Dom" style="display: none"><label for="playerDomSuit4">Suit:</label>
       <select id="playerDomSuit4">
@@ -226,10 +229,10 @@
       </select>
     </td>
   </tr>
+    </tbody>
   </table>
-
+  </div>
   <div id="gameOptions">
-    <hr style="width: 30%"/>
     <h3>Game Options</h3>
   <span class="Options">Map:</span> <input name="Map" type="radio" id="Autumn"  checked value="Autumn"/>  <label for="Autumn">Autumn</label><input name="Map" type="radio" id="Winter" value="Winter"/><label for="Winter">Winter</label>
   <br/>

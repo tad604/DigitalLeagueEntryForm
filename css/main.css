@@ -7,24 +7,57 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 body {
-  background: beige;
+
 }
 table {
-  border-collapse: collapse;
-  //
-  padding: 20px;
+  /*border-collapse: collapse;*/
+  margin-left: auto;
+  margin-right: auto;
 
+  border-collapse: collapse;
+
+}
+div.players {
+  padding: 10px 10px 10px 10px;
+  border-radius: 15px;
+  background-color: lightgray;
+}
+
+tr {
+  border: solid;
+  border-width: 1px 0;
+}
+
+tr:first-child {
+  border-top: none;
+}
+tr:last-child {
+  border-bottom: none;
+}
+
+thead > tr:last-child{
+  border-bottom: solid;
 }
 
 form{
-  background-image: url("/img/Medium_Box.png");
+ /* background-image: url("/img/Medium_Box.png");
   background-repeat: no-repeat;
   background-size: 90% 100%;
   background-position: left top;
+
+  min-width: 1320px;*/
+  background-color: beige;
+  text-align: center;
   padding: 10px 25px 25px 50px;
   margin-top: 25px;
-  min-width: 1320px;
 }
+
+ul.errors {
+   font-size: large;
+   list-style: none;
+   color: red;
+}
+
 h2, h3, button {
   font-family: Luminari;
 }
@@ -36,7 +69,7 @@ button{
 
 h1 {
   font-family: Luminari;
-  font-size: xxx-large;
+  font-size: xx-large;
   text-align: center;
 }
 
@@ -46,10 +79,17 @@ span.Options {
 }
 
 
-label {
-  font-family: "Baskerville Old Face";
-  font-size: larger;
+label, .header {
   padding-right: 5px;
+}
+ .header {
+   font-family: Luminari;
+   font-size: x-large;
+ }
+
+label {
+  font-size: larger;
+  font-family: "Baskerville Old Face";
 }
 td {
   padding-right: 10px;
