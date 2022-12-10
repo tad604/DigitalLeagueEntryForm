@@ -6,6 +6,55 @@
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
  * Kroc Camen, and the H5BP dev community and team.
  */
+body {
+  background: beige;
+}
+table {
+  border-collapse: collapse;
+  //
+  padding: 20px;
+
+}
+
+form{
+  background-image: url("/img/Medium_Box.png");
+  background-repeat: no-repeat;
+  background-size: 90% 100%;
+  background-position: left top;
+  padding: 10px 25px 25px 50px;
+  margin-top: 25px;
+  min-width: 1320px;
+}
+h2, h3, button {
+  font-family: Luminari;
+}
+
+button{
+  text-align: center;
+  margin-top: 10px;
+}
+
+h1 {
+  font-family: Luminari;
+  font-size: xxx-large;
+  text-align: center;
+}
+
+span.Options {
+  font-family: Luminari;
+  font-size: large;
+}
+
+
+label {
+  font-family: "Baskerville Old Face";
+  font-size: larger;
+  padding-right: 5px;
+}
+td {
+  padding-right: 10px;
+}
+
 
 /* ==========================================================================
    Base styles: opinionated defaults
