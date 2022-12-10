@@ -80,6 +80,8 @@ function calculateScores(){
   }
   if(isEmptyErrors()){
     document.getElementById('gameForm').submit();
+  } else{
+    return false;
   }
 }
 
