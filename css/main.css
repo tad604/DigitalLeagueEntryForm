@@ -20,7 +20,7 @@ table {
 div.players {
   padding: 10px 10px 10px 10px;
   border-radius: 15px;
-  background-color: lightgray;
+ /* background-color: lightgray;*/
 }
 
 tr {
@@ -40,12 +40,12 @@ thead > tr:last-child{
 }
 
 form{
- /* background-image: url("/img/Medium_Box.png");
+  background-image: url("/img/Medium_Box.png");
   background-repeat: no-repeat;
   background-size: 90% 100%;
   background-position: left top;
 
-  min-width: 1320px;*/
+  min-width: 1320px;
   background-color: beige;
   text-align: center;
   padding: 10px 25px 25px 50px;
