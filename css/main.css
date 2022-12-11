@@ -48,6 +48,7 @@ form{
   background-size: 85% 100%;
   background-position: center center;
   width: 100%;
+  min-width: 1200px;
   text-align: center;
   padding: 10px 25px 25px 50px;
   margin-top: 25px;
@@ -63,6 +64,7 @@ ul.errors {
 
 h2, h3, button {
   font-family: Luminari;
+  margin: 0;
 }
 
 button{
@@ -74,6 +76,7 @@ h1 {
   font-family: Luminari;
   font-size: xx-large;
   text-align: center;
+  margin: 0;
 }
 
 span.Options {
