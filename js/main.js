@@ -196,7 +196,7 @@ function calculatePlayerScore(player){
 
 function toggleRules(){
   let rules = document.getElementById('rules');
-  if(rules.style.display === 'none'){
+  if(rules.style.display !== 'block'){
     rules.style.display = 'block';
   }else{
     rules.style.display = 'none';
