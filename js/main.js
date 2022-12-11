@@ -146,6 +146,10 @@ function validateScores(){
   }
 }
 
+function validateUniqueFactions(){
+  //validate each faction is only used once.
+}
+
 function validateWinner(){
    //validate winner has (30 points and Tournament score 1) or (Dom and no other player with 30 points and tournament score 1) or
   // two players have tournament score 0.5 and one is a vagabond and the other is the coalition partner
@@ -188,6 +192,15 @@ function calculatePlayerScore(player){
     val = span.getElementsByTagName("input")[0].value;
   }
   return val;
+}
+
+function toggleRules(){
+  let rules = document.getElementById('rules');
+  if(rules.style.display === 'none'){
+    rules.style.display = 'block';
+  }else{
+    rules.style.display = 'none';
+  }
 }
 
 window.addEventListener("load", () => {

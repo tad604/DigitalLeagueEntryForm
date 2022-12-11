@@ -62,7 +62,20 @@ ul.errors {
    color: red;
 }
 
-h2, h3, button {
+ul.rules {
+  display:none;
+  margin: 0;
+  float: right;
+  font-size: small;
+  text-align: left;
+  list-style: disc;
+}
+ul.rules  li {
+  word-wrap: break-word;
+  width: 70%;
+}
+
+h2, h3, h4, button {
   font-family: Luminari;
   margin: 0;
 }
