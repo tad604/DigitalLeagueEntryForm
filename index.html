@@ -24,7 +24,7 @@
 </head>
 
 <body>
-<form name="digitalLeagueGame" id="gameForm" action="https://script.google.com/macros/s/AKfycbz90x6buH05cvq6V9f2iJqksMBXuCfMc-XY-08PCSWgU-kMvD_F8hQS_Llz3k6ynPPCRA/exec" method="POST">
+<form name="digitalLeagueGame" id="gameForm">
   <input type="hidden" name="Player 1 Turn Order" id="Player 1 Turn Order" value="1"/>
   <input type="hidden" name="Player 2 Turn Order" id="Player 2 Turn Order" value="2"/>
   <input type="hidden" name="Player 3 Turn Order" id="Player 3 Turn Order" value="3"/>
@@ -259,7 +259,7 @@
   <span class="Options">Deck:</span> <input name="Deck" type="radio" id="ExilesAndPartisans" checked value="E&P"/>  <label for="ExilesAndPartisans">Exiles and Partisans</label><input name="Deck" type="radio" id="Base" value="Base"/><label for="Base">Base</label>
   </div>
 
-  <button onclick="validateAndSubmit()">Submit</button>
+  <button id="formSubmit">Submit</button>
 <br/>
   <a href="https://docs.google.com/spreadsheets/d/1PwmADEmIstXPQj9v5oAS9WsKZauRTAMNNaGvyVRpskw/edit?usp=sharing">Copy of Root Digital Ranked League 2.0 </a>
 </form>

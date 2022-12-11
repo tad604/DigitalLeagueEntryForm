@@ -1,4 +1,5 @@
-function onFactionSelect(player){
+
+  function onFactionSelect(player){
    let tr = document.getElementById(player);
    let domLabel = tr.getElementsByClassName('domSelect')[0];
    if (isVagabond(player)){
@@ -65,12 +66,31 @@ function validateAndSubmit(){
   validatePlayerNames();
   validatePlayerFactions();
   validateScores();
+  validateWinner();
   if(isEmptyErrors()){
-    document.getElementById('gameForm').submit();
+    document.getElementById("formSubmit").disabled = true;
+    sendData();
   } else{
     return false;
   }
 }
+
+function sendData(){
+  const fd = new FormData(document.getElementById('gameForm'));
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener("load", (event)=>{
+    alert("Game submitted");
+    document.getElementById('gameForm').reset();
+    document.getElementById('formSubmit').disabled = false;
+  });
+  xhr.addEventListener("err", (event)=>{
+    alert("Error data not saved!");
+    document.getElementById('formSubmit').disabled = false;
+  })
+  xhr.open("POST", "https://script.google.com/macros/s/AKfycbz90x6buH05cvq6V9f2iJqksMBXuCfMc-XY-08PCSWgU-kMvD_F8hQS_Llz3k6ynPPCRA/exec");
+  xhr.send(fd);
+}
+
 
 function validatePlayerNames(){
   validatePlayerName('player1');
@@ -126,6 +146,11 @@ function validateScores(){
   }
 }
 
+function validateWinner(){
+   //validate winner has (30 points and Tournament score 1) or (Dom and no other player with 30 points and tournament score 1) or
+  // two players have tournament score 0.5 and one is a vagabond and the other is the coalition partner
+}
+
 function emptyAllErrors(){
    document.getElementById('errors').innerHTML = "";
 }
@@ -164,3 +189,11 @@ function calculatePlayerScore(player){
   }
   return val;
 }
+
+window.addEventListener("load", () => {
+ let form = document.getElementById("gameForm");
+ form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  validateAndSubmit();
+});
+});

@@ -6,21 +6,24 @@
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
  * Kroc Camen, and the H5BP dev community and team.
  */
-body {
 
+html {
+  background: url("../img/root-background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
+
 table {
   /*border-collapse: collapse;*/
   margin-left: auto;
   margin-right: auto;
-
   border-collapse: collapse;
-
 }
 div.players {
   padding: 10px 10px 10px 10px;
   border-radius: 15px;
- /* background-color: lightgray;*/
 }
 
 tr {
@@ -42,14 +45,14 @@ thead > tr:last-child{
 form{
   background-image: url("../img/Medium_Box.png");
   background-repeat: no-repeat;
-  background-size: 90% 100%;
-  background-position: left top;
-
-  min-width: 1320px;
-  background-color: beige;
+  background-size: 85% 100%;
+  background-position: center center;
+  width: 100%;
   text-align: center;
   padding: 10px 25px 25px 50px;
   margin-top: 25px;
+  margin-bottom: 25px;
+  float: left;
 }
 
 ul.errors {
