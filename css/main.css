@@ -60,6 +60,7 @@ ul.errors {
    font-size: large;
    list-style: none;
    color: red;
+   display: none;
 }
 
 ul.rules {

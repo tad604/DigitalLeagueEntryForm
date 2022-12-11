@@ -68,9 +68,11 @@ function validateAndSubmit(){
   validateScores();
   validateWinner();
   if(isEmptyErrors()){
+    document.getElementById('errors').style.display = 'none';
     document.getElementById("formSubmit").disabled = true;
     sendData();
   } else{
+    document.getElementById('errors').style.display = 'block';
     return false;
   }
 }
@@ -107,16 +109,25 @@ function validatePlayerName(id){
 }
 
 function validatePlayerFactions(){
-  validatePlayerFaction('player1');
-  validatePlayerFaction('player2');
-  validatePlayerFaction('player3');
-  validatePlayerFaction('player4');
+  let players = ['player1', 'player2', 'player3', 'player4'];
+  for(let i = 0; i < players.length; i++){
+    validatePlayerFaction(players[i], players, i+1);
+  }
 }
 
-function validatePlayerFaction(id){
+function validatePlayerFaction(id, players, idx){
   let faction = getSelectedFaction(id);
   if (faction === ""){
     addError(getPlayerDisplayName(id) + " needs a faction selection!");
+  }else{
+    if(idx < players.length){
+      for(let i= idx; i < players.length; i++){
+        let otherFaction = getSelectedFaction(players[i]);
+        if(otherFaction === faction){
+          addError(getPlayerDisplayName(id) + " and "+ getPlayerDisplayName(players[i]) + " cannot both have faction : "+ faction +"!");
+        }
+      }
+    }
   }
 }
 
@@ -144,10 +155,6 @@ function validateScores(){
   if(!isTourneyScoreValid()){
     addError("Make sure Tournament score adds up to 1.0 exactly.")
   }
-}
-
-function validateUniqueFactions(){
-  //validate each faction is only used once.
 }
 
 function validateWinner(){
