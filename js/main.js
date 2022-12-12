@@ -1,5 +1,4 @@
-
-  function onFactionSelect(player){
+function onFactionSelect(player){
    let tr = document.getElementById(player);
    let domLabel = tr.getElementsByClassName('domSelect')[0];
    if (isVagabond(player)){
@@ -77,6 +76,46 @@ function validateAndSubmit(){
   }
 }
 
+function showLeaderBoard(json){
+  alert(json.toString());
+}
+
+function suggestNames(json){
+  alert(json.toString());
+}
+
+function getNamesLike(text){
+
+  getData(suggestNames, {'fnc': 'suggest', 'text':text});
+}
+
+function getLeaderBoard(){
+  getData(showLeaderBoard, {'fnc': 'leaderBoard'});
+}
+
+function formatParams( params ){
+  return "?" + Object
+    .keys(params)
+    .map(function(key){
+      return key+"="+encodeURIComponent(params[key])
+    })
+    .join("&")
+}
+
+function getData(callback, params){
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener("load", (event)=>{
+    var data = JSON.parse(event.target.responseText);
+    callback(data);
+  });
+  xhr.addEventListener("err", (event)=>{
+    alert("Error");
+  });
+
+  xhr.open("GET","https://script.google.com/macros/s/AKfycby-Hz0m2oEZF4heEEgSmhLR_wYNmdAWWfKXLRkSazQFKGPlkLAEKmpHYwfcD-RR__3erQ/exec"+formatParams(params));
+  xhr.send("null");
+}
+
 function sendData(){
   const fd = new FormData(document.getElementById('gameForm'));
   const xhr = new XMLHttpRequest();
@@ -89,7 +128,7 @@ function sendData(){
     alert("Error data not saved!");
     document.getElementById('formSubmit').disabled = false;
   })
-  xhr.open("POST", "https://script.google.com/macros/s/AKfycbz90x6buH05cvq6V9f2iJqksMBXuCfMc-XY-08PCSWgU-kMvD_F8hQS_Llz3k6ynPPCRA/exec");
+  xhr.open("POST", "https://script.google.com/macros/s/AKfycby-Hz0m2oEZF4heEEgSmhLR_wYNmdAWWfKXLRkSazQFKGPlkLAEKmpHYwfcD-RR__3erQ/exec");
   xhr.send(fd);
 }
 
