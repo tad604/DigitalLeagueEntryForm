@@ -1,3 +1,5 @@
+const GOOG_SHEE_URL = "https://script.google.com/macros/s/AKfycbwcT3g6kKXhSqpBJCsr-r5hk34Z65Dw4dLlGSyyNAAM0LJxlAiRo2K1zzDVgLGiVoLn6g/exec";
+
 function onFactionSelect(player){
    let tr = document.getElementById(player);
    let domLabel = tr.getElementsByClassName('domSelect')[0];
@@ -112,7 +114,7 @@ function getData(callback, params){
     alert("Error");
   });
 
-  xhr.open("GET","https://script.google.com/macros/s/AKfycby-Hz0m2oEZF4heEEgSmhLR_wYNmdAWWfKXLRkSazQFKGPlkLAEKmpHYwfcD-RR__3erQ/exec"+formatParams(params));
+  xhr.open("GET",GOOG_SHEE_URL+formatParams(params));
   xhr.send("null");
 }
 
@@ -128,7 +130,7 @@ function sendData(){
     alert("Error data not saved!");
     document.getElementById('formSubmit').disabled = false;
   })
-  xhr.open("POST", "https://script.google.com/macros/s/AKfycby-Hz0m2oEZF4heEEgSmhLR_wYNmdAWWfKXLRkSazQFKGPlkLAEKmpHYwfcD-RR__3erQ/exec");
+  xhr.open("POST", GOOG_SHEE_URL );
   xhr.send(fd);
 }
 
