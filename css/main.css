@@ -115,6 +115,24 @@ td {
   padding-right: 10px;
 }
 
+.input-hidden {
+  /* For Hiding Radio Button Circles */
+  position: absolute;
+  left: -9999px;
+}
+
+input[type="radio"]:checked + label > img {
+  background-color: goldenrod;
+}
+
+input[type="radio"] + label > img {
+  border: 1px rgb(0, 0, 0);
+  padding: 5px;
+  transition: 500ms all;
+}
+
+
+
 
 /* ==========================================================================
    Base styles: opinionated defaults
