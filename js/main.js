@@ -1,4 +1,4 @@
-const GOOG_SHEE_URL = "https://script.google.com/macros/s/AKfycbwcT3g6kKXhSqpBJCsr-r5hk34Z65Dw4dLlGSyyNAAM0LJxlAiRo2K1zzDVgLGiVoLn6g/exec";
+const GOOG_SHEE_URL = "https://script.google.com/macros/s/AKfycbzpKgHiIHXKhPoazjqOrXF1ALN_a_-Fs4sG6At2-zE-z6vNid19rt5Q7QO1CfcP4higig/exec";
 
 function onFactionSelect(player){
    let tr = document.getElementById(player);
