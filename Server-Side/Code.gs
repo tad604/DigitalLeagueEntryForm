@@ -1,9 +1,12 @@
-const sheetName = 'SheetsInput'
 const scriptProp = PropertiesService.getScriptProperties()
 
 function initialSetup () {
   const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
   scriptProp.setProperty('key', activeSpreadsheet.getId())
+}
+
+function testLeaderBoard(){
+  return getLeaderBoard();
 }
 
 function testSuggest(){
@@ -33,7 +36,22 @@ function doGet(request){
 
 function getLeaderBoard(){
   //todo: turn the league leader board into json  so it can get displayed
-  return ContentService.createTextOutput("leaders!!").setMimeType(ContentService.MimeType.TEXT);
+  const doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
+  const sheet = doc.getSheetByName("LeaderBoards");
+  var rows = sheet.getRange(4, 1, 15, 5);
+  let leaders =[];
+  rows.getValues().forEach(function(row, index){
+    var leader = {
+      'rank': row[0],
+      'player': row[1],
+      'gamesPlayed': row[2],
+      'leagueScore': row[3],
+      'winRate' : row[4]
+    }
+    leaders[index] = leader;
+  });
+
+  return ContentService.createTextOutput(JSON.stringify(leaders)).setMimeType(ContentService.MimeType.TEXT);
 }
 
 function getNameSuggestions(partial){
@@ -67,7 +85,7 @@ function doPost (e) {
 
   try {
     const doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
-    const sheet = doc.getSheetByName(sheetName)
+    const sheet = doc.getSheetByName("HtmlPostInput")
 
     const headers = sheet.getRange(2, 1, 1, sheet.getLastColumn()).getValues()[0]
     const nextRow = sheet.getLastRow() + 1

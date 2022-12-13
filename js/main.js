@@ -1,4 +1,4 @@
-const GOOG_SHEE_URL = "https://script.google.com/macros/s/AKfycbzpKgHiIHXKhPoazjqOrXF1ALN_a_-Fs4sG6At2-zE-z6vNid19rt5Q7QO1CfcP4higig/exec";
+const GOOG_SHEET_URL = "https://script.google.com/macros/s/AKfycbynrmAGhdlrQFhE3zpzlUuXwp5MX7FL-6mJz2Dz2WPMsjc2Ul3Vs8a3pwRj6GGeaYfDGA/exec";
 
 function onFactionSelect(player){
    let tr = document.getElementById(player);
@@ -62,85 +62,12 @@ function getPlayerDisplayName(player){
   return name;
 }
 
-function validateAndSubmit(){
-  emptyAllErrors();
-  validatePlayerNames();
-  validatePlayerFactions();
-  validateScores();
-  validateWinner();
-  if(isEmptyErrors()){
-    document.getElementById('errors').style.display = 'none';
-    document.getElementById("formSubmit").disabled = true;
-    sendData();
-  } else{
-    document.getElementById('errors').style.display = 'block';
-    return false;
-  }
-}
-
-function showLeaderBoard(json){
-  alert(json.toString());
-}
-
-function suggestNames(json){
-  alert(json.toString());
-}
-
-function getNamesLike(text){
-
-  getData(suggestNames, {'fnc': 'suggest', 'text':text});
-}
-
-function getLeaderBoard(){
-  getData(showLeaderBoard, {'fnc': 'leaderBoard'});
-}
-
-function formatParams( params ){
-  return "?" + Object
-    .keys(params)
-    .map(function(key){
-      return key+"="+encodeURIComponent(params[key])
-    })
-    .join("&")
-}
-
-function getData(callback, params){
-  const xhr = new XMLHttpRequest();
-  xhr.addEventListener("load", (event)=>{
-    var data = JSON.parse(event.target.responseText);
-    callback(data);
-  });
-  xhr.addEventListener("err", (event)=>{
-    alert("Error");
-  });
-
-  xhr.open("GET",GOOG_SHEE_URL+formatParams(params));
-  xhr.send("null");
-}
-
-function sendData(){
-  const fd = new FormData(document.getElementById('gameForm'));
-  const xhr = new XMLHttpRequest();
-  xhr.addEventListener("load", (event)=>{
-    alert("Game submitted");
-    document.getElementById('gameForm').reset();
-    document.getElementById('formSubmit').disabled = false;
-  });
-  xhr.addEventListener("err", (event)=>{
-    alert("Error data not saved!");
-    document.getElementById('formSubmit').disabled = false;
-  })
-  xhr.open("POST", GOOG_SHEE_URL );
-  xhr.send(fd);
-}
-
-
+/*******  Game form Validation methods **********************/
 function validatePlayerNames(){
   validatePlayerName('player1');
   validatePlayerName('player2')
   validatePlayerName('player3')
   validatePlayerName('player4')
-
 }
 
 function validatePlayerName(id){
@@ -199,12 +126,28 @@ function validateScores(){
 }
 
 function validateWinner(){
-   //validate winner has (30 points and Tournament score 1) or (Dom and no other player with 30 points and tournament score 1) or
+  //validate winner has (30 points and Tournament score 1) or (Dom and no other player with 30 points and tournament score 1) or
   // two players have tournament score 0.5 and one is a vagabond and the other is the coalition partner
 }
 
+function validateAndSubmit(){
+  emptyAllErrors();
+  validatePlayerNames();
+  validatePlayerFactions();
+  validateScores();
+  validateWinner();
+  if(isEmptyErrors()){
+    document.getElementById('errors').style.display = 'none';
+    document.getElementById("formSubmit").disabled = true;
+    sendData();
+  } else{
+    document.getElementById('errors').style.display = 'block';
+    return false;
+  }
+}
+
 function emptyAllErrors(){
-   document.getElementById('errors').innerHTML = "";
+  document.getElementById('errors').innerHTML = "";
 }
 
 function addError(msg){
@@ -230,7 +173,7 @@ function calculatePlayerScore(player){
   let tr = document.getElementById(player);
   let val;
   if(isDomSelected(player) && !isCoalition(player)){
-   val = tr.getElementsByTagName('select')[1].value + " Dom";
+    val = tr.getElementsByTagName('select')[1].value + " Dom";
   }else if(isDomSelected(player)){
     let span = tr.getElementsByClassName("coalition")[0];
     let partner = span.getElementsByTagName("select")[0].value;
@@ -240,6 +183,64 @@ function calculatePlayerScore(player){
     val = span.getElementsByTagName("input")[0].value;
   }
   return val;
+}
+/****************************************************/
+function showLeaderBoard(json){
+  for(let i = 0; i < json.length; i++){
+     let rank = json[i];
+     console.log(rank);
+  }
+}
+
+function suggestNames(json){
+  alert(json.toString());
+}
+
+function getNamesLike(text){
+  getData(suggestNames, {'fnc': 'suggest', 'text':text});
+}
+
+function getLeaderBoard(){
+  getData(showLeaderBoard, {'fnc': 'leaderBoard'});
+}
+
+function formatParams( params ){
+  return "?" + Object
+    .keys(params)
+    .map(function(key){
+      return key+"="+encodeURIComponent(params[key])
+    })
+    .join("&")
+}
+
+function getData(callback, params){
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener("load", (event)=>{
+    var data = JSON.parse(event.target.responseText);
+    callback(data);
+  });
+  xhr.addEventListener("err", (event)=>{
+    alert("Error");
+  });
+
+  xhr.open("GET",GOOG_SHEET_URL+formatParams(params));
+  xhr.send("null");
+}
+
+function sendData(){
+  const fd = new FormData(document.getElementById('gameForm'));
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener("load", (event)=>{
+    alert("Game submitted");
+    document.getElementById('gameForm').reset();
+    document.getElementById('formSubmit').disabled = false;
+  });
+  xhr.addEventListener("err", (event)=>{
+    alert("Error data not saved!");
+    document.getElementById('formSubmit').disabled = false;
+  })
+  xhr.open("POST", GOOG_SHEET_URL );
+  xhr.send(fd);
 }
 
 function toggleRules(){
