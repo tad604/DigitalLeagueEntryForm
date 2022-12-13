@@ -75,7 +75,7 @@
     </td>
     <td>
     <label class="domSelect" for="playerDom1Select">Dominance</label><input id="playerDom1Select" type="checkbox" onchange="onDomSelect('player1')">
-    <span class="points" id="player1Points"><label for="playerScore1">Score:</label><input id="playerScore1" type="number" min="1" max="50" maxlength="2" size="2"/></span>
+    <span class="points" id="player1Points"><label for="playerScore1">Score:</label><input id="playerScore1" type="number" min="0" max="50" maxlength="2" size="2"/></span>
     <span class="dom" id="player1Dom" style="display: none"><label for="playerDomSuit1">Suit:</label>
       <select id="playerDomSuit1">
         <option value="Bird">Bird</option>
@@ -125,7 +125,7 @@
       <option value="Lord of the Hundreds" disabled>Lord of the Hundreds</option>
     </select></td>
     <td><label class="domSelect" for="playerDom2Select">Dominance</label><input id="playerDom2Select" type="checkbox" onchange="onDomSelect('player2')">
-    <span class="points" id="player2Points"><label for="playerScore2">Score:</label><input id="playerScore2" maxlength="2" min="1" max="50" type="number" size="2"/></span>
+    <span class="points" id="player2Points"><label for="playerScore2">Score:</label><input id="playerScore2" maxlength="2" min="0" max="50" type="number" size="2"/></span>
     <span class="dom" id="player2Dom" style="display: none"><label for="playerDomSuit2">Suit:</label>
       <select id="playerDomSuit2">
         <option value="Bird">Bird</option>
@@ -174,7 +174,7 @@
     </select></td>
     <td>
     <label class="domSelect" for="playerDom3Select">Dominance</label><input id="playerDom3Select" type="checkbox" onchange="onDomSelect('player3')">
-    <span class="points" id="player3Points"><label for="playerScore3">Score:</label><input id="playerScore3" type="number" min="1" max="50" maxlength="2" size="2"/></span>
+    <span class="points" id="player3Points"><label for="playerScore3">Score:</label><input id="playerScore3" type="number" min="0" max="50" maxlength="2" size="2"/></span>
     <span class="dom" id="player3Dom" style="display: none"><label for="playerDomSuit3">Suit:</label>
       <select id="playerDomSuit3">
         <option value="Bird">Bird</option>
@@ -218,7 +218,7 @@
       <option value="Lord of the Hundreds" disabled>Lord of the Hundreds</option>
     </select></td>
    <td> <label class="domSelect" for="playerDom4Select">Dominance</label><input id="playerDom4Select" type="checkbox" onchange="onDomSelect('player4')">
-    <span class="points" id="player4Points"><label for="playerScore4">Score:</label><input id="playerScore4" type="number"  min="1" max="50" size="2"/></span>
+    <span class="points" id="player4Points"><label for="playerScore4">Score:</label><input id="playerScore4" type="number"  min="0" max="50" size="2"/></span>
     <span class="dom" id="player4Dom" style="display: none"><label for="playerDomSuit4">Suit:</label>
       <select id="playerDomSuit4">
         <option value="Bird">Bird</option>
@@ -275,9 +275,10 @@
   </ul>
   </div>
 </form>
+<!--
 <button onclick="getLeaderBoard()">test</button>
 <button onclick="getNamesLike('t')">test suggest</button>
-
+-->
   <!-- Add your site or application content here -->
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
