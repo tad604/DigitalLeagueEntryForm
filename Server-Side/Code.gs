@@ -6,15 +6,21 @@ function initialSetup () {
   scriptProp.setProperty('key', activeSpreadsheet.getId())
 }
 
+function testSuggest(){
+  return getNameSuggestions('T');
+}
 
-function doGet(e){
+function doGet(request){
+
+  let fnc = request.parameter['fnc'];
+
   try{
-    if(e.parameter['fnc'] === "suggest"){
-      return getNameSuggestions(e.parameter['text']);
-    }else if(e.parameter['fnc']==="leaderBoard"){
+    if(fnc === "suggest"){
+      return getNameSuggestions(request.parameter['text']);
+    }else if(fnc ==="leaderBoard"){
       return getLeaderBoard();
     }else{
-      return ContentService.createTextOutput(JSON.stringify({'resutl': 'error', 'unsupported': e}))
+      return ContentService.createTextOutput(JSON.stringify({'result': 'error', 'unsupported': fnc}))
         .setMimeType(ContentService.MimeType.JSON);
     }
   }
@@ -26,26 +32,31 @@ function doGet(e){
 }
 
 function getLeaderBoard(){
+  //todo: turn the league leader board into json  so it can get displayed
   return ContentService.createTextOutput("leaders!!").setMimeType(ContentService.MimeType.TEXT);
 }
 
 function getNameSuggestions(partial){
   const doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
   const sheet = doc.getSheetByName("NameMap")
-  var allNames = sheet.getRange(2, 2, sheet.getLastRow)
+  var allNames = sheet.getRange(2, 4, sheet.getLastRow())
+  Logger.log(partial);
   try{
-    var suggestions = allNames.filter(function(row){
-      if (row.startsWith(partial)) {
-        return row;
+    var values = allNames.getValues()
+    var suggestions = values.filter(function(row){
+      if (row[0].startsWith(partial)) {
+        return row[0];
       }
     });
+    let flat = [].concat(...suggestions);
     return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'success', 'suggestions': suggestions, 'data':e}))
+      .createTextOutput(JSON.stringify({ 'result': 'success', 'suggestions': flat}))
       .setMimeType(ContentService.MimeType.JSON)
   }
   catch (e) {
+    Logger.log(e);
     return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
+      .createTextOutput(JSON.stringify({ 'result': 'error returning suggestions', 'error': e }))
       .setMimeType(ContentService.MimeType.JSON)
   }
 }
@@ -83,8 +94,6 @@ function doPost (e) {
     lock.releaseLock()
   }
 }
-
-
 
 function SubmitData() {
   var ss        = SpreadsheetApp.getActiveSpreadsheet();
