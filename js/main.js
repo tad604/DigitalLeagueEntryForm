@@ -1,5 +1,5 @@
 const GOOG_SHEET_URL = "https://script.google.com/macros/s/AKfycbwUDIC8rxqWbsM9Jjx2rvh3sFqs_Dme7Jmk4IbjrXc69U9gs88ZpxhFbmUUD5DzbnHr/exec";
-
+const players = ['player1', 'player2', 'player3', 'player4'];
 function onFactionSelect(player){
    let tr = document.getElementById(player);
    let domLabel = tr.getElementsByClassName('domSelect')[0];
@@ -32,6 +32,7 @@ function onDomSelect(player){
   }
 }
 
+/*************************/
 function isCoalition(player){
   return isVagabond(player) && isDomSelected(player);
 }
@@ -43,6 +44,10 @@ function isDomSelected(player){
 
 function isVagabond(player){
  return getSelectedFaction(player).startsWith('Vagabond');
+}
+
+function isPlayerInCoalition(player){
+  return findPartnerId(player)
 }
 
 function getSelectedFaction(player){
@@ -62,34 +67,41 @@ function getPlayerDisplayName(player){
   return name;
 }
 
-/*******  Game form Validation methods **********************/
-function validatePlayerNames(){
-  validatePlayerName('player1');
-  validatePlayerName('player2')
-  validatePlayerName('player3')
-  validatePlayerName('player4')
+function findCoalitionPartnerVagabond(player){
+  for(let i = 0; i < players.length; i++){
+    if(player !== players[i] && isVagabond(players[i]) && isDomSelected(players[i])){
+      let vagPartner = findPartnerId(players[i], true, true);
+      if(vagPartner === player){
+        return players[i];
+      }
+    }
+  }
+  return false;
 }
 
+function findPartnerId(player){
+  if(isVagabond(player) && isDomSelected(player)) {
+    let tr = document.getElementById(player);
+    let span = tr.getElementsByClassName("coalition")[0];
+    return span.getElementsByTagName("select")[0].value;
+  }else{
+    return findCoalitionPartnerVagabond(player);
+  }
+}
+
+/*******  Game form Validation methods **********************/
 function validatePlayerName(id){
   if("" === getPlayerName(id)){
     addError(getPlayerDisplayName(id) + " needs a name!");
   }
 }
-
-function validatePlayerFactions(){
-  let players = ['player1', 'player2', 'player3', 'player4'];
-  for(let i = 0; i < players.length; i++){
-    validatePlayerFaction(players[i], players, i+1);
-  }
-}
-
-function validatePlayerFaction(id, players, idx){
+function validatePlayerFaction(id,  idx){
   let faction = getSelectedFaction(id);
   if (faction === ""){
     addError(getPlayerDisplayName(id) + " needs a faction selection!");
   }else{
-    if(idx < players.length){
-      for(let i= idx; i < players.length; i++){
+    if(idx+1 < players.length){
+      for(let i= idx+1; i < players.length; i++){
         let otherFaction = getSelectedFaction(players[i]);
         if(otherFaction === faction){
           addError(getPlayerDisplayName(id) + " and "+ getPlayerDisplayName(players[i]) + " cannot both have faction : "+ faction +"!");
@@ -99,43 +111,60 @@ function validatePlayerFaction(id, players, idx){
   }
 }
 
-function validateScores(){
-  let score1 = document.getElementById("Player 1 Game Score");
-  let score2 = document.getElementById("Player 2 Game Score");
-  let score3 = document.getElementById("Player 3 Game Score");
-  let score4 = document.getElementById("Player 4 Game Score");
-  score1.value = calculatePlayerScore('player1')
-  if(score1.value === ""){
-    addError(getPlayerDisplayName('player1') + " needs a score!")
+function validatePlayerScore(id){
+  let points = document.getElementById(id);
+  let score = calculatePlayerScore(id);
+  let tourneyScore = findTourneyScore(id);
+  let isDom = isDomSelected(id);
+  if(score.value == ""){
+    addError(getPlayerDisplayName(id) + " needs a score!");
   }
-  score2.value = calculatePlayerScore('player2');
-  if(score2.value === ""){
-    addError(getPlayerDisplayName('player2') + " needs a score!")
+  if(isPlayerInCoalition(id) && isVagabond(id) ){
+    let partnerId = findPartnerId(id);
+    if(isDomSelected(partnerId) && isVagabond(partnerId)){
+      if(id === findPartnerId(partnerId)){
+        addError(getPlayerDisplayName(id) + " and "+ getPlayerDisplayName(partnerId) + " cannot both target the other as coalition partner!");
+      } else {
+        if(isDomSelected(partnerId)){
+          let anotherPartner = findPartnerId(partnerId);
+          addError(" illegal three way coalition between " + getPlayerDisplayName(id) + ", " + getPlayerName(partnerId)+",  and "+getPlayerName(anotherPartner)+"!!!");
+        }
+      }
+    }
   }
-  score3.value = calculatePlayerScore('player3');
-  if(score3.value === ""){
-    addError(getPlayerDisplayName('player3') + " needs a score!")
-  }
-  score4.value = calculatePlayerScore('player4')
-  if(score4.value === ""){
-    addError(getPlayerDisplayName('player4') + " needs a score!")
-  }
-  if(!isTourneyScoreValid()){
-    addError("Make sure Tournament score adds up to 1.0 exactly.")
+  if(tourneyScore === 1.0){
+     if(score < 30 && ! isDom) {
+       addError(getPlayerDisplayName(id) + " must have at least 30 points or successful Dominance! or adjust their League Score.");
+     } else {
+       if(isPlayerInCoalition(id)){
+         addError(getPlayerDisplayName(id) + " should either have 0.5 League Score or not be part of a coalition!");
+       }
+     }
+  } else if(tourneyScore === 0.5) {
+    if (!isPlayerInCoalition(id)) {
+      addError(getPlayerDisplayName(+" must be in a coalition to have this League Score! adjust score or input coalition information."));
+    } else if (score < 30 && !isDom) {
+      addError(getPlayerDisplayName(id) + " must have 30 or more points or be in coalition!  adjust score or input coalition information.");
+    }
+  } else {
+      if (points > 29) {
+        addError(getPlayerDisplayName(id) + " score is too high! or their League Score is too low!");
+      }
   }
 }
 
-function validateWinner(){
-  //validate winner has (30 points and Tournament score 1) or (Dom and no other player with 30 points and tournament score 1) or
-  // two players have tournament score 0.5 and one is a vagabond and the other is the coalition partner
+function validateLeagueScore(){
+  if(1 !== findTourneyScore('player1')+findTourneyScore('player2')+findTourneyScore('player3')+findTourneyScore('player4')){
+    addError("Make sure League score adds up to 1.0 exactly.")
+  }
 }
 
 function validateAndSubmit(){
   emptyAllErrors();
-  validatePlayerNames();
-  validatePlayerFactions();
-  validateScores();
-  validateWinner();
+  players.forEach(validatePlayerName);
+  players.forEach(validatePlayerFaction);
+  players.forEach(validatePlayerScore);
+  validateLeagueScore();
   if(isEmptyErrors()){
     document.getElementById('errors').style.display = 'none';
     document.getElementById("formSubmit").disabled = true;
@@ -160,10 +189,6 @@ function isEmptyErrors(){
   return document.getElementById('errors').innerHTML === "";
 }
 
-function isTourneyScoreValid(){
-  return 1 === findTourneyScore('player1')+findTourneyScore('player2')+findTourneyScore('player3')+findTourneyScore('player4');
-}
-
 function findTourneyScore(player){
   let tr = document.getElementById(player);
   return +tr.getElementsByTagName('select')[3].value;
@@ -175,8 +200,7 @@ function calculatePlayerScore(player){
   if(isDomSelected(player) && !isCoalition(player)){
     val = tr.getElementsByTagName('select')[1].value + " Dom";
   }else if(isDomSelected(player)){
-    let span = tr.getElementsByClassName("coalition")[0];
-    let partner = span.getElementsByTagName("select")[0].value;
+    let partner = findPartnerId(player);
     val = "Coalition w/" + getSelectedFaction(partner);
   }else{
     let  span = tr.getElementsByClassName("points")[0];
@@ -233,6 +257,10 @@ function sendData(){
   xhr.addEventListener("load", (event)=>{
     alert("Game submitted");
     document.getElementById('gameForm').reset();
+    players.forEach(function(player){
+      onDomSelect(player);
+      onFactionSelect(player);
+    });
     document.getElementById('formSubmit').disabled = false;
   });
   xhr.addEventListener("err", (event)=>{
@@ -255,7 +283,7 @@ function toggleRules(){
 window.addEventListener("load", () => {
  let form = document.getElementById("gameForm");
  form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  validateAndSubmit();
-});
+    event.preventDefault();
+    validateAndSubmit();
+ });
 });
