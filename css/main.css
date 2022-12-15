@@ -7,6 +7,22 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
+
+@font-face {
+  font-family: 'Luminari';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Luminari'), url('../fonts/Luminari-Regular.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: "Baskerville Old Face";
+  font-style: normal;
+  font-weight: normal;
+  src: local("../fonts/Baskerville Ten Pro Regular.otf"), url("../fonts/Baskerville Ten Pro Regular.otf") format('otf');
+}
+
 html {
   background: url("../img/root-background.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -98,7 +114,6 @@ span.Options {
   font-size: large;
 }
 
-
 label, .header {
   padding-right: 5px;
 }
@@ -130,6 +145,7 @@ input[type="radio"] + label > img {
   padding: 5px;
   transition: 500ms all;
 }
+
 
 
 .autocomplete{
