@@ -63,10 +63,9 @@ form{
   background-repeat: no-repeat;
   background-size: 85% 100%;
   background-position: center center;
-  width: 100%;
-  min-width: 1200px;
+  min-width: 1100px;
   text-align: center;
-  padding: 10px 25px 25px 50px;
+  padding: 25px;
   margin-top: 25px;
   margin-bottom: 25px;
   float: left;
@@ -101,6 +100,12 @@ button{
   text-align: center;
   margin-top: 10px;
 }
+
+button.smallBox{
+
+
+}
+
 
 h1 {
   font-family: Luminari;
@@ -145,8 +150,6 @@ input[type="radio"] + label > img {
   padding: 5px;
   transition: 500ms all;
 }
-
-
 
 .autocomplete{
   position: relative;
