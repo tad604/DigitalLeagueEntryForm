@@ -140,7 +140,7 @@ function validatePlayerScore(id){
   let score = calculatePlayerScore(id);
   let tourneyScore = findTourneyScore(id);
   let isDom = isDomSelected(id);
-  if(score.value == ""){
+  if(score.value === ""){
     addError(getPlayerDisplayName(id) + " needs a score!");
   }
   if(isPlayerInCoalition(id) && isVagabond(id) ){
@@ -169,6 +169,8 @@ function validatePlayerScore(id){
       addError(getPlayerDisplayName(+" must be in a coalition to have this League Score! adjust score or input coalition information."));
     } else if (score < 30 && !isDom) {
       addError(getPlayerDisplayName(id) + " must have 30 or more points or be in coalition!  adjust score or input coalition information.");
+    } else if( 0.5 !==   findTourneyScore(findPartnerId(id))){
+      addError(getPlayerDisplayName(id) + " and " + getPlayerDisplayName(findPartnerId(id)) + " both need to have the same League Score!");
     }
   } else {
       if (points > 29) {
