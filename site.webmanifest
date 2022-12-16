@@ -1,12 +1,14 @@
 {
-  "short_name": "",
-  "name": "",
+  "short_name": "Digital  League",
+  "name": "Root Digital League Submission",
+  "description": "A form for submitting game results played in the Root Digital League"
   "icons": [{
-    "src": "icon.png",
+    "src": "imag/vagrant.png",
     "type": "image/png",
-    "sizes": "192x192"
+    "sizes": "80x80"
   }],
-  "start_url": "/?utm_source=homescreen",
+  "start_url": "/DigitalLeagueEntryForm/?utm_source=homescreen",
+  "display": "fullscreen",
   "background_color": "#fafafa",
   "theme_color": "#fafafa"
 }
