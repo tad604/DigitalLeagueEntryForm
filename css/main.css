@@ -20,7 +20,7 @@
   font-family: "Baskerville Old Face";
   font-style: normal;
   font-weight: normal;
-  src: local("../fonts/Baskerville Ten Pro Regular.otf"), url("../fonts/Baskerville Ten Pro Regular.otf") format('otf');
+  src: local("../fonts/Baskerville Ten Pro Regular.otf"), url("../fonts/Baskerville10Pro.woff") format('woff');
 }
 
 html {

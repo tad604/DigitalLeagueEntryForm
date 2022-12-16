@@ -11,7 +11,7 @@ self.addEventListener("install", (event) => {
       "css/normalize.css",
       "js/main.js",
       "fonts/Luminari-Regular.woff",
-      "fonts/Baskerville Ten Pro Regular.otf",
+      "fonts/Baskerville10Pro.woff",
       "img/vagrant.png",
       "img/vagrant-lg.png",
       "img/Medium_Box.png",
