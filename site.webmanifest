@@ -1,7 +1,7 @@
 {
   "short_name": "Digital  League",
   "name": "Root Digital League Submission",
-  "description": "A form for submitting game results played in the Root Digital League"
+  "description": "A form for submitting game results played in the Root Digital League",
   "icons": [{
     "src": "imag/vagrant.png",
     "type": "image/png",
