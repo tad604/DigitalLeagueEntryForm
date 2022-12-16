@@ -136,7 +136,7 @@ function validatePlayerFaction(id,  idx){
 }
 
 function validatePlayerScore(id){
-  let points = document.getElementById(id);
+  let points = findPoints(id);
   let score = calculatePlayerScore(id);
   let tourneyScore = findTourneyScore(id);
   let isDom = isDomSelected(id);
@@ -218,6 +218,12 @@ function findTourneyScore(player){
   return +tr.getElementsByTagName('select')[3].value;
 }
 
+function findPoints(player){
+  let tr = document.getElementById(player);
+  let  span = tr.getElementsByClassName("points")[0];
+  return span.getElementsByTagName("input")[0].value;
+}
+
 function calculatePlayerScore(player){
   let tr = document.getElementById(player);
   let val;
@@ -227,8 +233,7 @@ function calculatePlayerScore(player){
     let partner = findPartnerId(player);
     val = "Coalition w/" + getSelectedFaction(partner);
   }else{
-    let  span = tr.getElementsByClassName("points")[0];
-    val = span.getElementsByTagName("input")[0].value;
+    val = findPoints(player);
   }
   return val;
 }
