@@ -1,5 +1,31 @@
 const GOOG_SHEET_URL = "https://script.google.com/macros/s/AKfycbwUDIC8rxqWbsM9Jjx2rvh3sFqs_Dme7Jmk4IbjrXc69U9gs88ZpxhFbmUUD5DzbnHr/exec";
 const players = ['player1', 'player2', 'player3', 'player4'];
+
+const registerServiceWorker = async () => {
+  if ("serviceWorker" in navigator) {
+    try {
+      const registration = await navigator.serviceWorker.register("/js/sw.js", {
+        scope: "/",
+      });
+      if (registration.installing) {
+        console.log("Service worker installing");
+      } else if (registration.waiting) {
+        console.log("Service worker installed");
+      } else if (registration.active) {
+        console.log("Service worker active");
+      }
+    } catch (error) {
+      console.error(`Registration failed with ${error}`);
+    }
+  }
+};
+
+// …
+
+registerServiceWorker();
+
+
+
 function onFactionSelect(player){
    let tr = document.getElementById(player);
    let domLabel = tr.getElementsByClassName('domSelect')[0];
