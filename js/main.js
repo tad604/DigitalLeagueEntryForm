@@ -1,4 +1,4 @@
-const GOOG_SHEET_URL = "https://script.google.com/macros/s/AKfycbwUDIC8rxqWbsM9Jjx2rvh3sFqs_Dme7Jmk4IbjrXc69U9gs88ZpxhFbmUUD5DzbnHr/exec";
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwUDIC8rxqWbsM9Jjx2rvh3sFqs_Dme7Jmk4IbjrXc69U9gs88ZpxhFbmUUD5DzbnHr/exec";
 const players = ['player1', 'player2', 'player3', 'player4'];
 
 const registerServiceWorker = async () => {
@@ -18,11 +18,7 @@ const registerServiceWorker = async () => {
   }
 };
 
-// …
-
 registerServiceWorker();
-
-
 
 function onFactionSelect(player){
    let tr = document.getElementById(player);
@@ -271,14 +267,14 @@ function formatParams( params ){
 function getData(callback, params){
   const xhr = new XMLHttpRequest();
   xhr.addEventListener("load", (event)=>{
-    var data = JSON.parse(event.target.responseText);
+    let data = JSON.parse(event.target.responseText);
     callback(data);
   });
   xhr.addEventListener("err", (event)=>{
-    alert("Error");
+    alert("Error" + event);
   });
 
-  xhr.open("GET",GOOG_SHEET_URL+formatParams(params));
+  xhr.open("GET",GOOGLE_SHEET_URL+formatParams(params));
   xhr.send("null");
 }
 
@@ -295,10 +291,10 @@ function sendData(){
     document.getElementById('formSubmit').disabled = false;
   });
   xhr.addEventListener("err", (event)=>{
-    alert("Error data not saved!");
+    alert("Error data not saved!" + event);
     document.getElementById('formSubmit').disabled = false;
   })
-  xhr.open("POST", GOOG_SHEET_URL );
+  xhr.open("POST", GOOGLE_SHEET_URL );
   xhr.send(fd);
 }
 

@@ -1,20 +1,9 @@
-/*! HTML5 Boilerplate v8.0.0 | MIT License | https://html5boilerplate.com/ */
-
-/* main.css 2.1.0 | MIT License | https://github.com/h5bp/main.css#readme */
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-
-
 @font-face {
   font-family: 'Luminari';
   font-style: normal;
   font-weight: normal;
   src: local('Luminari'), url('../fonts/Luminari-Regular.woff') format('woff');
 }
-
 
 @font-face {
   font-family: "Baskerville Old Face";
@@ -92,7 +81,7 @@ ul.rules  li {
 }
 
 h2, h3, h4, button {
-  font-family: Luminari;
+  font-family: Luminari, serif;
   margin: 0;
 }
 
@@ -103,19 +92,17 @@ button{
 
 button.smallBox{
 
-
 }
 
-
 h1 {
-  font-family: Luminari;
+  font-family: Luminari, serif;
   font-size: xx-large;
   text-align: center;
   margin: 0;
 }
 
 span.Options {
-  font-family: Luminari;
+  font-family: Luminari, serif;
   font-size: large;
 }
 
@@ -123,13 +110,13 @@ label, .header {
   padding-right: 5px;
 }
  .header {
-   font-family: Luminari;
+   font-family: Luminari, serif;
    font-size: x-large;
  }
 
 label {
   font-size: larger;
-  font-family: "Baskerville Old Face";
+  font-family: "Baskerville Old Face", serif;
 }
 td {
   padding-right: 10px;
@@ -250,7 +237,7 @@ fieldset {
 }
 
 /*
- * Allow only vertical resizing of textareas.
+ * Allow only vertical resizing of textarea
  */
 
 textarea {
@@ -279,8 +266,7 @@ textarea {
  * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
  *
  * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ *    causes content to wrap 1 word per line
  */
 
 .sr-only {
@@ -326,7 +312,7 @@ textarea {
  *
  * For modern browsers
  * 1. The space content is one way to avoid an Opera bug when the
- *    `contenteditable` attribute is included anywhere else in the document.
+ *    `content editable` attribute is included anywhere else in the document.
  *    Otherwise it causes space to appear at the top and bottom of elements
  *    that receive the `clearfix` class.
  * 2. The use of `table` rather than `block` is only necessary if using
