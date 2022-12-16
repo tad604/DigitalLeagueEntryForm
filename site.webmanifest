@@ -3,10 +3,20 @@
   "name": "Root Digital League Submission",
   "description": "A form for submitting game results played in the Root Digital League",
   "icons": [{
-    "src": "imag/vagrant.png",
+    "src": "img/vagrant.png",
     "type": "image/png",
-    "sizes": "80x80"
+    "sizes": "80x80",
+    "purpose": "any"
+    },
+    {
+    "src": "img/vagrant-lg.png",
+    "type": "image/png",
+    "sizes": "202x202",
+    "purpose" :"any"
+
   }],
+  "scope":"/DigitalLeagueEntryForm/?utm_source=homescreen",
+  "id": "/DigitalLeagueEntryForm/?utm_source=homescreen",
   "start_url": "/DigitalLeagueEntryForm/?utm_source=homescreen",
   "display": "fullscreen",
   "background_color": "#fafafa",
