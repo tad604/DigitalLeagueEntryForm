@@ -15,7 +15,7 @@
     "purpose" :"any"
 
   }],
-  "orientation": "landscape",
+  "orientation": "landscape-primary",
   "scope":"/DigitalLeagueEntryForm/?utm_source=homescreen",
   "id": "/DigitalLeagueEntryForm/?utm_source=homescreen",
   "start_url": "/DigitalLeagueEntryForm/?utm_source=homescreen",
