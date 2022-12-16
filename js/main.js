@@ -4,7 +4,7 @@ const players = ['player1', 'player2', 'player3', 'player4'];
 const registerServiceWorker = async () => {
   if ("serviceWorker" in navigator) {
     try {
-      const registration = await navigator.serviceWorker.register("/js/sw.js", {
+      const registration = await navigator.serviceWorker.register("/sw.js", {
         scope: "/",
       });
       if (registration.installing) {
