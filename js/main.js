@@ -248,13 +248,6 @@ function showLeaderBoard(json){
   }
 }
 
-function suggestNames(json){
-  alert(json.toString());
-}
-
-function getNamesLike(text){
-  getData(suggestNames, {'fnc': 'suggest', 'text':text});
-}
 
 function getLeaderBoard(){
   getData(showLeaderBoard, {'fnc': 'leaderBoard'});
@@ -288,6 +281,7 @@ function sendData(){
   const xhr = new XMLHttpRequest();
   xhr.addEventListener("load", (event)=>{
     alert("Game submitted");
+    console.log(event);
     document.getElementById('gameForm').reset();
     players.forEach(function(player){
       onDomSelect(player);
