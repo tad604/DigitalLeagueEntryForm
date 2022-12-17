@@ -63,7 +63,7 @@ function getNameSuggestions(partial){
   try{
     var values = allNames.getValues()
     var suggestions = values.filter(function(row){
-      if (row[0].startsWith(partial)) {
+      if (row[0].toLowerCase().startsWith(partial.toLowerCase())) {
         return row[0];
       }
     });

@@ -9,10 +9,14 @@
   <link rel="apple-touch-icon" href="img/vagrant.png">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/jquery-ui.min.css">
   <meta name="theme-color" content="#fafafa">
+  <script type="text/javascript"
+          src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
+  </script>
 </head>
 <body>
-<form name="digitalLeagueGame" id="gameForm">
+<form name="digitalLeagueGame" id="gameForm" autocomplete="off">
   <input type="hidden" name="Player 1 Turn Order" id="Player 1 Turn Order" value="1"/>
   <input type="hidden" name="Player 2 Turn Order" id="Player 2 Turn Order" value="2"/>
   <input type="hidden" name="Player 3 Turn Order" id="Player 3 Turn Order" value="3"/>
@@ -38,7 +42,7 @@
     <tbody>
   <tr id="player1">
     <td><label class="name" for="Player 1">First Player</label></td>
-    <td><input id="Player 1" name="Player 1" type="text" required /></td>
+    <td><input id="playerName1" name="Player 1" type="text" required /></td>
     <td><select required class="factionSelect" id="Player 1 Faction" name="Player 1 Faction" onchange="onFactionSelect('player1')">
       <option value="">--Select Faction--</option>
       <option value="Eyrie Dynasties">Eyrie Dynasties</option>
@@ -90,7 +94,7 @@
   </tr>
   <tr id="player2">
     <td><label class="name" for="Player 2">Second Player</label></td>
-    <td><input id="Player 2" name="Player 2" type="text" required/></td>
+    <td><input id="playerName2" name="Player 2" type="text" required/></td>
     <td><select required class="factionSelect" id="Player 2 Faction" name="Player 2 Faction" onchange="onFactionSelect('player2')">
       <option value="">--Select Faction--</option>
       <option value="Eyrie Dynasties">Eyrie Dynasties</option>
@@ -138,7 +142,7 @@
   </tr>
   <tr id="player3">
     <td><label class="name" for="Player 3">Third Player</label></td>
-    <td><input id="Player 3" name="Player 3" type="text" required/></td>
+    <td><input id="playerName3" name="Player 3" type="text" required/></td>
     <td><select required class="factionSelect" id="Player 3 Faction" name="Player 3 Faction" onchange="onFactionSelect('player3')">
       <option value="">--Select Faction--</option>
       <option value="Eyrie Dynasties">Eyrie Dynasties</option>
@@ -183,7 +187,7 @@
   <tr id="player4">
     <td>
     <label class="name" for="Player 4">Fourth Player</label></td>
-    <td><input id="Player 4" name="Player 4" type="text" required/></td>
+    <td><input id="playerName4" name="Player 4" type="text" required/></td>
     <td><select required class="factionSelect" id="Player 4 Faction" name="Player 4 Faction" onchange="onFactionSelect('player4')">
       <option value="">--Select Faction--</option>
       <option value="Eyrie Dynasties">Eyrie Dynasties</option>
@@ -262,7 +266,10 @@
   </div>
 </form>
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/vendor/jquery-3.6.1.js"></script>
+  <script src="js/vendor/jquery-ui.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/auto-complete.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwUDIC8rxqWbsM9Jjx2rvh3sFqs_Dme7Jmk4IbjrXc69U9gs88ZpxhFbmUUD5DzbnHr/exec";
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwPS_DA925qk6tqTOtt1iO6cYJgPtyWheLC3SNjD-77Urfw8pWCmZD7rIjiO2JSUlUB/exec";
+
 const players = ['player1', 'player2', 'player3', 'player4'];
 
 const registerServiceWorker = async () => {
@@ -188,6 +189,10 @@ function validateAndSubmit(){
   players.forEach(validatePlayerScore);
   validateLeagueScore();
   if(isEmptyErrors()){
+    document.getElementById("Player 1 Game Score").value = calculatePlayerScore(players[0]);
+    document.getElementById("Player 2 Game Score").value = calculatePlayerScore(players[1]);
+    document.getElementById("Player 3 Game Score").value = calculatePlayerScore(players[2]);
+    document.getElementById("Player 4 Game Score").value = calculatePlayerScore(players[3]);
     document.getElementById('errors').style.display = 'none';
     document.getElementById("formSubmit").disabled = true;
     sendData();
