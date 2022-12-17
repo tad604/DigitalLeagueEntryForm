@@ -44,11 +44,14 @@ function onDomSelect(player){
       coalition.style.display = 'inline';
     }else{
       coalition.style.display = 'none';
+      coalition.getElementsByTagName('select').value= null;
       dominance.style.display = 'inline';
+      dominance.getElementsByTagName("select").value = null
     }
   }else{
     points.style.display = 'inline';
     coalition.style.display = 'none';
+
     dominance.style.display = 'none';
   }
 }
@@ -89,15 +92,16 @@ function getPlayerDisplayName(player){
 }
 
 function findCoalitionPartnerVagabond(player){
+  let partners = []
   for(let i = 0; i < players.length; i++){
     if(player !== players[i] && isVagabond(players[i]) && isDomSelected(players[i])){
-      let vagPartner = findPartnerId(players[i], true, true);
+      let vagPartner = findPartnerId(players[i]);
       if(vagPartner === player){
-        return players[i];
+        partners.push(players[i]);
       }
     }
   }
-  return false;
+  return partners;
 }
 
 function findPartnerId(player){
@@ -106,7 +110,7 @@ function findPartnerId(player){
     let span = tr.getElementsByClassName("coalition")[0];
     return span.getElementsByTagName("select")[0].value;
   }else{
-    return findCoalitionPartnerVagabond(player);
+    return findCoalitionPartnerVagabond(player)[0];
   }
 }
 
@@ -142,8 +146,8 @@ function validatePlayerScore(id){
   }
   if(isPlayerInCoalition(id) && isVagabond(id) ){
     let partnerId = findPartnerId(id);
-    if(isDomSelected(partnerId) && isVagabond(partnerId)){
-      if(id === findPartnerId(partnerId)){
+    if(isDom && isVagabond(partnerId)){
+      if(id === findPartnerId(partnerId) && isDomSelected(partnerId)){
         addError(getPlayerDisplayName(id) + " and "+ getPlayerDisplayName(partnerId) + " cannot both target the other as coalition partner!");
       } else {
         if(isDomSelected(partnerId)){
@@ -152,6 +156,9 @@ function validatePlayerScore(id){
         }
       }
     }
+  } else if(isPlayerInCoalition(id) && !isVagabond(id) && findCoalitionPartnerVagabond(id).length > 1)
+  {
+    addError(getPlayerDisplayName(id) + "  can not be the partner in two coalitions!");
   }
   if(tourneyScore === 1.0){
      if(score < 30 && ! isDom) {
