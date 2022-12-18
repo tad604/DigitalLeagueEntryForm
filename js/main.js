@@ -66,6 +66,15 @@ function isDomSelected(player){
   return tr.getElementsByTagName('input')[1].checked;
 }
 
+function getDomSelection(player){
+  let tr = document.getElementById(player);
+  let val;
+  if(isDomSelected(player) && !isVagabond(player)) {
+    val = tr.getElementsByTagName('select')[1].value + " Dom";
+  }
+  return val;
+}
+
 function isVagabond(player){
  return getSelectedFaction(player).startsWith('Vagabond');
 }
@@ -144,6 +153,13 @@ function validatePlayerScore(id){
   if(score.value === ""){
     addError(getPlayerDisplayName(id) + " needs a score!");
   }
+  if(isDom){
+     players.forEach((playerId)=>{
+       if(playerId !== id && isDomSelected(playerId) && getDomSelection(playerId) === getDomSelection(id) ){
+         addError(getPlayerDisplayName(id) + " and "+ getPlayerDisplayName(playerId) + " cannot have the same Dominance Suit Selected!" );
+       }
+     })
+  }
   if(isPlayerInCoalition(id) && isVagabond(id) ){
     let partnerId = findPartnerId(id);
     if(isDom && isVagabond(partnerId)){
@@ -156,8 +172,7 @@ function validatePlayerScore(id){
         }
       }
     }
-  } else if(isPlayerInCoalition(id) && !isVagabond(id) && findCoalitionPartnerVagabond(id).length > 1)
-  {
+  } else if(isPlayerInCoalition(id) && !isVagabond(id) && findCoalitionPartnerVagabond(id).length > 1) {
     addError(getPlayerDisplayName(id) + "  can not be the partner in two coalitions!");
   }
   if(tourneyScore === 1.0){
