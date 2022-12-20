@@ -1,36 +1,41 @@
-//requires jQuery
-const  NAMES_SUGGESTION_URL = GOOGLE_SHEET_URL;
-(function($){
-   $.fn.playerNameSuggest = function(options){
-     let el = $(this);
-     let myOptions = {
-        "source":getNameSuggestions,
-         "minCharInput":1,
-         "delay": 200
-     };
-     if(options !== undefined){
-       myOptions = $.extend(myOptions, options);
-     }
-     el.autocomplete({
-        delay: myOptions.delay,
-        minLength: myOptions.minCharInput,
-        source: function (request, response){
-          myOptions.source(request, response);
-        }
-     });
-   };
-})(jQuery);
 
-function getNameSuggestions(text, callback){
-  jQuery.getJSON(NAMES_SUGGESTION_URL,
-    {'fnc': 'suggest', 'text':text.term},
-    function(data){
-     callback(data.suggestions);
-    });
-}
-window.addEventListener("load", ()=>{
-  jQuery("#playerName1").playerNameSuggest();
-  jQuery("#playerName2").playerNameSuggest();
-  jQuery("#playerName3").playerNameSuggest();
-  jQuery("#playerName4").playerNameSuggest();
+const GOOGLE_SHEET_FETCH_ALL_PLAYER_NAMES = "https://script.google.com/macros/s/AKfycbxniMwiU7ca8IGDX_3VJRz4qo0Mc9vQ1MkQR7NvgYfbub673-XTJgrQgvU1FVMkH_KW/exec";
+fetch(GOOGLE_SHEET_FETCH_ALL_PLAYER_NAMES).then((response)=> response.json()).then((data)=> {
+  console.log(data);
+  addAutoComplete(data);
 });
+function addAutoComplete(data) {
+  new autoComplete({
+    selector: '#playerName1',
+    minChars: 1,
+    source: mySuggest
+  });
+  new autoComplete({
+    selector: '#playerName2',
+    minChars: 1,
+    source: mySuggest
+  });
+  new autoComplete({
+    selector: '#playerName3',
+    minChars: 1,
+    source: mySuggest
+  });
+  new autoComplete({
+    selector: '#playerName4',
+    minChars: 1,
+    source: mySuggest
+  });
+
+  function mySuggest(term, suggest) {
+    term = term.toLowerCase();
+    let choices = data;
+    let matches = [];
+    for (let i = 0; i < choices.length; i++) {
+      if (choices[i].toLowerCase().startsWith(term)) {
+        matches.push(choices[i]);
+      }
+    }
+    //if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+    suggest(matches);
+  }
+}
