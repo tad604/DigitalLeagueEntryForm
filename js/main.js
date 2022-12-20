@@ -149,7 +149,7 @@ function validatePlayerScore(id){
   let score = calculatePlayerScore(id);
   let tourneyScore = findTourneyScore(id);
   let isDom = isDomSelected(id);
-  if(score.value === ""){
+  if(score === ""){
     addError(getPlayerDisplayName(id) + " needs a score!");
   }
   if(isDom){
