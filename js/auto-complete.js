@@ -25,7 +25,6 @@ function addAutoComplete(data) {
     minChars: 1,
     source: mySuggest
   });
-
   function mySuggest(term, suggest) {
     term = term.toLowerCase();
     let choices = data;

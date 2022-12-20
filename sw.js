@@ -23,27 +23,4 @@ self.addEventListener("install", (event) => {
       "img/winter.jpg"
     ])
   );
-  self.fetch(GOOGLE_SHEET_FETCH_ALL_PLAYER_NAMES).then((response)=> response.json()).then((data)=>{
-    console.log(data);
-    let openRequest = indexedDB.open("players", 3);
-    openRequest.onupgradeneeded = (event) =>{
-            //initialization/updating
-      const db = event.target.result;
-      if(!db.objectStoreNames.contains('playerNames')){
-        db.createObjectStore("playerNames");
-      }
-    }
-    openRequest.onerror = function (){
-      console.error("Error", openRequest.onerror);
-    }
-    openRequest.onsuccess = function(){
-      let db = openRequest.result;
-      let tx = db.transaction("playerNames","readwrite");
-      let playerNames = tx.objectStore("playerNames");
-      let namesUpdate =  playerNames.put(data, "playerNames");
-      namesUpdate.onsuccess = function (event){
-        console.log("player names stored.." + event);
-      }
-    }
-  });
 });
