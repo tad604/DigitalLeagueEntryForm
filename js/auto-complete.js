@@ -5,25 +5,12 @@ fetch(GOOGLE_SHEET_FETCH_ALL_PLAYER_NAMES).then((response)=> response.json()).th
   addAutoComplete(data);
 });
 function addAutoComplete(data) {
-  new autoComplete({
-    selector: '#playerName1',
-    minChars: 1,
-    source: mySuggest
-  });
-  new autoComplete({
-    selector: '#playerName2',
-    minChars: 1,
-    source: mySuggest
-  });
-  new autoComplete({
-    selector: '#playerName3',
-    minChars: 1,
-    source: mySuggest
-  });
-  new autoComplete({
-    selector: '#playerName4',
-    minChars: 1,
-    source: mySuggest
+  ['#playerName1', '#playerName2', '#playerName3', '#playerName4'].forEach(function(name){
+    new autoComplete({
+      selector: name,
+      minChars: 1,
+      source: mySuggest
+    });
   });
   function mySuggest(term, suggest) {
     term = term.toLowerCase();
