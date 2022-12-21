@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Root Digital League Leader Boards</title>
+  <link rel="stylesheet" href="/DigitalLeagueEntryForm/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/DigitalLeagueEntryForm/css/leaderboards.css" type="text/css">
+</head>
+<body>
+<ul id="seasonsList" class="seasons">
+  <li id="allTime" class = "selected">All Seasons</li>
+
+</ul>
+<div class="leaderBoard">
+  <table class="">
+    <thead>
+      <tr>
+        <td colspan="5" ><h1 id="leaderBoardTitle">All Seasons Leader Board</h1></td>
+      </tr>
+      <tr class="columnHeaders">
+        <td>Rank</td>
+        <td>Player</td>
+        <td>Games</td>
+        <td>League<br/> Points</td>
+        <td>Win<br/> Rate</td>
+      </tr>
+    </thead>
+    <tbody class="rankedPlayers" id="leaguePlayers">
+    </tbody>
+  </table>
+</div>
+
+<ul class="menu-list">
+  <li><a href="/DigitalLeagueEntryForm/index.html">Game Submission Form</a> </li>
+  <li><a href="#" onclick="refreshLeaderBoardData()">Refresh Leader Boards</a> </li>
+  <li><a href="https://docs.google.com/spreadsheets/d/1JxG28ELjBBRGHGa08RafgsIYtKFal8EeVJE4BD9C-hk/edit?usp=sharing">Copy of Root Digital Ranked League 2.0 </a></li>
+</ul>
+<script src="/DigitalLeagueEntryForm/js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="/DigitalLeagueEntryForm/js/fetchLeaderBoards.js"></script>
+</body>
+</html>

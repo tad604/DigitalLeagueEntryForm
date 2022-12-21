@@ -1,0 +1,86 @@
+html {
+  background: url("../img/riverfolk-background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.leaderBoard{
+  background-image: url("../img/Medium_Box.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  text-align: center;
+  padding: 25px 15px;
+  margin-top: 25px;
+  margin-left: 50px;
+  margin-bottom: 25px;
+  float: left;
+
+}
+tr.columnHeaders td {
+  font-family: Luminari, serif;
+  font-size: x-large;
+}
+
+tbody.rankedPlayers td{
+  font-family: "Baskerville Old Face", serif;
+  font-size: medium;
+}
+
+ul.menu-list{
+  font-family: "Baskerville Old Face", serif;
+  font-size: large;
+  background-image: url("../img/Phases_Box.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  text-align: center;
+  padding: 25px 25px;
+  margin-top: 25px;
+  margin-left: 50px;
+  margin-bottom: 25px;
+  float: left;
+}
+ul.menu-list li{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+ul.seasons {
+  font-family: Luminari, serif;
+  font-size: x-large;
+  background-image: url("../img/Medium_Box.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  text-align: center;
+  padding: 25px 25px;
+  margin-top: 25px;
+  margin-left: 50px;
+  margin-bottom: 25px;
+  float: left;
+}
+ul.seasons li{
+   margin: 0;
+  padding: 10px 0px;
+  list-style: none;/* url("../img/Ability_Berry_sm.png");*/
+}
+ul.seasons li.selected{  border-radius: 1em 0 1em 0;
+  background-image: linear-gradient(
+    -100deg,
+    rgba(255, 224, 0, 0.2),
+    rgba(255, 224, 0, 0.7) 95%,
+    rgba(255, 224, 0, 0.1)
+  );
+}
+ul.seasons li:hover{
+  border-radius: 1em 0 1em 0;
+  background-image: linear-gradient(
+    -100deg,
+    rgba(255, 20, 0, 0.2),
+    rgba(255, 20, 0, 0.7) 95%,
+    rgba(255, 20, 0, 0.1)
+  );
+}

@@ -262,41 +262,6 @@ function calculatePlayerScore(player){
   return val;
 }
 /****************************************************/
-function showLeaderBoard(json){
-  for(let i = 0; i < json.length; i++){
-     let rank = json[i];
-     console.log(rank);
-  }
-}
-
-
-function getLeaderBoard(){
-  getData(showLeaderBoard, {'fnc': 'leaderBoard'});
-}
-
-function formatParams( params ){
-  return "?" + Object
-    .keys(params)
-    .map(function(key){
-      return key+"="+encodeURIComponent(params[key])
-    })
-    .join("&")
-}
-
-function getData(callback, params){
-  const xhr = new XMLHttpRequest();
-  xhr.addEventListener("load", (event)=>{
-    let data = JSON.parse(event.target.responseText);
-    callback(data);
-  });
-  xhr.addEventListener("err", (event)=>{
-    alert("Error" + event);
-  });
-
-  xhr.open("GET",GOOGLE_SHEET_URL+formatParams(params));
-  xhr.send("null");
-}
-
 function sendData(){
   const fd = new FormData(document.getElementById('gameForm'));
   const xhr = new XMLHttpRequest();
