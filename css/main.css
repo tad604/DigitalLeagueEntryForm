@@ -137,6 +137,9 @@ input[type="radio"] + label > img {
   padding: 5px;
   transition: 500ms all;
 }
+input[type="number"]{
+  min-width: 2em;
+}
 
 /* ==========================================================================
    Base styles: opinionated defaults

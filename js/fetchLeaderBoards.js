@@ -13,15 +13,19 @@ function updateSeasonsList(data){
   }
   let ul = document.getElementById('seasonsList');
   ul.innerHTML = '';
+  ul.appendChild(createSeasonLi('allTime', data, true))
   seasons = seasons.reverse();
   for(let i = 0; i < seasons.length; i++){
     ul.appendChild(createSeasonLi(seasons[i], data));
   }
 }
 
-function createSeasonLi(season, data){
+function createSeasonLi(season, data, isDefault){
   let li = document.createElement('li');
   li.id = season;
+  if(isDefault){
+    li.classList.add('selected');
+  }
   li.innerText =data[season]['name'];
   li.addEventListener('click', selectSeason);
   return li;
@@ -37,12 +41,12 @@ function selectSeason(event){
   updateLeaderBoard(leaderBoardInfo[selectedSeason.id]);
 }
 
-function updateLeaderBoard(leaderBoarData) {
+function updateLeaderBoard(leaderBoardData) {
   let leaderBoardTitle = document.getElementById('leaderBoardTitle');
-  leaderBoardTitle.innerText = leaderBoarData.name + " Leader Board";
+  leaderBoardTitle.innerText = leaderBoardData.name + " Leader Board";
   let tbody = document.getElementById('leaguePlayers');
   tbody.innerHTML = '';
-  let players = leaderBoarData.players;
+  let players = leaderBoardData.players;
   for (let i = 0; i < players.length; i++) {
     let tr = createRankRow(players[i]);
     tbody.appendChild(tr);
@@ -65,8 +69,5 @@ function refreshLeaderBoardData(){
     leaderBoardInfo = data;
     updateSeasonsList(data);
     updateLeaderBoard(data['allTime']);
-    document.getElementById('allTime').addEventListener('click', function(){
-      updateLeaderBoard(data['allTime']);
-    })
-  });
+    });
 }
