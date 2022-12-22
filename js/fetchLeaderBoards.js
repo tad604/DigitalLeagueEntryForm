@@ -63,11 +63,36 @@ function createRankRow(player){
   return tr;
 }
 
+function showLoading(){
+  let dummyUl = document.getElementById('dummy-list');
+  dummyUl.style.display = 'block';
+  let dummyTbody = document.getElementById('dummy-tbody');
+  dummyTbody.hidden = false;
+  let tbody = document.getElementById('leaguePlayers');
+  tbody.hidden = true;
+  let ul = document.getElementById('seasonsList');
+  ul.style.display = 'none';
+}
+
+function showLoaded(){
+  let dummyUl = document.getElementById('dummy-list');
+  dummyUl.style.display = 'none';
+  let dummyTbody = document.getElementById('dummy-tbody');
+  dummyTbody.hidden = true;
+  let tbody = document.getElementById('leaguePlayers');
+  tbody.hidden = false;
+  let ul = document.getElementById('seasonsList');
+  ul.style.display = 'block';
+}
+
 function refreshLeaderBoardData(){
+   showLoading()
   fetch(GOOGLE_SHEET_FETCH_LEADER_BOARDS).then((response)=> response.json()).then((data)=> {
     console.log(data);
     leaderBoardInfo = data;
     updateSeasonsList(data);
     updateLeaderBoard(data['allTime']);
+    showLoaded();
     });
 }
+

@@ -7,8 +7,11 @@
   <link rel="stylesheet" href="/DigitalLeagueEntryForm/css/leaderboards.css" type="text/css">
 </head>
 <body>
-<ul id="seasonsList" class="seasons">
+<div class="seasons">
+  <ul id="dummy-list" class="loading"></ul>
+<ul id="seasonsList" >
 </ul>
+</div>
 <div class="leaderBoard">
   <table class="">
     <thead>
@@ -23,6 +26,9 @@
         <td>Win<br/> Rate</td>
       </tr>
     </thead>
+    <tbody id="dummy-tbody">
+    <tr><td class="loading" colspan="5"></td></tr>
+    </tbody>
     <tbody class="rankedPlayers" id="leaguePlayers">
     </tbody>
   </table>
