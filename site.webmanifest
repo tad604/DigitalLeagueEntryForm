@@ -1,7 +1,7 @@
 {
   "short_name": "Digital  League",
   "name": "Root Digital League Submission",
-  "description": "A form for submitting game results played in the Root Digital League",
+  "description": "Root Digital League game reports and leaderboards",
   "icons": [{
     "src": "img/vagrant.png",
     "type": "image/png",
