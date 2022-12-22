@@ -40,7 +40,7 @@ tbody.rankedPlayers td{
 ul.menu-list{
   font-family: "Baskerville Old Face", serif;
   font-size: large;
-  background-image: url("/img/Phases_Box.png");
+  background-image: url("../img/Phases_Box.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center center;
@@ -60,7 +60,7 @@ ul.menu-list li{
 div.seasons {
   font-family: Luminari, serif;
   font-size: x-large;
-  background-image: url("/img/Medium_Box.png");
+  background-image: url("../img/Medium_Box.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center center;
