@@ -57,7 +57,7 @@ function createRankRow(player){
   let tr = document.createElement('tr');
   for(const key in player){
     let td = document.createElement('td');
-    td.innerText = player[key];
+    td.innerText = (key === "winRate") ? player[key]+"%" : player[key];
     tr.appendChild(td);
   }
   return tr;
@@ -84,15 +84,38 @@ function showLoaded(){
   let ul = document.getElementById('seasonsList');
   ul.style.display = 'block';
 }
+function showNoResultsToLoad(){
+  let ul = document.getElementById('seasonsList');
+  ul.innerHTML = 'No Results found!!!';
+  let tbody = document.getElementById('leaguePlayers');
+  tbody.innerHTML = 'No Results found!!!';
+  showLoaded();
+}
+function showFailedToLoad(e){
+  if(confirm("Failed to retrieve leader board info!!  Try again?")){
+    refreshLeaderBoardData();
+  }else{
+    if(Object.keys(leaderBoardInfo).length !== 0){
+      updateSeasonsList(leaderBoardInfo);
+      updateLeaderBoard(leaderBoardInfo);
+      showLoaded();
+    }else{
+      showNoResultsToLoad();
+    }
+  }
+}
+
 
 function refreshLeaderBoardData(){
    showLoading()
-  fetch(GOOGLE_SHEET_FETCH_LEADER_BOARDS).then((response)=> response.json()).then((data)=> {
-    console.log(data);
-    leaderBoardInfo = data;
-    updateSeasonsList(data);
-    updateLeaderBoard(data['allTime']);
-    showLoaded();
-    });
+   fetch(GOOGLE_SHEET_FETCH_LEADER_BOARDS).then((response)=> response.json()).then((data)=> {
+      console.log(data);
+      leaderBoardInfo = data;
+      updateSeasonsList(data);
+      updateLeaderBoard(data['allTime']);
+      showLoaded();
+    }).catch (function(e){
+      showFailedToLoad(e);
+   });
 }
 
