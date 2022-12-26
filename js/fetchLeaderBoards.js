@@ -57,10 +57,15 @@ function createRankRow(player){
   let tr = document.createElement('tr');
   for(const key in player){
     let td = document.createElement('td');
-    td.innerText = (key === "winRate") ? player[key]+"%" : player[key];
+    td.innerText = (key === "winRate") ?formatWinRate(player[key]) : player[key];
     tr.appendChild(td);
   }
   return tr;
+}
+
+function formatWinRate(winRate){
+  return parseFloat(winRate).toFixed(2) + "%";
+ // return Math.round((winRate + Number.EPSILON) * 100) / 100 +"%";
 }
 
 function showLoading(){
