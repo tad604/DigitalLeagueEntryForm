@@ -1,4 +1,4 @@
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwPS_DA925qk6tqTOtt1iO6cYJgPtyWheLC3SNjD-77Urfw8pWCmZD7rIjiO2JSUlUB/exec";
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxN-BfGk_NrEaKMNC3cWlISDyw4wqRkb-VsYRDZ3zd2U5E_eaTEbvxzdK5wY1jvPNVC/exec";
 const players = ['player1', 'player2', 'player3', 'player4'];
 
 const registerServiceWorker = async () => {
