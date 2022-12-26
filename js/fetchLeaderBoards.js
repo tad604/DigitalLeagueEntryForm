@@ -1,4 +1,4 @@
-GOOGLE_SHEET_FETCH_LEADER_BOARDS = "https://script.google.com/macros/s/AKfycbzuMpS5Ec7Q4icnUNkp_IXjRsXOPzJZQjFU9YKi1He-oIJv0Ut3Zq0el2kOduTN0DTM/exec";
+GOOGLE_SHEET_FETCH_LEADER_BOARDS = "https://script.google.com/macros/s/AKfycbwM0OyE-0B1dNVBAisfS8PK0WaC0h5dz2w60-j2hC4xK4_8_zRDOIxoWJHDqM2RAYMwHg/exec";
 let leaderBoardInfo = {};
 window.addEventListener("load", () => {
   refreshLeaderBoardData()
