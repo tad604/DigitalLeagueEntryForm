@@ -5,18 +5,6 @@ html {
   -o-background-size: cover;
   background-size: cover;
 }
-.leaderBoard{
-  background-image: url("../img/Medium_Box.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-position: center center;
-  text-align: center;
-  padding: 25px 15px;
-  margin-top: 25px;
-  margin-left: 50px;
-  margin-bottom: 25px;
-  float: left;
-}
 
 .loading{
   height: 200px;
@@ -27,36 +15,7 @@ html {
   background-repeat: no-repeat;
   background-position: center center;
 }
-tr.columnHeaders td {
-  font-family: Luminari, serif;
-  font-size: x-large;
-}
 
-tbody.rankedPlayers td{
-  font-family: "Baskerville Old Face", serif;
-  font-size: medium;
-}
-
-ul.menu-list{
-  font-family: "Baskerville Old Face", serif;
-  font-size: large;
-  background-image: url("../img/Phases_Box.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-position: center center;
-  text-align: center;
-  padding: 25px 25px;
-  margin-top: 25px;
-  margin-left: 50px;
-  margin-bottom: 25px;
-  float: left;
-}
-ul.menu-list li{
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: left;
-}
 div.seasons {
   font-family: Luminari, serif;
   font-size: x-large;
@@ -76,7 +35,7 @@ div.seasons ul{
 }
 div.seasons ul li{
    margin: 0;
-  padding: 10px 0px 0px;
+  padding: 0px 0px 0px;
   list-style: none;/* url("../img/Ability_Berry_sm.png");*/
 }
 div.seasons ul li.selected{  border-radius: 1em 0 1em 0;
@@ -87,6 +46,28 @@ div.seasons ul li.selected{  border-radius: 1em 0 1em 0;
     rgba(255, 224, 0, 0.1)
   );
 }
+.leaderBoard{
+  background-image: url("../img/Medium_Box.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  text-align: center;
+  padding: 25px 15px;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-bottom: 25px;
+  float: left;
+}
+tr.columnHeaders td {
+  font-family: Luminari, serif;
+  font-size: x-large;
+}
+
+tbody.rankedPlayers td{
+  font-family: "Baskerville Old Face", serif;
+  font-size: medium;
+}
+
 div.leaderBoard table tbody tr:hover, div.seasons ul li:hover{
   border-radius: 1em 0 1em 0;
   background-image: linear-gradient(
@@ -95,4 +76,25 @@ div.leaderBoard table tbody tr:hover, div.seasons ul li:hover{
     rgba(255, 20, 0, 0.7) 95%,
     rgba(255, 20, 0, 0.1)
   );
+}
+
+ul.menu-list{
+  font-family: "Baskerville Old Face", serif;
+  font-size: medium;
+  background-image: url("../img/Phases_Box.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  text-align: center;
+  padding: 10px 10px;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  float: left;
+}
+ul.menu-list li{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
 }
