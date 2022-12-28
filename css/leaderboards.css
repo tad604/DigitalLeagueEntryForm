@@ -24,8 +24,9 @@ div.seasons {
   background-size: 100% 100%;
   background-position: center center;
   text-align: center;
+
   padding: 0px 10px;
-  margin-top: 25px;
+  margin-top: 15px;
   margin-left: 25px;
   margin-bottom: 25px;
   float: left;
@@ -53,7 +54,7 @@ div.seasons ul li.selected{  border-radius: 1em 0 1em 0;
   background-position: center center;
   text-align: center;
   padding: 25px 15px;
-  margin-top: 25px;
+  margin-top: 15px;
   margin-left: 10px;
   margin-bottom: 25px;
   float: left;
@@ -87,7 +88,7 @@ ul.menu-list{
   background-position: center center;
   text-align: center;
   padding: 10px 10px;
-  margin-top: 25px;
+  margin-top: 15px;
   margin-left: 10px;
   margin-bottom: 10px;
   float: left;
