@@ -1,4 +1,4 @@
-GOOGLE_SHEET_FETCH_FACTION_STATS ="https://script.google.com/macros/s/AKfycbyYUIYks6DmsnwOwPx3aKfnJe4mwpqwaM981WFxQvnpYoo7Az4c6kBc0OnkWl1544vHzQ/exec";
+GOOGLE_SHEET_FETCH_FACTION_STATS ="https://script.google.com/macros/s/AKfycbzvN13IAg0BNggAfTKIxkhkdBnqKb0aTSlPC-N83G2DZGkTUWXwtTo9suVlg5cY_V4v/exec";
 let factionStats = {};
 window.addEventListener("load", () => {
   refreshFactionStats()
