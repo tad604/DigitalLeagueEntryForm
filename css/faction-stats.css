@@ -1,0 +1,23 @@
+html {
+  background: url("../img/underworld-background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+th {
+  cursor: pointer;
+}
+.sortDesc {
+  background: url("../img/down-arrow.png") no-repeat left;
+  background-size: contain;
+}
+
+.sortAsc{
+  background: url("../img/up-arrow.png") no-repeat left;
+  background-size: contain;
+}
+
+th {
+  padding-left: 15px;
+}

@@ -1,0 +1,93 @@
+.loading{
+  height: 200px;
+  min-height: 480px;
+  min-width: 123px;
+  background-image: url("../img/loading.gif");
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+div.seasons {
+  font-family: Luminari, serif;
+  font-size: x-large;
+  background-image: url("../img/Medium_Box.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  text-align: center;
+
+  padding: 0px 10px;
+  margin-top: 15px;
+  margin-left: 25px;
+  margin-bottom: 25px;
+  float: left;
+}
+div.seasons ul{
+  padding: 0px;
+}
+div.seasons ul li{
+  margin: 0;
+  padding: 0px 0px 0px;
+  list-style: none;/* url("../img/Ability_Berry_sm.png");*/
+}
+div.seasons ul li.selected{  border-radius: 1em 0 1em 0;
+  background-image: linear-gradient(
+    -100deg,
+    rgba(255, 224, 0, 0.2),
+    rgba(255, 224, 0, 0.7) 95%,
+    rgba(255, 224, 0, 0.1)
+  );
+}
+.mainBoard{
+  background-image: url("../img/Medium_Box.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  text-align: center;
+  padding: 25px 15px;
+  margin-top: 15px;
+  margin-left: 10px;
+  margin-bottom: 25px;
+  float: left;
+}
+th{
+  font-family: Luminari, serif;
+  font-size: large;
+}
+
+tbody td:first-child{
+  font-family: "Baskerville Old Face", serif;
+  font-size: medium;
+}
+
+div.mainBoard table tbody tr:hover, div.seasons ul li:hover{
+  border-radius: 1em 0 1em 0;
+  background-image: linear-gradient(
+    -100deg,
+    rgba(255, 20, 0, 0.2),
+    rgba(255, 20, 0, 0.7) 95%,
+    rgba(255, 20, 0, 0.1)
+  );
+}
+
+ul.menu-list{
+  font-family: "Baskerville Old Face", serif;
+  font-size: medium;
+  background-image: url("../img/Phases_Box.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  text-align: center;
+  padding: 10px 10px;
+  margin-top: 15px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  float: left;
+}
+ul.menu-list li{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}

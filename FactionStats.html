@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Root Digital League Leader Boards</title>
+  <title>Root Digital League Faction Stats</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="manifest" href="site.webmanifest">
   <link rel="icon" type="image/x-icon" href="img/vagrant.ico">
@@ -11,42 +11,42 @@
   <meta name="theme-color" content="#fafafa">
   <link rel="stylesheet" href="/DigitalLeagueEntryForm/css/main.css" type="text/css">
   <link rel="stylesheet" href="/DigitalLeagueEntryForm/css/shared.css" type="text/css">
-  <link rel="stylesheet" href="/DigitalLeagueEntryForm/css/leaderboards.css" type="text/css">
+  <link rel="stylesheet" href="/DigitalLeagueEntryForm/css/faction-stats.css" type="text/css">
 </head>
 <body>
 <div class="seasons">
   <ul id="dummy-list" class="loading"></ul>
-<ul id="seasonsList" >
-</ul>
+  <ul id="seasonsList" >
+  </ul>
 </div>
 <div class="mainBoard">
   <table class="">
     <thead>
-      <tr>
-        <td colspan="5" ><h1 id="leaderBoardTitle">All Seasons Leader Board</h1></td>
-      </tr>
-      <tr class="columnHeaders">
-        <th>Rank</th>
-        <th>Player</th>
-        <th>Games</th>
-        <th>League<br/> Points</th>
-        <th>Win<br/> Rate</th>
-      </tr>
+    <tr>
+      <td colspan="5" ><h1 id="factionStatsTitle">All Seasons Faction Stats</h1></td>
+    </tr>
+    <tr>
+      <th class="sortAsc">Faction</th>
+      <th style="display: none"></th>
+      <th>Games</th>
+      <th>League<br/> Points</th>
+      <th>Win<br/> Rate</th>
+    </tr>
     </thead>
     <tbody id="dummy-tbody">
     <tr><td class="loading" colspan="5"></td></tr>
     </tbody>
-    <tbody class="rankedPlayers" id="leaguePlayers">
+    <tbody  id="factions">
     </tbody>
   </table>
 </div>
 
 <ul class="menu-list">
   <li><a href="/DigitalLeagueEntryForm/index.html">Game Submission Form</a> </li>
-  <li><a href="/DigitalLeagueEntryForm/FactionStats.html">Faction Stats</a></li>
-  <li><a href="#" onclick="refreshLeaderBoardData()">Refresh Leader Boards</a></li>
+  <li><a href="/DigitalLeagueEntryForm/LeaderBoards.html">Leader Boards</a></li>
+  <li><a href="#" onclick="refreshFactionStats()">Refresh Faction Stats</a> </li>
 </ul>
 <script src="/DigitalLeagueEntryForm/js/vendor/modernizr-3.11.2.min.js"></script>
-<script src="/DigitalLeagueEntryForm/js/fetchLeaderBoards.js"></script>
+<script src="/DigitalLeagueEntryForm/js/fetchFactionStats.js"></script>
 </body>
 </html>
