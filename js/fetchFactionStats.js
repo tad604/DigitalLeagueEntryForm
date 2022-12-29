@@ -47,12 +47,13 @@ function updateFactionsStats(factionStatData) {
   let tbody = document.getElementById('factions');
   tbody.innerHTML = '';
   let factions = factionStatData.factions;
+  document.querySelectorAll('th')[0].click(); //comes in sorted first click doesn't do anything
   for (let i = 0; i < factions.length; i++) {
     let tr = createFactionRow(factions[i]);
     tbody.appendChild(tr);
   }
   document.querySelectorAll('th').forEach(th => th.classList.remove('sortDesc', 'sortAsc'));
-  document.querySelectorAll('th')[0].click(); //comes in sorted first click doesn't do anything
+  document.querySelectorAll('th')[0].classList.add('sortAsc');
 }
 
 function createFactionRow(faction){
