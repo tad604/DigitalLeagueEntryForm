@@ -12,11 +12,19 @@
   <link rel="stylesheet" href="/DigitalLeagueEntryForm/css/main.css" type="text/css">
   <link rel="stylesheet" href="/DigitalLeagueEntryForm/css/shared.css" type="text/css">
   <link rel="stylesheet" href="/DigitalLeagueEntryForm/css/faction-stats.css" type="text/css">
+  <link rel="stylesheet" href="css/auto-complete.css">
 </head>
 <body>
 <div class="seasons">
   <ul id="dummy-list" class="loading"></ul>
   <ul id="seasonsList" >
+  </ul>
+  <ul id="staticList">
+  <li>
+    <input id="playerNameLookUp" class="suggest" name="playerNameLookUp" type="text" placeholder="player name" style="width: 66%"/>
+    <br/>
+    <button  onclick="loadPlayerStats()">look up</button>
+  </li>
   </ul>
 </div>
 <div class="mainBoard">
@@ -38,6 +46,9 @@
     </tbody>
     <tbody  id="factions">
     </tbody>
+    <tbody id="otherStats">
+    <tr style="display: none"><td colspan="5"><h2>Other Stats</h2></td></tr>
+    </tbody>
   </table>
 </div>
 
@@ -47,6 +58,8 @@
   <li><a href="#" onclick="refreshFactionStats()">Refresh Faction Stats</a> </li>
 </ul>
 <script src="/DigitalLeagueEntryForm/js/vendor/modernizr-3.11.2.min.js"></script>
+<script type="module" src="js/vendor/auto-complete.js"></script>
 <script src="/DigitalLeagueEntryForm/js/fetchFactionStats.js"></script>
+<script type="module" src="js/auto-complete.js"></script>
 </body>
 </html>

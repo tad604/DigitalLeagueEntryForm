@@ -1,4 +1,5 @@
 GOOGLE_SHEET_FETCH_FACTION_STATS ="https://script.google.com/macros/s/AKfycbx6wu-N0oNQ8cqILVkz5gh4jNlNFc2UyvbLDVCrBwiG-FTyzTXTr6AZMUAD9B9tr5ND/exec";
+GOOGLE_SHEET_FETCH_PLAYER_STATS = "https://script.google.com/macros/s/AKfycbxLGjv4OCpdOPBWcUFn7uH6BwQhESxQe_UVg3d-1MXi4Pdt9DvCr9GSPVZNn-LyKgqg/exec";
 let factionStats = {};
 window.addEventListener("load", () => {
   refreshFactionStats()
@@ -56,6 +57,21 @@ function updateFactionsStats(factionStatData) {
   document.querySelectorAll('th')[0].classList.add('sortAsc');
 }
 
+function updatePlayerStats(playerStatsData){
+  let leaderBoardTitle = document.getElementById('factionStatsTitle');
+  leaderBoardTitle.innerText =  playerStatsData.name + " Faction Stats";
+  let tbody = document.getElementById('factions');
+  tbody.innerHTML = '';
+  let factions = playerStatsData.factions;
+  document.querySelectorAll('th')[0].click(); //comes in sorted first click doesn't do anything
+  for (let i = 0; i < factions.length; i++) {
+    let tr = createFactionRow(factions[i]);
+    tbody.appendChild(tr);
+  }
+  document.querySelectorAll('th').forEach(th => th.classList.remove('sortDesc', 'sortAsc'));
+  document.querySelectorAll('th')[0].classList.add('sortAsc');
+}
+
 function createFactionRow(faction){
   let tr = document.createElement('tr');
   for(const key in faction){
@@ -65,14 +81,12 @@ function createFactionRow(faction){
       td.style.display = 'none';
     }
     tr.appendChild(td);
-
   }
   return tr;
 }
 
 function formatWinRate(winRate){
   return parseFloat(winRate).toFixed(2) + "%";
-
 }
 
 function showLoading(){
@@ -82,6 +96,8 @@ function showLoading(){
   dummyTbody.hidden = false;
   let tbody = document.getElementById('factions');
   tbody.hidden = true;
+  let otherStats = document.getElementById('otherStats');
+  otherStats.hidden = true;
   let ul = document.getElementById('seasonsList');
   ul.style.display = 'none';
 }
@@ -93,6 +109,8 @@ function showLoaded(){
   dummyTbody.hidden = true;
   let tbody = document.getElementById('factions');
   tbody.hidden = false;
+  let otherStats = document.getElementById('otherStats');
+  otherStats.hidden = false;
   let ul = document.getElementById('seasonsList');
   ul.style.display = 'block';
 }
@@ -117,6 +135,17 @@ function showFailedToLoad(e){
   }
 }
 
+function loadPlayerStats(){
+  let playerName = document.getElementById('playerNameLookUp').value;
+  showLoading();
+  fetch(GOOGLE_SHEET_FETCH_PLAYER_STATS+"?name="+encodeURIComponent(playerName)).then((response)=> response.json()).then((data)=> {
+    console.log(data);
+    updateFactionsStats(data);
+    showLoaded();
+  }).catch(function(e){
+    showFailedToLoad(e);
+  });
+}
 
 function refreshFactionStats(){
   showLoading()
@@ -130,7 +159,6 @@ function refreshFactionStats(){
     showFailedToLoad(e);
   });
 }
-
 
 const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
 const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
@@ -150,6 +178,3 @@ document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() =
     .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
     .forEach(tr => tbody.appendChild(tr) );
 })));
-
-
-
