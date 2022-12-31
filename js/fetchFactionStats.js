@@ -2,7 +2,12 @@ GOOGLE_SHEET_FETCH_FACTION_STATS ="https://script.google.com/macros/s/AKfycbx6wu
 GOOGLE_SHEET_FETCH_PLAYER_STATS = "https://script.google.com/macros/s/AKfycbxUCOxxoGV8Uv4Pd5GWA8oyXXhmBpXBFQTrdB6x-ZgEQrvro4IO-zot6YSGlDhlIC-Urw/exec";
 let factionStats = {};
 window.addEventListener("load", () => {
-  refreshFactionStats()
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const playerName = urlParams.get('playerName');
+  document.getElementById('playerNameLookUp').value = playerName;
+  refreshFactionStats();
 });
 
 function updateSeasonsList(data){
@@ -149,12 +154,18 @@ function loadPlayerStats(){
 
 function refreshFactionStats(){
   showLoading()
+  let playerName = document.getElementById('playerNameLookUp');
   fetch(GOOGLE_SHEET_FETCH_FACTION_STATS).then((response)=> response.json()).then((data)=> {
     console.log(data);
     factionStats = data;
     updateSeasonsList(data);
-    updateFactionsStats(data['allTime']);
-    showLoaded();
+    if(playerName){
+      loadPlayerStats();
+    }else{
+      updateFactionsStats(data['allTime']);
+      showLoaded();
+    }
+
   }).catch (function(e){
     showFailedToLoad(e);
   });

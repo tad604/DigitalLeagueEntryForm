@@ -60,6 +60,9 @@ function createRankRow(player){
     td.innerText = (key === "winRate") ?formatWinRate(player[key]) : player[key];
     tr.appendChild(td);
   }
+  tr.onclick = function (){
+    window.location = "/DigitalLeagueEntryForm/FactionStats.html?playerName="+ encodeURIComponent(player.player);
+  }
   return tr;
 }
 
