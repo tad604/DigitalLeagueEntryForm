@@ -45,6 +45,7 @@ function selectSeason(event){
   }
   selectedSeason.classList.add('selected');
   updateFactionsStats(factionStats[selectedSeason.id]);
+  document.getElementById('playerNameLookUp').value = '';
 }
 
 function updateFactionsStats(factionStatData) {
