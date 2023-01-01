@@ -39,9 +39,9 @@ function createSeasonLi(season, data, isDefault){
 
 function selectSeason(event){
   let selectedSeason = event.target;
-  let seasons = selectedSeason.parentElement.getElementsByTagName('li');
-  for(let i = 0; i < seasons.length; i++){
-    seasons[i].classList.remove('selected');
+  let unselect = document.querySelectorAll('li.selected');
+  for(let i = 0; i < unselect.length; i++){
+    unselect[i].classList.remove('selected');
   }
   selectedSeason.classList.add('selected');
   updateFactionsStats(factionStats[selectedSeason.id]);
@@ -140,12 +140,23 @@ function showFailedToLoad(e){
   }
 }
 
+function updatePlayerOtherStats(data){
+  // add win rates by turn order,  and win by coalition/Dominance.
+  let unselect = document.querySelectorAll('li.selected');
+  for(let i = 0; i < unselect.length; i++){
+    unselect[i].classList.remove('selected');
+  }
+  document.getElementById('staticList').getElementsByTagName('li')[0].classList.add('selected');
+
+}
+
 function loadPlayerStats(){
   let playerName = document.getElementById('playerNameLookUp').value;
   showLoading();
   fetch(GOOGLE_SHEET_FETCH_PLAYER_STATS+"?name="+encodeURIComponent(playerName)).then((response)=> response.json()).then((data)=> {
     console.log(data);
     updateFactionsStats(data);
+    updatePlayerOtherStats(data)
     showLoaded();
   }).catch(function(e){
     showFailedToLoad(e);
@@ -159,7 +170,7 @@ function refreshFactionStats(){
     console.log(data);
     factionStats = data;
     updateSeasonsList(data);
-    if(playerName){
+    if(playerName.value){
       loadPlayerStats();
     }else{
       updateFactionsStats(data['allTime']);
