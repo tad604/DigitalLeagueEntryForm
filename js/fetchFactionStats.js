@@ -82,17 +82,31 @@ function createFactionRow(faction){
   let tr = document.createElement('tr');
   for(const key in faction){
     let td = document.createElement('td');
-    td.innerText = (key === "winRate") ? formatWinRate(faction[key]) : faction[key];
-    if(key === 'order'){
-      td.style.display = 'none';
+    if(key == 'winRate'){
+      td.innerText = formatWinRate(faction[key]);
+      td.style.paddingRight = '0px';
+      td.style.marginRight = '0px';
+      td.style.textAlign = 'right';
+      let percentLabel = document.createElement('td');
+      percentLabel.innerHTML = '%';
+      percentLabel.style.paddingLeft = '3px';
+      percentLabel.style.textAlign= 'left';
+      percentLabel.style.marginLeft = '0px';
+      tr.appendChild(td);
+      tr.appendChild(percentLabel);
+    }else {
+      if (key === 'order') {
+        td.style.display = 'none';
+      }
+      td.innerText = faction[key];
+      tr.appendChild(td);
     }
-    tr.appendChild(td);
   }
   return tr;
 }
 
 function formatWinRate(winRate){
-  return parseFloat(winRate).toFixed(2) + "%";
+  return parseFloat(winRate).toFixed(2);// + "%";
 }
 
 function showLoading(){
