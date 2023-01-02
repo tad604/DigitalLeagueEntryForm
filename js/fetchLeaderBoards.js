@@ -1,32 +1,26 @@
-GOOGLE_SHEET_FETCH_LEADER_BOARDS = "https://script.google.com/macros/s/AKfycbwM0OyE-0B1dNVBAisfS8PK0WaC0h5dz2w60-j2hC4xK4_8_zRDOIxoWJHDqM2RAYMwHg/exec";
-let leaderBoardInfo = {};
+GOOGLE_SHEET_FETCH_LEADER_BOARDS = "https://script.google.com/macros/s/AKfycbxVhClTuGY6vIEThVLmefiMLZktE8CoUxkqgZ9lug7an7tl67qaRwVWdOVLinXWKw8YCg/exec";
+let leaderBoardInfo = {};  // object derived from leaderBoards  where each leaderboard is mapped by name
+let leaderBoards = [];  //array all leaderboards from call to spreadsheet
 window.addEventListener("load", () => {
   refreshLeaderBoardData()
 });
 
-function updateSeasonsList(data){
-  let seasons =[];
-  for(const key in data){
-    if(key !== 'allTime'){
-      seasons.push(key);
-    }
-  }
+function updateSeasonsList(){
+
   let ul = document.getElementById('seasonsList');
   ul.innerHTML = '';
-  ul.appendChild(createSeasonLi('allTime', data, true))
-  seasons = seasons.reverse();
-  for(let i = 0; i < seasons.length; i++){
-    ul.appendChild(createSeasonLi(seasons[i], data));
-  }
+  leaderBoards.forEach(function(item, index){
+    ul.appendChild(createSeasonLi(item, index));
+  });
 }
 
-function createSeasonLi(season, data, isDefault){
+function createSeasonLi(season, index){
   let li = document.createElement('li');
-  li.id = season;
-  if(isDefault){
+  li.id = season.name;
+  if(index == 0){
     li.classList.add('selected');
   }
-  li.innerText =data[season]['name'];
+  li.innerText =season.name;
   li.addEventListener('click', selectSeason);
   return li;
 }
@@ -46,7 +40,7 @@ function updateLeaderBoard(leaderBoardData) {
   leaderBoardTitle.innerText = leaderBoardData.name + " Leader Board";
   let tbody = document.getElementById('leaguePlayers');
   tbody.innerHTML = '';
-  let players = leaderBoardData.players;
+  let players = leaderBoardData.leaders;
   for (let i = 0; i < players.length; i++) {
     let tr = createRankRow(players[i]);
     tbody.appendChild(tr);
@@ -103,9 +97,9 @@ function showFailedToLoad(e){
   if(confirm("Failed to retrieve leader board info!!  Try again?")){
     refreshLeaderBoardData();
   }else{
-    if(Object.keys(leaderBoardInfo).length !== 0){
-      updateSeasonsList(leaderBoardInfo);
-      updateLeaderBoard(leaderBoardInfo);
+    if(leaderBoards.length !== 0){
+      updateSeasonsList();
+      updateLeaderBoard(leaderBoards[0]);
       showLoaded();
     }else{
       showNoResultsToLoad();
@@ -118,9 +112,12 @@ function refreshLeaderBoardData(){
    showLoading()
    fetch(GOOGLE_SHEET_FETCH_LEADER_BOARDS).then((response)=> response.json()).then((data)=> {
       console.log(data);
-      leaderBoardInfo = data;
+      leaderBoards = data;
+      data.forEach(function(item, index){
+        leaderBoardInfo[item.name] = item;
+      })
       updateSeasonsList(data);
-      updateLeaderBoard(data['allTime']);
+      updateLeaderBoard(data[0]); //first leaderboard is "all Seasons"
       showLoaded();
     }).catch (function(e){
       showFailedToLoad(e);
