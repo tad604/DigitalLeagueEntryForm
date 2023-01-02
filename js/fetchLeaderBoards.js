@@ -1,4 +1,4 @@
-GOOGLE_SHEET_FETCH_LEADER_BOARDS = "https://script.google.com/macros/s/AKfycbxVhClTuGY6vIEThVLmefiMLZktE8CoUxkqgZ9lug7an7tl67qaRwVWdOVLinXWKw8YCg/exec";
+GOOGLE_SHEET_FETCH_LEADER_BOARDS = "https://script.google.com/macros/s/AKfycbytiVzUCXH6nPFOc39qQc3Ho95zN66gUZOwnC4YYjytbj0m0Bux-EofsOg-rIE4JMwMeg/exec";
 let leaderBoardInfo = {};  // object derived from leaderBoards  where each leaderboard is mapped by name
 let leaderBoards = [];  //array all leaderboards from call to spreadsheet
 window.addEventListener("load", () => {
@@ -42,8 +42,10 @@ function updateLeaderBoard(leaderBoardData) {
   tbody.innerHTML = '';
   let players = leaderBoardData.leaders;
   for (let i = 0; i < players.length; i++) {
-    let tr = createRankRow(players[i]);
-    tbody.appendChild(tr);
+    if(players[i].player !== '') {
+      let tr = createRankRow(players[i]);
+      tbody.appendChild(tr);
+    }
   }
 }
 
