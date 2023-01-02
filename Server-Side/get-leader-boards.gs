@@ -43,7 +43,7 @@ function getTheLeaderBoard(rows, i){
   }
   for(let x = 2; x++; x < rows.length){
     let row = rows[x];
-    if(row === undefined){
+    if(row === undefined || row[0] === ''){
       break;
     }
     let leader = {
