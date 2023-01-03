@@ -58,6 +58,7 @@ function getPlayerStats(playerName){
       }else{
         let turnOrderStat = {
           'order'  : factionNames[i],
+          'faction': 'Turn '+ factionNames[i],
           'gamesPlayed': stats[idx],
           'leagueScore': calculateScore(stats[idx], stats[idx+1]),
           'winRate' : stats[idx+1] * 100

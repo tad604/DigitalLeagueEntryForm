@@ -1,12 +1,11 @@
 GOOGLE_SHEET_FETCH_FACTION_STATS ="https://script.google.com/macros/s/AKfycbx6wu-N0oNQ8cqILVkz5gh4jNlNFc2UyvbLDVCrBwiG-FTyzTXTr6AZMUAD9B9tr5ND/exec";
-GOOGLE_SHEET_FETCH_PLAYER_STATS = "https://script.google.com/macros/s/AKfycbxUCOxxoGV8Uv4Pd5GWA8oyXXhmBpXBFQTrdB6x-ZgEQrvro4IO-zot6YSGlDhlIC-Urw/exec";
+GOOGLE_SHEET_FETCH_PLAYER_STATS = "https://script.google.com/macros/s/AKfycbymDytbRz8rJl5RTRanTYGHDGIqvwrKGEonr4K0V3I_RsDg88cuWcjt9DghyoB8IRV_FQ/exec";
 let factionStats = {};
 window.addEventListener("load", () => {
 
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const playerName = urlParams.get('playerName');
-  document.getElementById('playerNameLookUp').value = playerName;
+  document.getElementById('playerNameLookUp').value = urlParams.get('playerName');
   refreshFactionStats();
 });
 
@@ -53,22 +52,11 @@ function updateFactionsStats(factionStatData) {
   leaderBoardTitle.innerText = factionStatData.name + " Faction Stats";
   let tbody = document.getElementById('factions');
   tbody.innerHTML = '';
+  let otherTBody = document.getElementById('otherStats');
+  otherTBody.innerHTML = '';
+  let otherStatsHeader = document.getElementById('otherStatsHeader');
+  otherStatsHeader.style.display = 'none';
   let factions = factionStatData.factions;
-  document.querySelectorAll('th')[0].click(); //comes in sorted first click doesn't do anything
-  for (let i = 0; i < factions.length; i++) {
-    let tr = createFactionRow(factions[i]);
-    tbody.appendChild(tr);
-  }
-  document.querySelectorAll('th').forEach(th => th.classList.remove('sortDesc', 'sortAsc'));
-  document.querySelectorAll('th')[0].classList.add('sortAsc');
-}
-
-function updatePlayerStats(playerStatsData){
-  let leaderBoardTitle = document.getElementById('factionStatsTitle');
-  leaderBoardTitle.innerText =  playerStatsData.name + " Faction Stats";
-  let tbody = document.getElementById('factions');
-  tbody.innerHTML = '';
-  let factions = playerStatsData.factions;
   document.querySelectorAll('th')[0].click(); //comes in sorted first click doesn't do anything
   for (let i = 0; i < factions.length; i++) {
     let tr = createFactionRow(factions[i]);
@@ -82,7 +70,7 @@ function createFactionRow(faction){
   let tr = document.createElement('tr');
   for(const key in faction){
     let td = document.createElement('td');
-    if(key == 'winRate'){
+    if(key === 'winRate'){
       td.innerText = formatWinRate(faction[key]);
       td.style.paddingRight = '0px';
       td.style.marginRight = '0px';
@@ -142,18 +130,14 @@ function showNoResultsToLoad(){
   showLoaded();
 }
 function showFailedToLoad(e){
+  console.log(e);
   if(confirm("Failed to retrieve faction stats!!  Try again?")){
     refreshFactionStats();
   }else{
-    if(Object.keys(factionStats).length !== 0){
-      updateSeasonsList(factionStats);
-      updateFactionsStats(factionStats);
-      showLoaded();
-    }else{
-      showNoResultsToLoad();
-    }
+    showNoResultsToLoad();
   }
 }
+
 
 function updatePlayerOtherStats(data){
   // add win rates by turn order,  and win by coalition/Dominance.
@@ -162,6 +146,18 @@ function updatePlayerOtherStats(data){
     unselect[i].classList.remove('selected');
   }
   document.getElementById('staticList').getElementsByTagName('li')[0].classList.add('selected');
+  let otherStatsHeader = document.getElementById('otherStatsHeader');
+  otherStatsHeader.style.display = 'table-header-group';
+  let otherStats = document.getElementById('otherStats');
+  let turnOrderStats = data.turnOrderStats;
+  let miscStats = data.miscStats;
+  for(let i = 0; i < turnOrderStats.length; i++){
+    otherStats.appendChild(createFactionRow(turnOrderStats[i]));
+  }
+
+  for(let i = 0; i < miscStats.length; i++){
+    otherStats.appendChild(createFactionRow(miscStats[i]));
+  }
 
 }
 
