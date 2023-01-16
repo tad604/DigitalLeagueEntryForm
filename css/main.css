@@ -23,6 +23,7 @@ table {
   margin-right: auto;
   border-collapse: collapse;
 }
+
 div.players {
   padding: 10px 10px 10px 10px;
   border-radius: 15px;
@@ -47,14 +48,38 @@ thead > tr:last-child{
 form{
   background-image: url("../img/Medium_Box.png");
   background-repeat: no-repeat;
-  background-size: 85% 100%;
+  background-size: 100% 100%;
   background-position: center center;
-  min-width: 1150px;
+  min-width: 1000px;
   text-align: center;
-  padding: 25px 50px;
+  padding: 25px 5px;
   margin-top: 25px;
   margin-bottom: 25px;
+  margin-left: 50px;
+  position: relative;
   float: left;
+}
+
+div#gameOptions img {
+  height:40px;
+  border-radius:5px;
+}
+
+div#gameOptsConfirmation img {
+  height:40px;
+  border-radius:5px;
+  display: none;
+}
+
+div.shield {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0px;
+  left:0px;
+  z-index: 3;
+  background: rgba(0, 0, 0, .5);
+  display: none;
 }
 
 ul.errors {
@@ -138,8 +163,123 @@ input[type="number"]{
   min-width: 2em;
 }
 
+div#resultsBox{
+  background-image: url("../img/Small_Dark_Box.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+  width: 240px;
+  margin: auto;
+  position: absolute;
+  top: 40px;
+  left: 380px;
+  z-index: 10;
+  display: none;
+}
 
+div#resultsBox div.buttons {
+  float: none;
+  padding-bottom: 20px;
+  margin:auto;
+  display: inline-block;
+  align-content: center;
+}
 
+div#resultsBox div.buttons button{
+  align-content: center;
+  margin: 10px;
+}
+
+div#resultsBox div.result {
+  background-image: url("../img/Small_Box.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  float: left;
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  position: relative;
+  margin: 5px;
+}
+
+div#resultsBox div.result img {
+  width: 50px;
+  padding-top: 5px;
+  float: left;
+}
+
+div.score{
+  background-image: url("../img/VP_Frills.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  width: 30px;
+  height:30px;
+  float: left;
+  padding-left: 5px;
+  padding-top: 5px;
+  margin-top: 20px;
+  padding-right: 8px;
+  font-size: large;
+}
+
+div.score span{
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+div#resultsBox div.result img.hide{
+  display: none;
+}
+
+div#resultsBox div.result img.dom{
+  position: absolute;
+  top: 48px;
+  left: 59px;
+  width: 25px;
+  height: 25px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+}
+
+div#resultsBox div.result span.highlight{  border-radius: 1em ;
+  background-image: linear-gradient(
+    -100deg,
+    rgba(255, 224, 0, 0.2),
+    rgba(255, 224, 0, 0.7) 95%,
+    rgba(255, 224, 0, 0.1)
+  );
+}
+
+div#resultsBox div.result img.winner {
+  position: absolute;
+  top: 55px;
+  left: 18px;
+  z-index: 4;
+  width: 20px;
+  height: 20px;
+  rotate: 45deg;
+}
+
+div#resultsBox div.result img.coalition{
+  position: absolute;
+  top: 48px;
+  left: 62px;
+  width: 25px;
+  height: 25px;
+  padding-bottom: 10px;
+  padding-left: 3px;
+}
+div#resultsBox div.result span.playerName{
+  text-align: center;
+  font-family: Luminari;
+  width: 100px;
+  display: inline-block;
+  align-content: center;
+}
 
 /* ==========================================================================
    Base styles: opinionated defaults
@@ -393,4 +533,3 @@ textarea {
     page-break-after: avoid;
   }
 }
-

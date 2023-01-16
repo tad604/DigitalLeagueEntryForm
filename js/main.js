@@ -1,6 +1,32 @@
 const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxN-BfGk_NrEaKMNC3cWlISDyw4wqRkb-VsYRDZ3zd2U5E_eaTEbvxzdK5wY1jvPNVC/exec";
 const players = ['player1', 'player2', 'player3', 'player4'];
-
+const factionImages = {
+  'Eyrie Dynasties':'Eyrie_Warrior.png',
+  'Lizard Cult':'Lizard_Cult_Warrior.png',
+  'Marquise de Cat': 'Cat_Warrior.png',
+  'Riverfolk': 'Riverfolk_Warrior.png',
+  'Woodland Alliance': 'Alliance_Warrior.png',
+  'Vagabond (Adventurer)': 'Vagabond_Adventurer.png',
+  'Vagabond (Arbiter)': 'Vagabond_Arbiter.png',
+  'Vagabond (Harrier)': 'Vagabond_Harrier.png',
+  'Vagabond (Ranger)': 'Vagabond_Ranger.png',
+  'Vagabond (Ronin)': 'Vagabond_Ronin.png',
+  'Vagabond (Scoundrel)': 'Vagabond_Scoundrel.png',
+  'Vagabond (Thief)': 'Vagabond_Thief.png',
+  'Vagabond (Tinker)': 'Vagabond_Tinker.png',
+  'Vagabond (Vagrant)': 'Vagabond_Vagrant.png',
+  'Underground Duchy': 'Duchy_Warrior.png',
+  'Corvid Conspiracy': 'Corvid_Warrior.png',
+  'Keepers in Iron': 'Badger_Warrior.png',
+  'Lord of the Hundreds': 'Rat_Warrior.png'
+}
+const domImages = {
+  'Bird':'Bird_Icon.ico',
+  'Bunny':'Bunny_IconX.png',
+  'Fox':'Fox_Icon.png',
+  'Mouse':'Mouse_Icon.png'
+}
+let resultTemplate;
 const registerServiceWorker = async () => {
   if ("serviceWorker" in navigator) {
     try {
@@ -216,12 +242,82 @@ function validateAndSubmit(){
     document.getElementById("Player 4 Game Score").value = calculatePlayerScore(players[3]);
     document.getElementById('errors').style.display = 'none';
     document.getElementById("formSubmit").disabled = true;
-    sendData();
+    confirmResults(sendData)
   } else{
     document.getElementById('errors').style.display = 'block';
     return false;
   }
 }
+
+function getPlayerIndex(player){
+  return player.substring(6);
+}
+
+function getPlayerResults(player){
+  let leagueScore = findTourneyScore(player)
+  let playerResults = {dom:'hidden', playerName:getPlayerName(player), idx: getPlayerIndex(player),
+      coalition:'hidden', factionImage:factionImages[getSelectedFaction(player)]};
+  let tr = document.getElementById(player);
+  if(isDomSelected(player) && !isCoalition(player)){
+    playerResults.dom = 'dom';
+    playerResults.domImage = domImages[tr.getElementsByTagName('select')[1].value];
+  }else if(isDomSelected(player)){
+    playerResults.coalition = 'coalition'
+    let partner = findPartnerId(player);
+     playerResults.coalitionPartnerImage = factionImages[getSelectedFaction(partner)];
+  }else{
+    playerResults.points = findPoints(player);
+  }
+
+  if(leagueScore > 0 ){
+    playerResults.highlight = 'highlight';
+    playerResults.winner = 'winner';
+  }else{
+    playerResults.winner = 'hidden';
+  }
+  return playerResults;
+}
+
+function createPlayerResult(player){
+  let resultsBox = document.getElementById('resultsBox');
+  let gameOpts = document.getElementById('gameOptsConfirmation');
+  let div = document.getElementById('result'+getPlayerIndex(player));
+  if(div === null){
+    div = document.createElement('div');
+    div.classList.add('result');
+    div.setAttribute('id', 'result'+getPlayerIndex(player));
+    resultsBox.insertBefore(div, gameOpts);
+  }
+  div.innerHTML = resultTemplate(getPlayerResults(player));
+  return div;
+}
+
+function confirmResults(confirmCallBack){
+  players.forEach(createPlayerResult);
+  document.querySelectorAll('div#gameOptsConfirmation img')
+    .forEach((img)=> img.style.display = 'none');
+
+  let selectedMap = Array.from(document.getElementsByName('Map'))
+    .find((mapInput)=> mapInput.checked).value;
+  let selectedDeck = Array.from(document.getElementsByName('Deck'))
+    .find((deckInput)=> deckInput.checked).value;
+
+  document.getElementById(selectedMap+'Confirm').style.display='inline';
+  document.getElementById(selectedDeck+'Confirm').style.display='inline';
+
+  let shieldDiv =document.getElementById('formShield');
+  shieldDiv.style.display = 'block';
+  let confirmWindow = document.getElementById('resultsBox');
+  confirmWindow.style.display = 'block';
+  let confirm = document.getElementById('confirm');
+  confirm.onclick = confirmCallBack;
+  let cancel = document.getElementById('cancel');
+  cancel.onclick = function() {
+      confirmWindow.style.display = 'none';
+      shieldDiv.style.display = 'none';
+      document.getElementById("formSubmit").disabled = false;
+    }
+  }
 
 function emptyAllErrors(){
   document.getElementById('errors').innerHTML = "";
@@ -294,6 +390,8 @@ function toggleRules(){
 
 window.addEventListener("load", () => {
  let form = document.getElementById("gameForm");
+ let source = document.getElementById('resultBoxTemplate');
+ resultTemplate = Handlebars.compile(source.innerHTML);
  form.addEventListener("submit", (event) => {
     event.preventDefault();
     validateAndSubmit();

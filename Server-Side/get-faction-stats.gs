@@ -55,6 +55,12 @@ function getSeasonFactionStats(season, rows){
   return seasonFactionStats;
 }
 
+function getFactionMiscStats(){
+let miscStats = {};
+
+}
+
+
 function rowsToJson(season, rows){
   let factions = [];
   seasonIdx = seasonDataWidth * season;
