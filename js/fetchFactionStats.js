@@ -59,8 +59,12 @@ function updateFactionsStats(factionStatData) {
   let factions = factionStatData.factions;
   document.querySelectorAll('th')[0].click(); //comes in sorted first click doesn't do anything
   for (let i = 0; i < factions.length; i++) {
-    let tr = createFactionRow(factions[i]);
-    tbody.appendChild(tr);
+    if(factions[i].faction === 'Dominance' || factions[i].faction=== 'Coalition'){
+      //add it to other data
+    }else {
+      let tr = createFactionRow(factions[i]);
+      tbody.appendChild(tr);
+    }
   }
   document.querySelectorAll('th').forEach(th => th.classList.remove('sortDesc', 'sortAsc'));
   document.querySelectorAll('th')[0].classList.add('sortAsc');
@@ -153,6 +157,12 @@ function updatePlayerOtherStats(data){
   let miscStats = data.miscStats;
   for(let i = 0; i < turnOrderStats.length; i++){
     otherStats.appendChild(createFactionRow(turnOrderStats[i]));
+  }
+  let factions = data.factions;
+  for (let i = 0; i < factions.length; i++) {
+    if(factions[i].faction === 'Dominance' || factions[i].faction=== 'Coalition'){
+      otherStats.appendChild(createFactionRow(factions[i]));
+    }
   }
 
   for(let i = 0; i < miscStats.length; i++){
