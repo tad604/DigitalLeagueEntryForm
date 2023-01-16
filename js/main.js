@@ -360,7 +360,7 @@ function calculatePlayerScore(player){
 }
 /****************************************************/
 function sendData(){
-  document.getElementById('confirm').disabled = false;
+  document.getElementById('confirm').disabled = true;
   const fd = new FormData(document.getElementById('gameForm'));
   const xhr = new XMLHttpRequest();
   xhr.addEventListener("load", (event)=>{
