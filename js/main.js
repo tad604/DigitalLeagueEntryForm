@@ -294,6 +294,7 @@ function createPlayerResult(player){
 
 function confirmResults(confirmCallBack){
   players.forEach(createPlayerResult);
+  document.getElementById('confirm').disabled = true;
   document.querySelectorAll('div#gameOptsConfirmation img')
     .forEach((img)=> img.style.display = 'none');
 
@@ -369,14 +370,23 @@ function sendData(){
       onDomSelect(player);
       onFactionSelect(player);
     });
-    document.getElementById('formSubmit').disabled = false;
+    hideConfirmationWindow();
   });
   xhr.addEventListener("err", (event)=>{
     alert("Error data not saved!" + event);
-    document.getElementById('formSubmit').disabled = false;
+   hideConfirmationWindow()
   })
   xhr.open("POST", GOOGLE_SHEET_URL );
   xhr.send(fd);
+}
+
+function hideConfirmationWindow(){
+  let shieldDiv =document.getElementById('formShield');
+  let confirmWindow = document.getElementById('resultsBox');
+  confirmWindow.style.display = 'none';
+  shieldDiv.style.display = 'none';
+  document.getElementById('formSubmit').disabled = false;
+  document.getElementById('confirm').disabled = false;
 }
 
 function toggleRules(){
