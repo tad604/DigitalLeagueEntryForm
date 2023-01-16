@@ -294,7 +294,7 @@ function createPlayerResult(player){
 
 function confirmResults(confirmCallBack){
   players.forEach(createPlayerResult);
-  document.getElementById('confirm').disabled = true;
+  document.getElementById('confirm').disabled = false;
   document.querySelectorAll('div#gameOptsConfirmation img')
     .forEach((img)=> img.style.display = 'none');
 
@@ -360,6 +360,7 @@ function calculatePlayerScore(player){
 }
 /****************************************************/
 function sendData(){
+  document.getElementById('confirm').disabled = false;
   const fd = new FormData(document.getElementById('gameForm'));
   const xhr = new XMLHttpRequest();
   xhr.addEventListener("load", (event)=>{
