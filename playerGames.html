@@ -13,6 +13,7 @@
   <div id="filterOptions">
     <h3>Game Filter Options</h3>
     <div id="seasonsOpts" class="filterGroup">
+      <h4>Seasons:</h4>
       <input name="Season" class="input-hidden" type="checkbox" id="season1"  checked value="1" onchange="loadPlayerGames()"/>
       <label for="season1"><div>Season 1</div></label>
       <input name="Season" class="input-hidden" type="checkbox" id="season2"  checked value="2" onchange="loadPlayerGames()"/>
@@ -34,7 +35,7 @@
     </div>
     <div id="gameOpts" class="filterGroup">
       <div>
-      <span class="Options">Map:</span>
+      <h4>Map:</h4>
       <input name="Map" class="input-hidden" type="checkbox" id="Autumn"  checked value="Autumn" onchange="loadPlayerGames()"/>
       <label for="Autumn"><img src="img/autumn.jpg" alt="Autumn"></label>
       <input name="Map" type="checkbox" class="input-hidden" id="Winter" checked value="Winter" onchange="loadPlayerGames()"/>
@@ -42,7 +43,7 @@
       <!--  <input name="Map" type="radio" id="Lake" disabled> <label for="Lake">Lake</label><input name="Map" type="radio" id="Mountain" disabled> <label for="Mountain">Mountain</label> -->
       </div>
       <div>
-      <span class="Options">Deck:</span>
+      <h4>Deck:</h4>
       <input name="Deck" type="checkbox" class="input-hidden" id="ExilesAndPartisans" checked value="E&P" onchange="loadPlayerGames()"/>
       <label for="ExilesAndPartisans"><img src="img/ExilesAndPartisansDeck.gif" alt="Exiles & Partisans"></label>
       <input name="Deck" type="checkbox" class="input-hidden" id="Base" checked value="Base" onchange="loadPlayerGames()"/>
@@ -50,7 +51,8 @@
       </div>
     </div>
     <div id="factionOpts" class="filterGroup">
-      <span class="Options">Factions:</span>
+
+      <h4>Factions:</h4>
       <input name="Faction" type="checkbox" class="input-hidden" id="Eyrie Dynasties" checked value="Eyrie Dynasties" onchange="loadPlayerGames()"/>
       <label for="Eyrie Dynasties"><img src="img/Eyrie_Warrior.png" alt="Eyrie Dynasties"></label>
       <input name="Faction" type="checkbox" class="input-hidden" id="Lizard Cult" checked value="Lizard Cult" onchange="loadPlayerGames()"/>
@@ -88,7 +90,17 @@
       <label for="Keepers in Iron"><img src="img/Badger_Warrior.png" alt="Keepers in Iron"></label>
       <input name="Faction" type="checkbox" class="input-hidden" id="Lord of the Hundreds" checked value="Lord of the Hundreds" onchange="loadPlayerGames()"/>
       <label for="Lord of the Hundreds"><img src="img/Rat_Warrior.png" alt="Lord of the Hundreds"></label> -->
-
+    </div>
+    <div id="turnOrderOpts" class="filterGroup">
+      <h4>Turn Order:</h4>
+    <input name="TurnOrder" class="input-hidden" type="checkbox" id="turn1"  checked value="1" onchange="loadPlayerGames()"/>
+    <label for="turn1"><div>Turn 1</div></label>
+    <input name="TurnOrder" class="input-hidden" type="checkbox" id="turn2"  checked value="2" onchange="loadPlayerGames()"/>
+    <label for="turn2"><div>Turn 2</div></label>
+    <input name="TurnOrder" class="input-hidden" type="checkbox" id="turn3"  checked value="3" onchange="loadPlayerGames()"/>
+    <label for="turn3"><div>Turn 3</div></label>
+    <input name="TurnOrder" class="input-hidden" type="checkbox" id="turn4"  checked value="4" onchange="loadPlayerGames()"/>
+    <label for="turn4"><div>Turn 4</div></label>
     </div>
   </div>
 

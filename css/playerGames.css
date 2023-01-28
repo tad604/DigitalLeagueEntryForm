@@ -22,7 +22,7 @@
    text-align: center;
    padding: 25px 5px;
    margin: 25px;
-   min-height: 200px;
+   min-height: 250px;
  }
 
  div#statsBlock{
@@ -99,10 +99,14 @@ div#seasonsOpts {
   width: 30%;
 }
 div#gameOpts{
-  width:20%;
+  width:15%;
 }
 div#factionOpts{
-  width:35%;
+  width:33%;
+}
+
+div#turnOrderOpts {
+  width: 17%;
 }
 
  div.filterGroup{

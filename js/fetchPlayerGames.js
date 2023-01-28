@@ -189,6 +189,12 @@ function createPlayerTd(player,game){
 
 function updateFilter(){
   filter.playerName = document.getElementById('playerNameLookUp').value;
+
+  let turnOrders = document.getElementsByName('TurnOrder');
+  filter.turnOrders = [];
+  turnOrders.forEach(turnOrder=>{
+    if(turnOrder.checked){filter.turnOrders.push(turnOrder.value);}
+  });
   let factions = document.getElementsByName('Faction');
   filter.factions = [];
   factions.forEach(faction=>{
@@ -297,10 +303,12 @@ function gameMatchesFilter(game, filter){
   try {
     let players = [game.player1, game.player2, game.player3, game.player4];
     let player = getPlayer(players, filter.playerName);
+
     if (filter.decks.includes(game.deck)
       && filter.maps.includes(game.map)
       && filter.seasons.includes('' + game.season)
-      && filter.factions.includes(player.faction)) {
+      && filter.factions.includes(player.faction)
+      && filter.turnOrders.includes(''+player.turnOrder)) {
       return true;
     }
   }catch(e){
@@ -346,9 +354,10 @@ function updatePlayerStats(game, player, statBlock){
 
 function getPlayer(players, playerName){
   let p;
-  players.forEach(player=>{
+  players.forEach((player, idx)=>{
     if(player.name === playerName){
       p= player;
+      p.turnOrder = idx+1;
     }
   });
   return p;
