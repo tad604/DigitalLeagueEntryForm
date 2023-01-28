@@ -4,9 +4,52 @@
    display: inline-block;
 }
 
+ div#filterOptions img{
+   height:35px;
+   border-radius: 5px;
+   display: inline-block;
+   margin: 2px;
+ }
+
+ div#filterOptions{
+   font-size: large;
+   font-family: Luminari;
+   background-image: url("../img/Top_Bar.png");
+   background-repeat: no-repeat;
+   background-size: 100% 100%;
+   background-position: center center;
+   min-width: 500px;
+   text-align: center;
+   padding: 25px 5px;
+   margin: 25px;
+   min-height: 200px;
+ }
+
+ div#statsBlock{
+   clear: left;
+   font-size: large;
+   font-family: Luminari;
+   background-image: url("../img/Top_Bar.png");
+   background-repeat: no-repeat;
+   background-size: 100% 100%;
+   background-position: center center;
+   min-width: 500px;
+   text-align: center;
+   padding: 25px 5px;
+   margin: 25px;
+ }
+
  .mainBoard{
 
-   background: beige;
+  background: transparent;
+ }
+ table{
+   background: #fae5b3;
+   padding: 15px;
+   margin: 15px;
+ }
+ td{
+   padding: 15px;
  }
  span.score{
    background-image: url("../img/VP_Frills.png");
@@ -25,9 +68,7 @@
 td.winner {
 
 }
-td#statsOut{
-  font-size: large;
-}
+
 td{
   text-align: left;
   font-family: "Baskerville Old Face";
@@ -58,10 +99,10 @@ div#seasonsOpts {
   width: 30%;
 }
 div#gameOpts{
-  width:15%;
+  width:20%;
 }
 div#factionOpts{
-  width:25%;
+  width:35%;
 }
 
  div.filterGroup{

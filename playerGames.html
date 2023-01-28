@@ -10,105 +10,100 @@
 </head>
 <body>
 <div class="mainBoard">
-<table>
-  <thead>
-  <tr><th colspan="9"><h1>Root Digital League Games</h1></th> </tr>
-  </thead>
-  <thead>
-  <tr><th colspan="9"> <h3>Filter</h3></th> </tr>
-
-  <tr><th colspan="9">
-    <input id="playerNameLookUp" class="suggest" name="playerNameLookUp" type="text" placeholder="player name" />
-    <button id="lookUpButton"  onclick="fetchPlayerGames()">look up</button></th> </tr>
-  <th colspan="9">
-    <div id="filterOptions">
-      <h3>Game Options</h3>
-      <div id="seasonsOpts" class="filterGroup">
-        <input name="Season" class="input-hidden" type="checkbox" id="season1"  checked value="1" onchange="loadPlayerGames()"/>
-        <label for="season1"><div>Season 1</div></label>
-        <input name="Season" class="input-hidden" type="checkbox" id="season2"  checked value="2" onchange="loadPlayerGames()"/>
-        <label for="season2"><div>Season 2</div></label>
-        <input name="Season" class="input-hidden" type="checkbox" id="season3"  checked value="3" onchange="loadPlayerGames()"/>
-        <label for="season3"><div>Season 3</div></label>
-        <input name="Season" class="input-hidden" type="checkbox" id="season4"  checked value="4" onchange="loadPlayerGames()"/>
-        <label for="season4"><div>Season 4</div></label>
-        <input name="Season" class="input-hidden" type="checkbox" id="season5"  checked value="5" onchange="loadPlayerGames()"/>
-        <label for="season5"><div>Season 5</div></label>
-        <input name="Season" class="input-hidden" type="checkbox" id="season6"  checked value="6" onchange="loadPlayerGames()"/>
-        <label for="season6"><div>Season 6</div></label>
-        <input name="Season" class="input-hidden" type="checkbox" id="season7"  checked value="7" onchange="loadPlayerGames()"/>
-        <label for="season7"><div>Season 7</div></label>
-        <input name="Season" class="input-hidden" type="checkbox" id="season8"  checked value="8" onchange="loadPlayerGames()"/>
-        <label for="season8"><div>Season 8</div></label>
-        <input name="Season" class="input-hidden" type="checkbox" id="season9"  checked value="9" onchange="loadPlayerGames()"/>
-        <label for="season9"><div>Season 9</div></label>
-      </div>
-      <div id="gameOpts" class="filterGroup">
+  <div id="filterOptions">
+    <h3>Game Filter Options</h3>
+    <div id="seasonsOpts" class="filterGroup">
+      <input name="Season" class="input-hidden" type="checkbox" id="season1"  checked value="1" onchange="loadPlayerGames()"/>
+      <label for="season1"><div>Season 1</div></label>
+      <input name="Season" class="input-hidden" type="checkbox" id="season2"  checked value="2" onchange="loadPlayerGames()"/>
+      <label for="season2"><div>Season 2</div></label>
+      <input name="Season" class="input-hidden" type="checkbox" id="season3"  checked value="3" onchange="loadPlayerGames()"/>
+      <label for="season3"><div>Season 3</div></label>
+      <input name="Season" class="input-hidden" type="checkbox" id="season4"  checked value="4" onchange="loadPlayerGames()"/>
+      <label for="season4"><div>Season 4</div></label>
+      <input name="Season" class="input-hidden" type="checkbox" id="season5"  checked value="5" onchange="loadPlayerGames()"/>
+      <label for="season5"><div>Season 5</div></label>
+      <input name="Season" class="input-hidden" type="checkbox" id="season6"  checked value="6" onchange="loadPlayerGames()"/>
+      <label for="season6"><div>Season 6</div></label>
+      <input name="Season" class="input-hidden" type="checkbox" id="season7"  checked value="7" onchange="loadPlayerGames()"/>
+      <label for="season7"><div>Season 7</div></label>
+      <input name="Season" class="input-hidden" type="checkbox" id="season8"  checked value="8" onchange="loadPlayerGames()"/>
+      <label for="season8"><div>Season 8</div></label>
+      <input name="Season" class="input-hidden" type="checkbox" id="season9"  checked value="9" onchange="loadPlayerGames()"/>
+      <label for="season9"><div>Season 9</div></label>
+    </div>
+    <div id="gameOpts" class="filterGroup">
+      <div>
       <span class="Options">Map:</span>
       <input name="Map" class="input-hidden" type="checkbox" id="Autumn"  checked value="Autumn" onchange="loadPlayerGames()"/>
       <label for="Autumn"><img src="img/autumn.jpg" alt="Autumn"></label>
       <input name="Map" type="checkbox" class="input-hidden" id="Winter" checked value="Winter" onchange="loadPlayerGames()"/>
       <label for="Winter"><img src="img/winter.jpg"  alt="Winter"></label>
       <!--  <input name="Map" type="radio" id="Lake" disabled> <label for="Lake">Lake</label><input name="Map" type="radio" id="Mountain" disabled> <label for="Mountain">Mountain</label> -->
+      </div>
+      <div>
       <span class="Options">Deck:</span>
       <input name="Deck" type="checkbox" class="input-hidden" id="ExilesAndPartisans" checked value="E&P" onchange="loadPlayerGames()"/>
       <label for="ExilesAndPartisans"><img src="img/ExilesAndPartisansDeck.gif" alt="Exiles & Partisans"></label>
       <input name="Deck" type="checkbox" class="input-hidden" id="Base" checked value="Base" onchange="loadPlayerGames()"/>
       <label for="Base"><img src="img/baseDeck.gif" alt="Base Deck"></label>
       </div>
-      <div id="factionOpts" class="filterGroup">
-        <span class="Options">Factions:</span>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Eyrie Dynasties" checked value="Eyrie Dynasties" onchange="loadPlayerGames()"/>
-        <label for="Eyrie Dynasties"><img src="img/Eyrie_Warrior.png" alt="Eyrie Dynasties"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Lizard Cult" checked value="Lizard Cult" onchange="loadPlayerGames()"/>
-        <label for="Lizard Cult"><img src="img/Lizard_Cult_Warrior.png" alt="Lizard Cult"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Marquise de Cat" checked value="Marquise de Cat" onchange="loadPlayerGames()"/>
-        <label for="Marquise de Cat"><img src="img/Cat_Warrior.png" alt="Marquise de Cat"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Riverfolk" checked value="Riverfolk" onchange="loadPlayerGames()"/>
-        <label for="Riverfolk"><img src="img/Riverfolk_Warrior.png" alt="Riverfolk"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Woodland Alliance" checked value="Woodland Alliance" onchange="loadPlayerGames()"/>
-        <label for="Woodland Alliance"><img src="img/Alliance_Warrior.png" alt="Woodland Alliance"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Adventurer)" checked value="Vagabond (Adventurer)" onchange="loadPlayerGames()"/>
-        <label for="Vagabond (Adventurer)"><img src="img/Vagabond_Adventurer.png" alt="Vagabond (Adventurer)"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Arbiter)" checked value="Vagabond (Arbiter)" onchange="loadPlayerGames()"/>
-        <label for="Vagabond (Arbiter)"><img src="img/Vagabond_Arbiter.png" alt="Vagabond (Arbiter)"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Harrier)" checked value="Vagabond (Harrier)" onchange="loadPlayerGames()"/>
-        <label for="Vagabond (Harrier)"><img src="img/Vagabond_Harrier.png" alt="Vagabond (Harrier)"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Ranger)" checked value="Vagabond (Ranger)" onchange="loadPlayerGames()"/>
-        <label for="Vagabond (Ranger)"><img src="img/Vagabond_Ranger.png" alt="Vagabond (Ranger)"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Ronin)" checked value="Vagabond (Ronin)" onchange="loadPlayerGames()"/>
-        <label for="Vagabond (Ronin)"><img src="img/Vagabond_Ronin.png" alt="Vagabond (Ronin)"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Scoundrel)" checked value="Vagabond (Scoundrel)" onchange="loadPlayerGames()"/>
-        <label for="Vagabond (Scoundrel)"><img src="img/Vagabond_Scoundrel.png" alt="Vagabond (Scoundrel)"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Thief)" checked value="Vagabond (Thief)" onchange="loadPlayerGames()"/>
-        <label for="Vagabond (Thief)"><img src="img/Vagabond_Thief.png" alt="Vagabond (Thief)"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Tinker)" checked value="Vagabond (Tinker)" onchange="loadPlayerGames()"/>
-        <label for="Vagabond (Tinker)"><img src="img/Vagabond_Tinker.png" alt="Vagabond (Tinker)"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Vagrant)" checked value="Vagabond (Vagrant)" onchange="loadPlayerGames()"/>
-        <label for="Vagabond (Vagrant)"><img src="img/Vagabond_Vagrant.png" alt="Vagabond (Vagrant)"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Underground Duchy" checked value="Underground Duchy" onchange="loadPlayerGames()"/>
-        <label for="Underground Duchy"><img src="img/Duchy_Warrior.png" alt="Underground Duchy"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Corvid Conspiracy" checked value="Corvid Conspiracy" onchange="loadPlayerGames()"/>
-        <label for="Corvid Conspiracy"><img src="img/Corvid_Warrior.png" alt="Corvid Conspiracy"></label>
-        <!--
-        <input name="Faction" type="checkbox" class="input-hidden" id="Keepers in Iron" checked value="Keepers in Iron" onchange="loadPlayerGames()"/>
-        <label for="Keepers in Iron"><img src="img/Badger_Warrior.png" alt="Keepers in Iron"></label>
-        <input name="Faction" type="checkbox" class="input-hidden" id="Lord of the Hundreds" checked value="Lord of the Hundreds" onchange="loadPlayerGames()"/>
-        <label for="Lord of the Hundreds"><img src="img/Rat_Warrior.png" alt="Lord of the Hundreds"></label> -->
-
-      </div>
     </div>
-  </th> </tr>
-  </thead>
-  <tbody id="statsBlock">
-<tr><td colspan="9" id="statsOut">
-  Games Won:  <span id="gamesWon"></span> out of <span id="gamesPlayed"></span> (<span id="winRate"></span>)<br/>
-  Dominance:  <span id="domSuccess"></span> out of <span id="domAttempts"></span> succeeded (<span id="domSuccessRate"></span>)   Opponents Dominance:  <span id="oppDomSuccess"></span> out of <span id="oppDomAttempts"></span> succeeded  (<span id="oppDomSuccessRate"></span>)<br/>
-  Average score:  <span id="averageScore"> </span> Opponents average score:  <span id="oppAverageScore"></span><br/>
-</td></tr>
-  </tbody>
+    <div id="factionOpts" class="filterGroup">
+      <span class="Options">Factions:</span>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Eyrie Dynasties" checked value="Eyrie Dynasties" onchange="loadPlayerGames()"/>
+      <label for="Eyrie Dynasties"><img src="img/Eyrie_Warrior.png" alt="Eyrie Dynasties"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Lizard Cult" checked value="Lizard Cult" onchange="loadPlayerGames()"/>
+      <label for="Lizard Cult"><img src="img/Lizard_Cult_Warrior.png" alt="Lizard Cult"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Marquise de Cat" checked value="Marquise de Cat" onchange="loadPlayerGames()"/>
+      <label for="Marquise de Cat"><img src="img/Cat_Warrior.png" alt="Marquise de Cat"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Riverfolk" checked value="Riverfolk" onchange="loadPlayerGames()"/>
+      <label for="Riverfolk"><img src="img/Riverfolk_Warrior.png" alt="Riverfolk"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Woodland Alliance" checked value="Woodland Alliance" onchange="loadPlayerGames()"/>
+      <label for="Woodland Alliance"><img src="img/Alliance_Warrior.png" alt="Woodland Alliance"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Adventurer)" checked value="Vagabond (Adventurer)" onchange="loadPlayerGames()"/>
+      <label for="Vagabond (Adventurer)"><img src="img/Vagabond_Adventurer.png" alt="Vagabond (Adventurer)"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Arbiter)" checked value="Vagabond (Arbiter)" onchange="loadPlayerGames()"/>
+      <label for="Vagabond (Arbiter)"><img src="img/Vagabond_Arbiter.png" alt="Vagabond (Arbiter)"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Harrier)" checked value="Vagabond (Harrier)" onchange="loadPlayerGames()"/>
+      <label for="Vagabond (Harrier)"><img src="img/Vagabond_Harrier.png" alt="Vagabond (Harrier)"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Ranger)" checked value="Vagabond (Ranger)" onchange="loadPlayerGames()"/>
+      <label for="Vagabond (Ranger)"><img src="img/Vagabond_Ranger.png" alt="Vagabond (Ranger)"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Ronin)" checked value="Vagabond (Ronin)" onchange="loadPlayerGames()"/>
+      <label for="Vagabond (Ronin)"><img src="img/Vagabond_Ronin.png" alt="Vagabond (Ronin)"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Scoundrel)" checked value="Vagabond (Scoundrel)" onchange="loadPlayerGames()"/>
+      <label for="Vagabond (Scoundrel)"><img src="img/Vagabond_Scoundrel.png" alt="Vagabond (Scoundrel)"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Thief)" checked value="Vagabond (Thief)" onchange="loadPlayerGames()"/>
+      <label for="Vagabond (Thief)"><img src="img/Vagabond_Thief.png" alt="Vagabond (Thief)"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Tinker)" checked value="Vagabond (Tinker)" onchange="loadPlayerGames()"/>
+      <label for="Vagabond (Tinker)"><img src="img/Vagabond_Tinker.png" alt="Vagabond (Tinker)"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Vagabond (Vagrant)" checked value="Vagabond (Vagrant)" onchange="loadPlayerGames()"/>
+      <label for="Vagabond (Vagrant)"><img src="img/Vagabond_Vagrant.png" alt="Vagabond (Vagrant)"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Underground Duchy" checked value="Underground Duchy" onchange="loadPlayerGames()"/>
+      <label for="Underground Duchy"><img src="img/Duchy_Warrior.png" alt="Underground Duchy"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Corvid Conspiracy" checked value="Corvid Conspiracy" onchange="loadPlayerGames()"/>
+      <label for="Corvid Conspiracy"><img src="img/Corvid_Warrior.png" alt="Corvid Conspiracy"></label>
+      <!--
+      <input name="Faction" type="checkbox" class="input-hidden" id="Keepers in Iron" checked value="Keepers in Iron" onchange="loadPlayerGames()"/>
+      <label for="Keepers in Iron"><img src="img/Badger_Warrior.png" alt="Keepers in Iron"></label>
+      <input name="Faction" type="checkbox" class="input-hidden" id="Lord of the Hundreds" checked value="Lord of the Hundreds" onchange="loadPlayerGames()"/>
+      <label for="Lord of the Hundreds"><img src="img/Rat_Warrior.png" alt="Lord of the Hundreds"></label> -->
+
+    </div>
+  </div>
+
+  <div id="statsBlock">
+    <input id="playerNameLookUp" class="suggest" name="playerNameLookUp" type="text" placeholder="player name" />
+    <button id="lookUpButton"  onclick="fetchPlayerGames()">look up</button>
+  <p id="statsOut">
+    Games Won:  <span id="gamesWon"></span> out of <span id="gamesPlayed"></span> (<span id="winRate"></span>)<br/>
+    Dominance:  <span id="domSuccess"></span> out of <span id="domAttempts"></span> succeeded (<span id="domSuccessRate"></span>)   Opponents Dominance:  <span id="oppDomSuccess"></span> out of <span id="oppDomAttempts"></span> succeeded  (<span id="oppDomSuccessRate"></span>)<br/>
+    Average score:  <span id="averageScore"> </span> Opponents average score:  <span id="oppAverageScore"></span><br/>
+  </p>
+  </div>
+<table>
 <thead>
- <tr></tr>
+ <tr> <th colspan="9"> <h2>Root Digital League Games</h2></th></tr>
   <tr><th>#</th><th>Date</th><th>Season</th><th>Map</th><th>Deck</th><th>Player 1</th><th>Player 2</th><th>Player 3</th><th>Player 4</th></tr>
   </thead>
   <tbody id="dummy-tbody" hidden="true">
@@ -118,9 +113,7 @@
   </tbody>
 </table>
 </div>
-<script id="playerCell" type="text/x-handlebars-template">
 
-</script>
 
 <script id="resultBoxTemplate" type="text/x-handlebars-template">
  <div>
