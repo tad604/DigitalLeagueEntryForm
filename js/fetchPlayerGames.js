@@ -294,13 +294,17 @@ function loadPlayerGames(){
 }
 
 function gameMatchesFilter(game, filter){
-  let players = [game.player1, game.player2, game.player3, game.player4];
-  let player = getPlayer(players, filter.playerName);
-  if(filter.decks.includes(game.deck)
-    && filter.maps.includes(game.map)
-    && filter.seasons.includes(''+game.season)
-    && filter.factions.includes(player.faction)){
-    return true;
+  try {
+    let players = [game.player1, game.player2, game.player3, game.player4];
+    let player = getPlayer(players, filter.playerName);
+    if (filter.decks.includes(game.deck)
+      && filter.maps.includes(game.map)
+      && filter.seasons.includes('' + game.season)
+      && filter.factions.includes(player.faction)) {
+      return true;
+    }
+  }catch(e){
+    console.log(e + " error with game: "+ game.id + " -" + JSON.stringify(game));
   }
   return false; //  filter game on deck/map/ player/ opponents
 }
