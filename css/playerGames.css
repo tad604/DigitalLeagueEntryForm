@@ -1,0 +1,70 @@
+ tr img {
+  height:25px;
+  border-radius:5px;
+   display: inline-block;
+}
+
+ .mainBoard{
+
+   background: beige;
+ }
+ span.score{
+   background-image: url("../img/VP_Frills.png");
+   background-repeat: no-repeat;
+   background-size: 100% 100%;
+   background-position: center bottom;
+   width: 25px;
+   height:25px;
+   padding-left: 8px;
+   padding-top: 5px;
+   padding-right: 8px;
+   display: inline-block;
+   font-size: large;
+   text-align: center;
+ }
+td.winner {
+
+}
+td#statsOut{
+  font-size: large;
+}
+td{
+  text-align: left;
+  font-family: "Baskerville Old Face";
+}
+ input[type="checkbox"]:checked + label > img  {
+   background-color: goldenrod;
+ }
+
+ input[type="checkbox"] + label > img  {
+   border: 1px rgb(0, 0, 0);
+   padding: 5px;
+   transition: 500ms all;
+ }
+ input[type="checkbox"]:checked + label > div  {
+   background-color: goldenrod;
+ }
+
+ input[type="checkbox"] + label > div  {
+   margin: 2px;
+   border-radius:5px;
+   display: inline-block;
+   border: 1px rgb(0, 0, 0);
+   padding: 5px;
+   transition: 500ms all;
+ }
+
+div#seasonsOpts {
+  width: 30%;
+}
+div#gameOpts{
+  width:15%;
+}
+div#factionOpts{
+  width:25%;
+}
+
+ div.filterGroup{
+  float: left;
+   margin: 5px
+}

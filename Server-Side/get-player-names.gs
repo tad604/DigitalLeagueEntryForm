@@ -1,8 +1,8 @@
 const scriptProp = PropertiesService.getScriptProperties()
 
 function initialSetup () {
-  const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
-  scriptProp.setProperty('key', activeSpreadsheet.getId())
+  const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  scriptProp.setProperty('key', activeSpreadsheet.getId());
 }
 
 function testGetNames(){
@@ -25,12 +25,11 @@ function doGet(request){
 
 function getPlayerNames(){
   const doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
-  const sheet = doc.getSheetByName("NameMap")
-  var allNames = sheet.getRange(2, 4, sheet.getLastRow())
-  var values = allNames.getValues()
-  var names = values.filter(function(row){
+  const sheet = doc.getSheetByName("NameMap");
+  let allNames = sheet.getRange(2, 4, sheet.getLastRow());
+  let values = allNames.getValues();
+  let names = values.filter(function(row){
     return row[0];
   });
-  let flat = [].concat(...names);
-  return flat;
+  return [].concat(...names);
 }
