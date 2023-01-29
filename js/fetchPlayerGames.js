@@ -102,6 +102,16 @@ function createBasicTd( content){
   return td;
 }
 
+function createLinkToSpreadsheet(count, row){
+ let td = document.createElement('td');
+ let url = 'https://docs.google.com/spreadsheets/d/1xqb3vdvE5tbbVfa1eUFvx5uYIO52pePNLfOA3NYR2eE/edit#gid=1595954131&range='+row+":"+row;
+ let link = document.createElement('a');
+ link.href = url;
+ link.target = '_blank';
+ link.innerText = count;
+ td.append(link);
+ return td;
+}
 
 function createImg(content){
   let img = document.createElement('img');
@@ -324,7 +334,7 @@ function loadPlayerGames(){
     if(gameMatchesFilter(game, filter)) {
       let tr = document.createElement('tr');
       tr.setAttribute('id', 'allDataRow-' + game.id);
-      tr.append(createBasicTd(idx++));
+      tr.append(createLinkToSpreadsheet(idx++, game.id));
       tr.append(createBasicTd(new Date(game.timeStamp).toLocaleDateString()));
       tr.append(createBasicTd(game.season));
       tr.append(createImg(mapImages[game['map']]));
