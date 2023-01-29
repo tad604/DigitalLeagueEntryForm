@@ -1,4 +1,5 @@
- tr img {
+
+tr img {
   height:25px;
   border-radius:5px;
    display: inline-block;
@@ -22,23 +23,28 @@
    text-align: center;
    padding: 25px 5px;
    margin: 25px;
-   min-height: 250px;
+   min-height: 275px;
  }
 
  div#statsBlock{
    clear: left;
-   font-size: large;
+   font-size: Medium;
    font-family: Luminari;
-   background-image: url("../img/Top_Bar.png");
+   background-image: url("../img/Medium_Box.png");
    background-repeat: no-repeat;
    background-size: 100% 100%;
    background-position: center center;
    min-width: 500px;
+   min-height: 240px;
    text-align: center;
    padding: 25px 5px;
    margin: 25px;
  }
+div.playerStats{
+  width: 25%;
 
+  float:left;
+}
  .mainBoard{
 
   background: transparent;
@@ -46,10 +52,11 @@
  table{
    background: #fae5b3;
    padding: 15px;
-   margin: 15px;
+   margin: 25px;
+   width: 95%;
  }
  td{
-   padding: 15px;
+   padding: 5px;
  }
  span.score{
    background-image: url("../img/VP_Frills.png");
@@ -96,20 +103,22 @@ td{
  }
 
 div#seasonsOpts {
-  width: 30%;
+  width: 20%;
 }
 div#gameOpts{
   width:15%;
 }
 div#factionOpts{
-  width:33%;
+  width:30%;
 }
-
 div#turnOrderOpts {
-  width: 17%;
+  width: 10%;
+}
+div#victoryOpts{
+  width: 15%;
 }
 
- div.filterGroup{
+div.filterGroup{
   float: left;
    margin: 5px
 }

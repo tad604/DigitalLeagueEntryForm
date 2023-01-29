@@ -102,17 +102,78 @@
     <input name="TurnOrder" class="input-hidden" type="checkbox" id="turn4"  checked value="4" onchange="loadPlayerGames()"/>
     <label for="turn4"><div>Turn 4</div></label>
     </div>
+    <div id="victoryOpts" class="filterGroup">
+        <h4>Victory Conditions:</h4>
+        <input name="Victory" class="input-hidden" type="checkbox" id="win"  checked value="win" onchange="loadPlayerGames()"/>
+        <label for="win"><img src="img/trophy.svg" alt="win"></label>
+        <input name="Victory" type="checkbox" class="input-hidden" id="loss" checked value="loss" onchange="loadPlayerGames()"/>
+        <label for="loss"><img src="img/NoTrophy.png" class="loss"  alt="loss"></label>
+        <input name="Victory" class="input-hidden" type="checkbox" id="coalitioned"  checked value="coalitioned" onchange="loadPlayerGames()"/>
+        <label for="coalitioned"><img src="img/Coalition.png" alt="Coalitioned"></label>
+        <input name="Victory" type="checkbox" class="input-hidden" id="notCoalitioned" checked value="notCoalitioned" onchange="loadPlayerGames()"/>
+        <label for="notCoalitioned"><img src="img/NoCoalition.png"  alt="not coalitioned"></label>
+        <input name="Victory" type="checkbox" class="input-hidden" id="bird" checked value="bird" onchange="loadPlayerGames()"/>
+        <label for="bird"><img src="img/card-bird.png"  alt="Bird Dom"></label>
+        <input name="Victory" type="checkbox" class="input-hidden" id="bunny" checked value="bunny" onchange="loadPlayerGames()"/>
+        <label for="bunny"><img src="img/card-bunny.png"  alt="Bunny Dom"></label>
+        <input name="Victory" type="checkbox" class="input-hidden" id="fox" checked value="fox" onchange="loadPlayerGames()"/>
+        <label for="fox"><img src="img/card-fox.png"  alt="Fox Dom"></label>
+        <input name="Victory" type="checkbox" class="input-hidden" id="mouse" checked value="mouse" onchange="loadPlayerGames()"/>
+        <label for="mouse"><img src="img/card-mouse.png"  alt="Mouse Dom"></label>
+        <input name="Victory" type="checkbox" class="input-hidden" id="Points" checked value="Points" onchange="loadPlayerGames()"/>
+        <label for="Points"><img src="img/vp.png"  alt="scored points"></label>
+    </div>
   </div>
 
   <div id="statsBlock">
-    <input id="playerNameLookUp" class="suggest" name="playerNameLookUp" type="text" placeholder="player name" />
-    <button id="lookUpButton"  onclick="fetchPlayerGames()">look up</button>
-  <p id="statsOut">
-    Games Won:  <span id="gamesWon"></span> out of <span id="gamesPlayed"></span> (<span id="winRate"></span>)<br/>
-    Dominance:  <span id="domSuccess"></span> out of <span id="domAttempts"></span> succeeded (<span id="domSuccessRate"></span>)   Opponents Dominance:  <span id="oppDomSuccess"></span> out of <span id="oppDomAttempts"></span> succeeded  (<span id="oppDomSuccessRate"></span>)<br/>
-    Average score:  <span id="averageScore"> </span> Opponents average score:  <span id="oppAverageScore"></span><br/>
-  </p>
+  <div id="playerStatsOut" class="playerStats" >
+           Player:   <input id="playerNameLookUp" class="suggest" name="playerNameLookUp" type="text" placeholder="player name" size="10" /><button id="lookUpButton"  onclick="fetchPlayerGames()">look up</button><br/>
+        Games Played: <span id="gamesPlayed"></span><br/>
+        Games Won:  <span id="gamesWon"></span> <br/>
+        Win Rate: <span id="winRate"></span><br/>
+        Dominance: <br/>
+        Successes: <span id="domSuccess"></span> <br/>
+        Attempts:  <span id="domAttempts"></span> <br/>
+        Rate: <span id="domSuccessRate"></span><br/>
+        Average score:  <span id="averageScore"></span><br/>
   </div>
+  <div id="opponent1StatsOut"  class="playerStats" >
+           Opponent:  <input id="opponentLookUp1" class="suggest" name="opponentLookUp1" type="text" size="10" placeholder="opponent name" />
+                      <button id="opponentLookUpButton1"  onclick="addOpponent(1)">Add</button><br/>
+    Games Won:  <span id="opponent1GamesWon"></span> <br/>
+    Win Rate: <span id="opponent1WinRate"></span><br/>
+    Dominance: <br/>
+    Successes: <span id="opponent1DomSuccess"></span> <br/>
+    Attempts:  <span id="opponent1DomAttempts"></span> <br/>
+    Rate: <span id="opponent1DomSuccessRate"></span><br/>
+    Average score:  <span id="opponent1AverageScore"> </span><br/>
+    <button id="removeOpponent1" onclick="removeOpponent(1)">Remove</button>
+  </div>
+    <div id="opponent2statsOut" class="playerStats">
+      Opponent: <input id="opponentLookUp2" class="suggest" name="opponentLookUp2" type="text" size="10" placeholder="opponent name" />
+      <button id="opponentLookUpButton2"  onclick="addOpponent(2)">Add </button><br/>
+      Games Won:  <span id="opponent2GamesWon"></span> <br/>
+      Win Rate: <span id="opponent2WinRate"></span><br/>
+      Dominance: <br/>
+      Successes: <span id="opponent2DomSuccess"></span> <br/>
+      Attempts:  <span id="opponent2DomAttempts"></span> <br/>
+      Rate: <span id="opponent2DomSuccessRate"></span><br/>
+      Average score:  <span id="opponent2AverageScore"> </span><br/>
+      <button id="removeOpponent2" onclick="removeOpponent(2)">Remove</button>
+    </div>
+    <div id="opponent3statsOut" class="playerStats">
+      Opponent:  <input id="opponentLookUp3" class="suggest" name="opponentLookUp3" type="text" placeholder="opponent name" size ="10" />
+      <button id="opponentLookUpButton3"  onclick="addOpponent(3)">Add</button><br/>
+      Games Won:  <span id="opponent3GamesWon"></span> <br/>
+      Win Rate: <span id="opponent3WinRate"></span><br/>
+      Dominance<br/>
+      Successes:  <span id="opponent3DomSuccess"></span> <br/>
+      Attempts: <span id="opponent3DomAttempts"></span><br/>
+      Rate: <span id="opponent3DomSuccessRate"></span><br/>
+      Average score:  <span id="opponent3AverageScore"> </span><br/>
+      <button id="removeOpponent3" onclick="removeOpponent(3)">Remove</button>
+    </div>
+    </div>
 <table>
 <thead>
  <tr> <th colspan="9"> <h2>Root Digital League Games</h2></th></tr>

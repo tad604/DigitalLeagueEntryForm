@@ -5,7 +5,7 @@ fetch(GOOGLE_SHEET_FETCH_ALL_PLAYER_NAMES).then((response)=> response.json()).th
   addAutoComplete(data);
 });
 function addAutoComplete(data) {
-  ['#playerName1', '#playerName2', '#playerName3', '#playerName4', '#playerNameLookUp'].forEach(function(name){
+  ['#playerName1', '#playerName2', '#playerName3', '#playerName4', '#playerNameLookUp', '#opponentLookUp1', '#opponentLookUp2', '#opponentLookUp3'].forEach(function(name){
     new autoComplete({
       selector: name,
       minChars: 1,

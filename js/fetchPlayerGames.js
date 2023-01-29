@@ -187,9 +187,18 @@ function createPlayerTd(player,game){
   return td;
 }
 
+function removeOpponent(idx){
+  document.getElementById('opponentLookUp'+idx).value = '';
+  delete filter['opponentName'+idx];
+  loadPlayerGames();
+}
+
+function addOpponent(idx){
+  filter['opponentName'+idx] = document.getElementById('opponentLookUp'+idx).value;
+  loadPlayerGames();
+}
 function updateFilter(){
   filter.playerName = document.getElementById('playerNameLookUp').value;
-
   let turnOrders = document.getElementsByName('TurnOrder');
   filter.turnOrders = [];
   turnOrders.forEach(turnOrder=>{
@@ -215,6 +224,11 @@ function updateFilter(){
   seasons.forEach(season=> {
     if (season.checked) {filter.seasons.push(season.value);  }
   });
+  filter.victory = [];
+  let victory = document.getElementsByName('Victory');
+  victory.forEach(cnd=> {
+    if (cnd.checked) {filter.victory.push(cnd.value);  }
+  });
 }
 function updateStatsView(stats){
   document.getElementById('gamesWon').innerText = stats.player.gamesWon;
@@ -224,10 +238,18 @@ function updateStatsView(stats){
   document.getElementById('domAttempts').innerText = stats.player.domAttempts;
   document.getElementById('domSuccessRate').innerText = stats.player.domSuccessRate;
   document.getElementById('averageScore').innerText= stats.player.averageScore;
-  document.getElementById('oppAverageScore').innerText = stats.opponents.averageScore;
-  document.getElementById('oppDomAttempts').innerText = stats.opponents.domAttempts;
-  document.getElementById('oppDomSuccess').innerText = stats.opponents.domSuccess;
-  document.getElementById('oppDomSuccessRate').innerText = stats.opponents.domSuccessRate;
+
+  for(let i = 1; i < 4; i++){
+    if(stats['opponent'+1]) {
+      document.getElementById('opponent' + i + 'GamesWon').innerText = stats['opponent' + i].gamesWon;
+      document.getElementById('opponent' + i + 'WinRate').innerText = stats['opponent' + i].winRate;
+      document.getElementById('opponent' + i + 'DomSuccess').innerText = stats['opponent' + i].domSuccess;
+      document.getElementById('opponent' + i + 'DomAttempts').innerText = stats['opponent' + i].domAttempts;
+      document.getElementById('opponent' + i + 'DomSuccessRate').innerText = stats['opponent' + i].domSuccessRate;
+      document.getElementById('opponent' + i + 'AverageScore').innerText = stats['opponent' + i].averageScore;
+    }
+  }
+
 }
 
 function doCalculatedStats(stats){
@@ -236,11 +258,16 @@ function doCalculatedStats(stats){
   let domRate = stats.player.domSuccess / stats.player.domAttempts * 100;
   stats.player.domSuccessRate = parseFloat(domRate).toFixed(2) + "%";
   stats.player.averageScore = parseFloat(stats.player.pointsScored /stats.player.gamesPlayed).toFixed(2);
-  let oppWinRate =   stats.opponents.gamesWon / stats.opponents.gamesPlayed;
-  stats.opponents.winRate =   parseFloat(oppWinRate).toFixed(2) + "%";
-  let oppDomRate =  stats.opponents.domSuccess / stats.opponents.domAttempts * 100;
-  stats.opponents.domSuccessRate = parseFloat(oppDomRate).toFixed(2) +"%"
-  stats.opponents.averageScore = parseFloat(stats.opponents.pointsScored /stats.opponents.gamesPlayed).toFixed(2);
+
+  for(let i = 1; i < 4; i++){
+    if(stats['opponent'+1]) {
+      let wr = stats['opponent' + i].gamesWon / stats['opponent' + i].gamesPlayed * 100;
+      stats['opponent' + i].winRate = parseFloat(wr).toFixed(2) + "%";
+      let dr = stats['opponent' + i].domSuccess / stats['opponent' + i].domAttempts * 100;
+      stats['opponent' + i].domSuccessRate = parseFloat(dr).toFixed(2) + "%";
+      stats['opponent' + i].averageScore = parseFloat(stats['opponent' + i].pointsScored / stats['opponent' + i].gamesPlayed).toFixed(2);
+    }
+  }
 
 
 }
@@ -261,7 +288,27 @@ function loadPlayerGames(){
       'coalitionsFormed': 0,
       'pointsScored': 0
     },
-    'opponents': {
+    'opponent1': {
+      'gamesPlayed': 0,
+      'gamesWon': 0,
+      'domAttempts': 0,
+      'domSuccess': 0,
+      'coalitionVictories': 0,
+      'coalitionTargets': 0,
+      'coalitionsFormed': 0,
+      'pointsScored': 0
+    },
+    'opponent2': {
+      'gamesPlayed': 0,
+      'gamesWon': 0,
+      'domAttempts': 0,
+      'domSuccess': 0,
+      'coalitionVictories': 0,
+      'coalitionTargets': 0,
+      'coalitionsFormed': 0,
+      'pointsScored': 0
+    },
+    'opponent3': {
       'gamesPlayed': 0,
       'gamesWon': 0,
       'domAttempts': 0,
@@ -289,26 +336,79 @@ function loadPlayerGames(){
       tbody.append(tr);
       let players = [game.player1, game.player2, game.player3, game.player4];
       let player = getPlayer(players, filter.playerName);
-      let opponents = getOpponents(players, playerName);
       updatePlayerStats(game, player, stats.player);
-      updateOpponentStats(game, opponents,  stats.opponents);
+      let opponent1 = getPlayer(players, filter['opponentName1']);
+      updatePlayerStats(game, opponent1,  stats.opponent1);
+      let opponent2 = getPlayer(players, filter['opponentName2']);
+      updatePlayerStats(game, opponent2,  stats.opponent2);
+      let opponent3 = getPlayer(players, filter['opponentName3']);
+      updatePlayerStats(game, opponent3,  stats.opponent3);
     }
   });
   doCalculatedStats(stats);
   updateStatsView(stats);
   console.log(stats);
 }
+function isDom(suit, score){
+  return isNaN(score) && score.toLowerCase().includes(suit);
+}
+function isCoalitioned(player, players){
+  let isCoal = false;
+  if( isNaN(player.score) && player.score.toLowerCase().includes('coal')){
+    isCoal = true;
+  }else{
+    players.forEach(p=>{
+      if(isNaN(p.score) && p.score.toLowerCase().includes(player.faction.toLowerCase())){
+        isCoal = true;
+      }
+    });
+  }
+  return isCoal;
+}
+
+function meetsVictoryConditions(player, players, conditions){
+  let isCoal = isCoalitioned(player, players);
+  if(!conditions.includes('win') && (player.leagueScore > 0)){
+    return false;
+  }else if(!conditions.includes('loss') && player.leagueScore === 0){
+    return false;
+  }else if(!conditions.includes('Points') && !isNaN(player.score)){
+    return false;
+  }else if(!conditions.includes('mouse')  && (isDom('mouse', player.score) || isDom('mice', player.score) )){
+    return false;
+  }else if(!conditions.includes('fox')  && isDom('fox', player.score)) {
+    return false;
+  }else if(!conditions.includes('bunny')  && (isDom('bunny', player.score) || isDom('rabbit', player.score))) {
+    return false;
+  }else if(!conditions.includes('bird')  && isDom('bird', player.score)) {
+    return false;
+  }else if(!conditions.includes('coalitioned') && isCoal){
+     return false;
+  }else if(!conditions.includes('notCoalitioned') && !isCoal) {
+     return false;
+  }
+  return true;
+}
 
 function gameMatchesFilter(game, filter){
   try {
     let players = [game.player1, game.player2, game.player3, game.player4];
     let player = getPlayer(players, filter.playerName);
-
+    let opponents = getOpponents(players, filter.playerName);
+    let opponentNames = [];
+    opponents.forEach(op =>{
+      opponentNames.push(op.name);
+    });
     if (filter.decks.includes(game.deck)
       && filter.maps.includes(game.map)
       && filter.seasons.includes('' + game.season)
       && filter.factions.includes(player.faction)
-      && filter.turnOrders.includes(''+player.turnOrder)) {
+      && filter.turnOrders.includes('' + player.turnOrder)
+      && meetsVictoryConditions(player, players, filter.victory)
+      && (filter.opponentName1 === undefined || filter.opponentName1 === '' || opponentNames.includes(filter.opponentName1))
+      && (filter.opponentName2 === undefined || filter.opponentName2 === '' || opponentNames.includes(filter.opponentName2))
+      && (filter.opponentName3 === undefined || filter.opponentName3 === '' || opponentNames.includes(filter.opponentName3))
+    ) {
       return true;
     }
   }catch(e){
@@ -317,12 +417,6 @@ function gameMatchesFilter(game, filter){
   return false; //  filter game on deck/map/ player/ opponents
 }
 
-function updateOpponentStats(game, opponents, statBlock){
-  for(let i = 0; i < opponents.length; i++){
-    let opp = opponents[i];
-    updatePlayerStats(game, opp, statBlock);
-  }
-}
 
 function updatePlayerStats(game, player, statBlock){
   try
@@ -356,7 +450,7 @@ function getPlayer(players, playerName){
   let p;
   players.forEach((player, idx)=>{
     if(player.name === playerName){
-      p= player;
+      p = player;
       p.turnOrder = idx+1;
     }
   });
