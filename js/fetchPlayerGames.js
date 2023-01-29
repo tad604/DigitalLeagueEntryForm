@@ -410,10 +410,10 @@ function gameMatchesFilter(game, filter){
       opponentNames.push(op.name);
     });
     if (filter.decks.includes(game.deck)
-      && filter.maps.includes(game.map)
+      && (filter.maps.length == 2 || filter.maps.includes(game.map))
       && filter.seasons.includes('' + game.season)
       && filter.factions.includes(player.faction)
-      && filter.turnOrders.includes('' + player.turnOrder)
+      && (filter.turnOrders.length == 4 || filter.turnOrders.includes('' + player.turnOrder))
       && meetsVictoryConditions(player, players, filter.victory)
       && (filter.opponentName1 === undefined || filter.opponentName1 === '' || opponentNames.includes(filter.opponentName1))
       && (filter.opponentName2 === undefined || filter.opponentName2 === '' || opponentNames.includes(filter.opponentName2))
