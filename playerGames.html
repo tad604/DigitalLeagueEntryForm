@@ -11,9 +11,10 @@
 <body>
 <div class="mainBoard">
   <div id="filterOptions">
-    <h3>Game Filter Options</h3>
+    <h3 style="width: 100%">Game Filter Options</h3>
+    <div id="subFilterOptions">
     <div id="seasonsOpts" class="filterGroup">
-      <h4>Seasons:</h4>
+      <h4 onclick="clickAll('Season')">Seasons:</h4>
       <input name="Season" class="input-hidden" type="checkbox" id="season1"  checked value="1" onchange="loadPlayerGames()"/>
       <label for="season1"><div>Season 1</div></label>
       <input name="Season" class="input-hidden" type="checkbox" id="season2"  checked value="2" onchange="loadPlayerGames()"/>
@@ -52,7 +53,7 @@
     </div>
     <div id="factionOpts" class="filterGroup">
 
-      <h4>Factions:</h4>
+      <h4 >Factions:</h4>
       <input name="Faction" type="checkbox" class="input-hidden" id="Eyrie Dynasties" checked value="Eyrie Dynasties" onchange="loadPlayerGames()"/>
       <label for="Eyrie Dynasties"><img src="img/Eyrie_Warrior.png" alt="Eyrie Dynasties"></label>
       <input name="Faction" type="checkbox" class="input-hidden" id="Lizard Cult" checked value="Lizard Cult" onchange="loadPlayerGames()"/>
@@ -92,7 +93,7 @@
       <label for="Lord of the Hundreds"><img src="img/Rat_Warrior.png" alt="Lord of the Hundreds"></label> -->
     </div>
     <div id="turnOrderOpts" class="filterGroup">
-      <h4>Turn Order:</h4>
+      <h4 >Turn Order:</h4>
     <input name="TurnOrder" class="input-hidden" type="checkbox" id="turn1"  checked value="1" onchange="loadPlayerGames()"/>
     <label for="turn1"><div>Turn 1</div></label>
     <input name="TurnOrder" class="input-hidden" type="checkbox" id="turn2"  checked value="2" onchange="loadPlayerGames()"/>
@@ -103,7 +104,7 @@
     <label for="turn4"><div>Turn 4</div></label>
     </div>
     <div id="victoryOpts" class="filterGroup">
-        <h4>Victory Conditions:</h4>
+        <h4 >Victory Conditions:</h4>
         <input name="Victory" class="input-hidden" type="checkbox" id="win"  checked value="win" onchange="loadPlayerGames()"/>
         <label for="win"><img src="img/trophy.svg" alt="win"></label>
         <input name="Victory" type="checkbox" class="input-hidden" id="loss" checked value="loss" onchange="loadPlayerGames()"/>
@@ -122,6 +123,7 @@
         <label for="mouse"><img src="img/card-mouse.png"  alt="Mouse Dom"></label>
         <input name="Victory" type="checkbox" class="input-hidden" id="Points" checked value="Points" onchange="loadPlayerGames()"/>
         <label for="Points"><img src="img/vp.png"  alt="scored points"></label>
+    </div>
     </div>
   </div>
 

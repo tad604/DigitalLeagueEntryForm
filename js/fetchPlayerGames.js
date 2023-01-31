@@ -207,6 +207,13 @@ function addOpponent(idx){
   filter['opponentName'+idx] = document.getElementById('opponentLookUp'+idx).value;
   loadPlayerGames();
 }
+
+
+function clickAll(group){
+  let opts = document.getElementsByName(group);
+
+
+}
 function updateFilter(){
   filter.playerName = document.getElementById('playerNameLookUp').value;
   let turnOrders = document.getElementsByName('TurnOrder');

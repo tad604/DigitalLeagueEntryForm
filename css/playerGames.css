@@ -8,22 +8,27 @@ tr img {
  div#filterOptions img{
    height:35px;
    border-radius: 5px;
-   display: inline-block;
+   display: inline-flex;
    margin: 2px;
  }
 
+ div#subFilterOptions{
+   display: flex;
+   flex-direction: row;
+ }
  div#filterOptions{
    font-size: large;
    font-family: Luminari;
    background-image: url("../img/Top_Bar.png");
    background-repeat: no-repeat;
-   background-size: 100% 100%;
+   background-size: cover;
    background-position: center center;
-   min-width: 500px;
+
    text-align: center;
    padding: 25px 5px;
    margin: 25px;
-   min-height: 275px;
+   display: flex;
+   flex-direction: column;
  }
 
  div#statsBlock{
