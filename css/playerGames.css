@@ -35,7 +35,7 @@ tr img {
    clear: left;
    font-size: Medium;
    font-family: Luminari;
-   background-image: url("../img/Medium_Box.png");
+   background-image: url("../img/Top_Bar.png");
    background-repeat: no-repeat;
    background-size: 100% 100%;
    background-position: center center;
@@ -61,7 +61,7 @@ div.playerStats{
    width: 95%;
  }
  td{
-   padding: 5px;
+   padding: 5px 0px 0px 0px;
  }
  span.score{
    background-image: url("../img/VP_Frills.png");
@@ -71,14 +71,20 @@ div.playerStats{
    width: 25px;
    height:25px;
    padding-left: 8px;
-   padding-top: 5px;
    padding-right: 8px;
    display: inline-block;
    font-size: large;
    text-align: center;
  }
+ span.score img{
+   padding-bottom: 10px;
+ }
 td.winner {
 
+}
+
+td img{
+  padding-bottom: 7px;
 }
 
 td{

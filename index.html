@@ -13,7 +13,7 @@
   <meta name="theme-color" content="#fafafa">
 </head>
 <body>
-<form name="digitalLeagueGame" id="gameForm" autocomplete="off">
+<form name="digitalLeagueGame" id="gameForm" autocomplete="off" >
   <input type="hidden" name="Player 1 Turn Order" id="Player 1 Turn Order" value="1"/>
   <input type="hidden" name="Player 2 Turn Order" id="Player 2 Turn Order" value="2"/>
   <input type="hidden" name="Player 3 Turn Order" id="Player 3 Turn Order" value="3"/>
@@ -237,6 +237,11 @@
   </div>
   <div id="gameOptions">
     <h3>Game Options</h3>
+  <span class="Options">Timing:</span>
+    <input name="Timing" class="input-hidden" type="radio" id="Async"  checked value="Async"/>
+    <label for="Async"><img src="img/async.png" alt="Async"></label>
+    <input name="Timing" type="radio" class="input-hidden" id="Live" value="Live"/>
+    <label for="Live"><img src="img/live.png"  alt="Live"></label>
   <span class="Options">Map:</span>
     <input name="Map" class="input-hidden" type="radio" id="Autumn"  checked value="Autumn"/>
     <label for="Autumn"><img src="img/autumn.jpg" alt="Autumn"></label>
@@ -248,6 +253,11 @@
     <label for="ExilesAndPartisans"><img src="img/ExilesAndPartisansDeck.gif" alt="Exiles & Partisans"></label>
     <input name="Deck" type="radio" class="input-hidden" id="Base" value="Base"/>
     <label for="Base"><img src="img/baseDeck.gif" alt="Base Deck"></label>
+  </div>
+  <div id="results-proof">
+    <label for="Discord Link">Discord Link:</label><input id="Discord Link" name="Discord Link" type="text"/><br/>
+    <!--<label for="victoryFile">Victory Screen:</label><input id="victoryFile" name="victoryFile" type="file"/><br/>
+    <input type="hidden" id="victoryFileAsString" name="victoryFileAsString"/>-->
   </div>
   <button class="smallBox" id="formSubmit">Submit</button>
   <br />
@@ -271,12 +281,15 @@
 
   <div id="resultsBox">
     <div id ="gameOptsConfirmation">
+      <img id="AsyncConfirm" src="img/async.png"  alt="Async"/>
+      <img id="LiveConfirm" src="img/live.png" alt="Live" />
       <img id="AutumnConfirm" src="img/autumn.jpg"  alt="Autumn"/>
       <img id="WinterConfirm" src="img/winter.jpg" alt="Winter" />
       <img id="BaseConfirm" src="img/baseDeck.gif" alt="Base Deck" />
       <img id="E&PConfirm" src="img/ExilesAndPartisansDeck.gif" alt="Exiles & Partisans" />
     </div>
     <div id= "confirmButtons" class="buttons" style="clear: left">
+      <a id="confirmationDiscordLink" target="_blank" href="">Discord Report Link</a><br/>
       <button type="button" id="confirm">Confirm</button><button type="button" id="cancel">cancel</button>
     </div>
   </div>

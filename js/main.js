@@ -1,4 +1,5 @@
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxN-BfGk_NrEaKMNC3cWlISDyw4wqRkb-VsYRDZ3zd2U5E_eaTEbvxzdK5wY1jvPNVC/exec";
+//GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxN-BfGk_NrEaKMNC3cWlISDyw4wqRkb-VsYRDZ3zd2U5E_eaTEbvxzdK5wY1jvPNVC/exec";
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyVqdUZQNGKXJw2VpFvu2MVM5HcuqvZz7Qi-s5SlxznMjeV6ho5ucI1xxM3xOnVOWCJ/exec";
 const players = ['player1', 'player2', 'player3', 'player4'];
 const factionImages = {
   'Eyrie Dynasties':'Eyrie_Warrior.png',
@@ -302,10 +303,14 @@ function confirmResults(confirmCallBack){
     .find((mapInput)=> mapInput.checked).value;
   let selectedDeck = Array.from(document.getElementsByName('Deck'))
     .find((deckInput)=> deckInput.checked).value;
-
+  let selectedTiming = Array.from(document.getElementsByName('Timing'))
+    .find((timingInput)=> timingInput.checked).value;
   document.getElementById(selectedMap+'Confirm').style.display='inline';
   document.getElementById(selectedDeck+'Confirm').style.display='inline';
+  document.getElementById(selectedTiming+'Confirm').style.display='inline';
 
+  let linkUrl = document.getElementById('Discord Link').value;
+  document.getElementById('confirmationDiscordLink').href = linkUrl;
   let shieldDiv =document.getElementById('formShield');
   shieldDiv.style.display = 'block';
   let confirmWindow = document.getElementById('resultsBox');
@@ -361,24 +366,34 @@ function calculatePlayerScore(player){
 /****************************************************/
 function sendData(){
   document.getElementById('confirm').disabled = true;
-  const fd = new FormData(document.getElementById('gameForm'));
-  const xhr = new XMLHttpRequest();
-  xhr.addEventListener("load", (event)=>{
-    alert("Game submitted");
-    console.log(event);
-    document.getElementById('gameForm').reset();
-    players.forEach(function(player){
-      onDomSelect(player);
-      onFactionSelect(player);
+  /*let uploadFile = document.getElementById('victoryFile');
+  let reader = new FileReader();
+  reader.onload = function (){
+    let fileStringInput = document.getElementById('victoryFileAsString');
+    fileStringInput.value = reader.result.replace('data:', '')
+      .replace(/^.+,/, '');
+    let fileInput = document.getElementById('victoryFile');
+    fileInput.remove(); */
+    const fd = new FormData(document.getElementById('gameForm'));
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", (event)=>{
+      alert("Game submitted");
+      console.log(event);
+      document.getElementById('gameForm').reset();
+      players.forEach(function(player){
+        onDomSelect(player);
+        onFactionSelect(player);
+      });
+      hideConfirmationWindow();
     });
-    hideConfirmationWindow();
-  });
-  xhr.addEventListener("err", (event)=>{
-    alert("Error data not saved!" + event);
-   hideConfirmationWindow()
-  })
-  xhr.open("POST", GOOGLE_SHEET_URL );
-  xhr.send(fd);
+    xhr.addEventListener("err", (event)=>{
+      alert("Error data not saved!" + event);
+      hideConfirmationWindow()
+    })
+    xhr.open("POST", GOOGLE_SHEET_URL );
+    xhr.send(fd);
+ /* }
+  reader.readAsDataURL(uploadFile.files[0]);*/
 }
 
 function hideConfirmationWindow(){
