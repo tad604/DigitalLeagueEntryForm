@@ -1,5 +1,4 @@
 const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxN-BfGk_NrEaKMNC3cWlISDyw4wqRkb-VsYRDZ3zd2U5E_eaTEbvxzdK5wY1jvPNVC/exec";
-//const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyVqdUZQNGKXJw2VpFvu2MVM5HcuqvZz7Qi-s5SlxznMjeV6ho5ucI1xxM3xOnVOWCJ/exec";
 const players = ['player1', 'player2', 'player3', 'player4'];
 const factionImages = {
   'Eyrie Dynasties':'Eyrie_Warrior.png',
@@ -179,7 +178,7 @@ function validatePlayerScore(id){
   if(score === ""){
     addError(getPlayerDisplayName(id) + " needs a score!");
   }
-  if(isDom){
+  if(isDom && !isPlayerInCoalition(id)){
      players.forEach((playerId)=>{
        if(playerId !== id && isDomSelected(playerId) && getDomSelection(playerId) === getDomSelection(id) ){
          addError(getPlayerDisplayName(id) + " and "+ getPlayerDisplayName(playerId) + " cannot have the same Dominance Suit Selected!" );

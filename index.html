@@ -56,8 +56,8 @@
       <option value="Vagabond (Thief)">Vagabond (Thief)</option>
       <option value="Vagabond (Tinker)">Vagabond (Tinker)</option>
       <option value="Vagabond (Vagrant)">Vagabond (Vagrant)</option>
-      <option value="Underground Duchy" disabled>Underground Duchy</option>
-      <option value="Corvid Conspiracy" disabled>Corvid Conspiracy</option>
+      <option value="Underground Duchy" >Underground Duchy</option>
+      <option value="Corvid Conspiracy" >Corvid Conspiracy</option>
       <option value="Keepers in Iron" disabled>Keepers in Iron</option>
       <option value="Lord of the Hundreds" disabled>Lord of the Hundreds</option>
     </select>
@@ -108,8 +108,8 @@
       <option value="Vagabond (Thief)">Vagabond (Thief)</option>
       <option value="Vagabond (Tinker)">Vagabond (Tinker)</option>
       <option value="Vagabond (Vagrant)">Vagabond (Vagrant)</option>
-      <option value="Underground Duchy" disabled>Underground Duchy</option>
-      <option value="Corvid Conspiracy" disabled>Corvid Conspiracy</option>
+      <option value="Underground Duchy" >Underground Duchy</option>
+      <option value="Corvid Conspiracy" >Corvid Conspiracy</option>
       <option value="Keepers in Iron" disabled>Keepers in Iron</option>
       <option value="Lord of the Hundreds" disabled>Lord of the Hundreds</option>
     </select></td>
@@ -156,8 +156,8 @@
       <option value="Vagabond (Thief)">Vagabond (Thief)</option>
       <option value="Vagabond (Tinker)">Vagabond (Tinker)</option>
       <option value="Vagabond (Vagrant)">Vagabond (Vagrant)</option>
-      <option value="Underground Duchy" disabled>Underground Duchy</option>
-      <option value="Corvid Conspiracy" disabled>Corvid Conspiracy</option>
+      <option value="Underground Duchy" >Underground Duchy</option>
+      <option value="Corvid Conspiracy" >Corvid Conspiracy</option>
       <option value="Keepers in Iron" disabled>Keepers in Iron</option>
       <option value="Lord of the Hundreds" disabled>Lord of the Hundreds</option>
     </select></td>
@@ -201,8 +201,8 @@
       <option value="Vagabond (Thief)">Vagabond (Thief)</option>
       <option value="Vagabond (Tinker)">Vagabond (Tinker)</option>
       <option value="Vagabond (Vagrant)">Vagabond (Vagrant)</option>
-      <option value="Underground Duchy" disabled>Underground Duchy</option>
-      <option value="Corvid Conspiracy" disabled>Corvid Conspiracy</option>
+      <option value="Underground Duchy" >Underground Duchy</option>
+      <option value="Corvid Conspiracy" >Corvid Conspiracy</option>
       <option value="Keepers in Iron" disabled>Keepers in Iron</option>
       <option value="Lord of the Hundreds" disabled>Lord of the Hundreds</option>
     </select></td>
@@ -247,7 +247,10 @@
     <label for="Autumn"><img src="img/autumn.jpg" alt="Autumn"></label>
     <input name="Map" type="radio" class="input-hidden" id="Winter" value="Winter"/>
     <label for="Winter"><img src="img/winter.jpg"  alt="Winter"></label>
-  <!--  <input name="Map" type="radio" id="Lake" disabled> <label for="Lake">Lake</label><input name="Map" type="radio" id="Mountain" disabled> <label for="Mountain">Mountain</label> -->
+    <input name="Map"  class="input-hidden" type="radio" id="Lake" value="Lake">
+    <label for="Lake"><img src="img/lake.png" alt="Lake"></label>
+    <input name="Map"  class="input-hidden" type="radio" id="Mountain" value="Mountain">
+    <label for="Mountain"><img src="img/mountain.png" alt="Mountain"></label>
   <span class="Options">Deck:</span>
     <input name="Deck" type="radio" class="input-hidden" id="ExilesAndPartisans" checked value="E&P"/>
     <label for="ExilesAndPartisans"><img src="img/ExilesAndPartisansDeck.gif" alt="Exiles & Partisans"></label>
@@ -285,6 +288,8 @@
       <img id="LiveConfirm" src="img/live.png" alt="Live" />
       <img id="AutumnConfirm" src="img/autumn.jpg"  alt="Autumn"/>
       <img id="WinterConfirm" src="img/winter.jpg" alt="Winter" />
+      <img id="LakeConfirm" src="img/lake.png"  alt="Lake"/>
+      <img id="MountainConfirm" src="img/mountain.png" alt="Mountain" />
       <img id="BaseConfirm" src="img/baseDeck.gif" alt="Base Deck" />
       <img id="E&PConfirm" src="img/ExilesAndPartisansDeck.gif" alt="Exiles & Partisans" />
     </div>
