@@ -115,10 +115,11 @@ function createLinkToSpreadsheet(count, row){
  return td;
 }
 
-function createImg(content){
+function createImg(content, clazz){
   let img = document.createElement('img');
   img.src = "img/"+content;
   img.alt = content;
+  img.classList.add(clazz);
   let td = createBasicTd('');
   td.append(img);
   return td;
@@ -346,7 +347,7 @@ function loadPlayerGames(){
       tr.append(createLinkToSpreadsheet(idx++, game.id));
       tr.append(createBasicTd(new Date(game.timeStamp).toLocaleDateString()));
       tr.append(createBasicTd(game.season));
-      tr.append(createImg(mapImages[game['map']]));
+      tr.append(createImg(mapImages[game['map']], 'map'));
       tr.append(createImg(deckImages[game.deck]));
       tr.append(createPlayerTd(game.player1, game));
       tr.append(createPlayerTd(game.player2, game));

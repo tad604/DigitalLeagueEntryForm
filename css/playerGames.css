@@ -1,8 +1,13 @@
 
 tr img {
-  height:25px;
+  height: 25px;
   border-radius:5px;
-   display: inline-block;
+  display: inline-block;
+}
+
+tr img.map {
+  height: auto;
+  width: 36px;
 }
 
  div#filterOptions img{

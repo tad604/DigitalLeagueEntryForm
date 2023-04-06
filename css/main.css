@@ -65,6 +65,15 @@ div#gameOptions img {
   border-radius:5px;
 }
 
+div#gameOptions  img.map{
+  width:58px;
+  height: auto;
+}
+div#gameOptsConfirmation img.map {
+  width:58px;
+  height: auto;
+}
+
 div#gameOptsConfirmation img {
   height:40px;
   border-radius:5px;
