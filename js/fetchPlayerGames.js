@@ -32,6 +32,8 @@ const factionImages = {
 const mapImages = {
   'Autumn':'autumn.jpg',
   'Winter':'winter.jpg',
+  'Lake':'lake.png',
+  'Mountain':'mountain.png',
   '':'Ability_Berry_sm.png'
 }
 const deckImages = {
