@@ -420,7 +420,7 @@ function gameMatchesFilter(game, filter){
       opponentNames.push(op.name);
     });
     if (filter.decks.includes(game.deck)
-      && (filter.maps.length == 2 || filter.maps.includes(game.map))
+      && (filter.maps.length == 4 || filter.maps.includes(game.map))
       && filter.seasons.includes('' + game.season)
       && filter.factions.includes(player.faction)
       && (filter.turnOrders.length == 4 || filter.turnOrders.includes('' + player.turnOrder))

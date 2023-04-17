@@ -1,7 +1,7 @@
 const scriptProp = PropertiesService.getScriptProperties();
 const seasonDataWidth = 3;
 const factionDataStart = 5;
-const factionDataLength = 16;
+const factionDataLength = 18;
 
 function initialSetup () {
   const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
