@@ -57,7 +57,7 @@ function createRankRow(player){
     tr.appendChild(td);
   }
   tr.onclick = function (){
-    window.location = "/DigitalLeagueEntryForm/FactionStats.html?playerName="+ encodeURIComponent(player.player);
+    window.location = "./FactionStats.html?playerName="+ encodeURIComponent(player.player);
   }
   return tr;
 }
